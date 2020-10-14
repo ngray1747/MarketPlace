@@ -1,0 +1,3 @@
+include ':MarketPlace'
+include ':app'
+rootProject.name = "MinhHaiLib"
