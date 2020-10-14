@@ -27,7 +27,7 @@ import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
 import okhttp3.TlsVersion
 import vn.momo.momo_partner.AppMoMoLib
-import vn.zalopay.sdk.ZaloPaySDK
+//import vn.zalopay.sdk.ZaloPaySDK
 
 class ApplicationIpos : Application() {
     private var mRequestQueue: RequestQueue? = null
@@ -88,7 +88,7 @@ class ApplicationIpos : Application() {
         config.enableCrashReporting()
         config.setApplication(this)
         Countly.sharedInstance().init(config)
-        ZaloPaySDK.getInstance().initWithAppId(684)
+//        ZaloPaySDK.getInstance().initWithAppId(684)
         AppMoMoLib.getInstance().setEnvironment(AppMoMoLib.ENVIRONMENT.PRODUCTION)
 
 //        if (BuildConfig.DEBUG) {
