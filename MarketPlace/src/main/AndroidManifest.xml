@@ -1,5 +1,125 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.modul.marketplace">
 
-    /
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
+    <permission
+        android:name="com.modul.marketplace.app.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="false" />
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <uses-permission android:name="com.ipos.iposmanage.app.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <permission
+        android:name="com.modul.marketplace.app"
+        android:protectionLevel="dangerous" />
+
+    <application
+        android:name=".app.ApplicationIpos"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+<!--        <activity-->
+<!--            android:name=".activity.marketplace.FeedbackActivity"-->
+<!--            android:configChanges="layoutDirection|locale"-->
+<!--            android:screenOrientation="portrait" />-->
+<!--        <activity-->
+<!--            android:name=".activity.marketplace.ArticleDetailActivity"-->
+<!--            android:configChanges="layoutDirection|locale"-->
+<!--            android:screenOrientation="portrait" />-->
+<!--        <activity-->
+<!--            android:name=".activity.marketplace.ArticleCreateActivity"-->
+<!--            android:configChanges="layoutDirection|locale"-->
+<!--            android:screenOrientation="portrait" />-->
+<!--        <activity-->
+<!--            android:name=".activity.order_online.PurchaseDetailActivity"-->
+<!--            android:configChanges="layoutDirection|locale"-->
+<!--            android:screenOrientation="portrait" />-->
+<!--        <activity-->
+<!--            android:name=".activity.marketplace.MarketHistoryActivity"-->
+<!--            android:configChanges="layoutDirection|locale"-->
+<!--            android:screenOrientation="portrait" />-->
+<!--        <activity-->
+<!--            android:name=".activity.marketplace.NvlHistoryDetailActivity"-->
+<!--            android:configChanges="layoutDirection|locale"-->
+<!--            android:screenOrientation="portrait" />-->
+<!--        <activity-->
+<!--            android:name=".activity.marketplace.NvlDetailActivity"-->
+<!--            android:configChanges="layoutDirection|locale"-->
+<!--            android:screenOrientation="portrait" />-->
+<!--        <activity-->
+<!--            android:name=".activity.marketplace.MarketPlaceActivity"-->
+<!--            android:configChanges="layoutDirection|locale"-->
+<!--            android:screenOrientation="portrait" />-->
+        <activity
+            android:name=".activity.marketplace.SelectStartAddressActivity"
+            android:configChanges="layoutDirection|locale"
+            android:screenOrientation="portrait" />
+<!--        <activity-->
+<!--            android:name=".activity.order_online.AddAddressOrderOnlineActivity"-->
+<!--            android:configChanges="layoutDirection|locale"-->
+<!--            android:screenOrientation="portrait" />-->
+<!--        <activity-->
+<!--            android:name=".activity.marketplace.SelectAddressOrderNvlActivity"-->
+<!--            android:configChanges="layoutDirection|locale"-->
+<!--            android:screenOrientation="portrait" />-->
+<!--        <activity-->
+<!--            android:name=".activity.marketplace.MyArticlesActivity"-->
+<!--            android:configChanges="layoutDirection|locale"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:windowSoftInputMode="stateHidden" />-->
+<!--        <activity-->
+<!--            android:name=".activity.CateActivity"-->
+<!--            android:configChanges="layoutDirection|locale"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:windowSoftInputMode="stateHidden" />-->
+<!--        <activity-->
+<!--            android:name=".activity.order_online.MapActivity"-->
+<!--            android:configChanges="layoutDirection|locale"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:windowSoftInputMode="stateHidden" />-->
+<!--        <activity-->
+<!--            android:name=".activity.marketplace.AddAddressOrderNvlActivity"-->
+<!--            android:configChanges="layoutDirection|locale"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:windowSoftInputMode="stateHidden" />-->
+
+        <receiver
+            android:name="vn.zalopay.sdk.MerchantReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="vn.zalopay.sdk.ZP_ACTION" />
+                <category android:name="zlp" />
+            </intent-filter>
+        </receiver>
+    </application>
+
 </manifest>
