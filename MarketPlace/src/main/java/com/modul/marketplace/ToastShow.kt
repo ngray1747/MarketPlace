@@ -3,7 +3,6 @@ package com.modul.marketplace
 import android.content.Context
 import android.widget.Toast
 
-
 object ToastShow {
     fun showMessage(c: Context?, message: String?) {
         Toast.makeText(c, message, Toast.LENGTH_SHORT).show()
