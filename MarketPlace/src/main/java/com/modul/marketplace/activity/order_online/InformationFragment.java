@@ -47,9 +47,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import vn.momo.momo_partner.AppMoMoLib;
-//import vn.zalopay.listener.ZaloPayListener;
-//import vn.zalopay.sdk.ZaloPayErrorCode;
-//import vn.zalopay.sdk.ZaloPaySDK;
+import vn.zalopay.listener.ZaloPayListener;
+import vn.zalopay.sdk.ZaloPayErrorCode;
+import vn.zalopay.sdk.ZaloPaySDK;
 
 import static com.modul.marketplace.app.Constants.FABI;
 
@@ -442,21 +442,21 @@ public class InformationFragment extends BaseFragment {
 
     private void onResponseZaloPaymentCreate(DmQRCode dmQRCode) {
         if (dmQRCode != null) {
-//            ZaloPaySDK.getInstance().payOrder(
-//                    getActivity(), dmQRCode.getZptranstoken(), new MyZaloPayListener(new MyZaloPayListener.OnCallBack() {
-//                        @Override
-//                        public void onSuccess() {
-//                            if (mCartBussiness.getOrder() != null) {
-//                                checkOrderPayment(mCartBussiness.getOrder());
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onError() {
-//                            ToastUtil.makeText(mActivity, getString(R.string.payment_error));
-//                        }
-//                    })
-//            );
+            ZaloPaySDK.getInstance().payOrder(
+                    getActivity(), dmQRCode.getZptranstoken(), new MyZaloPayListener(new MyZaloPayListener.OnCallBack() {
+                        @Override
+                        public void onSuccess() {
+                            if (mCartBussiness.getOrder() != null) {
+                                checkOrderPayment(mCartBussiness.getOrder());
+                            }
+                        }
+
+                        @Override
+                        public void onError() {
+                            ToastUtil.makeText(mActivity, getString(R.string.payment_error));
+                        }
+                    })
+            );
             new Handler().postDelayed(() -> dismissProgressHub(), 2000);
         } else {
             dismissProgressHub();
@@ -522,7 +522,7 @@ public class InformationFragment extends BaseFragment {
             } else {
             }
         } else {
-//            ZaloPaySDK.getInstance().onActivityResult(requestCode, resultCode, data);
+            ZaloPaySDK.getInstance().onActivityResult(requestCode, resultCode, data);
         }
     }
 
@@ -583,31 +583,31 @@ public class InformationFragment extends BaseFragment {
         }
     }
 
-//    private static class MyZaloPayListener implements ZaloPayListener {
-//        private final String TAG = "MyZaloPayListener";
-//        private OnCallBack onCallBack;
-//
-//        public MyZaloPayListener(OnCallBack onCallBack) {
-//            this.onCallBack = onCallBack;
-//
-//        }
-//
-//        @Override
-//        public void onPaymentSucceeded(String transactionId, String zpTranstoken) {
-//            Log.d(TAG, "onSuccess: On successful with transactionId: " + transactionId + "- zpTransToken: " + zpTranstoken);
-//            onCallBack.onSuccess();
-//        }
-//
-//        @Override
-//        public void onPaymentError(ZaloPayErrorCode errorCode, int paymentErrorCode, String zpTranstoken) {
-//            Log.d(TAG, String.format("onPaymentError: payment error with [error: %s, paymentError: %d], zptranstoken: %s", errorCode, paymentErrorCode, zpTranstoken));
-//            onCallBack.onError();
-//        }
-//
-//        public interface OnCallBack {
-//            void onSuccess();
-//
-//            void onError();
-//        }
-//    }
+    private static class MyZaloPayListener implements ZaloPayListener {
+        private final String TAG = "MyZaloPayListener";
+        private OnCallBack onCallBack;
+
+        public MyZaloPayListener(OnCallBack onCallBack) {
+            this.onCallBack = onCallBack;
+
+        }
+
+        @Override
+        public void onPaymentSucceeded(String transactionId, String zpTranstoken) {
+            Log.d(TAG, "onSuccess: On successful with transactionId: " + transactionId + "- zpTransToken: " + zpTranstoken);
+            onCallBack.onSuccess();
+        }
+
+        @Override
+        public void onPaymentError(ZaloPayErrorCode errorCode, int paymentErrorCode, String zpTranstoken) {
+            Log.d(TAG, String.format("onPaymentError: payment error with [error: %s, paymentError: %d], zptranstoken: %s", errorCode, paymentErrorCode, zpTranstoken));
+            onCallBack.onError();
+        }
+
+        public interface OnCallBack {
+            void onSuccess();
+
+            void onError();
+        }
+    }
 }
