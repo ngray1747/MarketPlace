@@ -2,6 +2,7 @@ package com.modul.marketplace.app
 
 import android.app.Application
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.os.Build
 import android.text.TextUtils
 import android.util.Log
@@ -33,6 +34,11 @@ class ApplicationIpos : Application() {
     private var mRequestQueue: RequestQueue? = null
     var locationBussiness: LocationBussiness? = null
     var cartBussiness: CartBussiness? = null
+    var context : Context? = null
+
+    fun initContext(c : Context){
+        this.context = c
+    }
 
     override fun onCreate() {
         super.onCreate()
@@ -43,6 +49,8 @@ class ApplicationIpos : Application() {
         initBussiness()
         Log.i("APP", "ON APP Width/height ")
     }
+
+
 
     fun loadData(
         companyId: String? = null,
@@ -75,12 +83,11 @@ class ApplicationIpos : Application() {
     }
 
     fun initBussiness() {
-        locationBussiness = LocationBussiness(this)
-        cartBussiness = CartBussiness()
+        locationBussiness = LocationBussiness(context)
         FormatNumberUtil.initInStance()
         Countly.applicationOnCreate()
         val config = CountlyConfig(
-            this,
+                context,
             "12ee977476a2b38f5a6423f336c8e9f1e2ec7529",
             "https://analytic.ipos.vn"
         )

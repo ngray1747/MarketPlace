@@ -33,15 +33,15 @@
         android:name="com.modul.marketplace.app"
         android:protectionLevel="dangerous" />
 
-    <application
-        android:name=".app.ApplicationIpos"
-        android:allowBackup="true"
-        android:hardwareAccelerated="true"
-        android:largeHeap="true"
-        android:requestLegacyExternalStorage="true"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+    <application>
+<!--        android:name=".app.ApplicationIpos"-->
+<!--        android:allowBackup="true"-->
+<!--        android:hardwareAccelerated="true"-->
+<!--        android:largeHeap="true"-->
+<!--        android:requestLegacyExternalStorage="true"-->
+<!--        android:supportsRtl="true"-->
+<!--        android:theme="@style/AppTheme"-->
+<!--        android:usesCleartextTraffic="true">-->
 
         <uses-library
             android:name="org.apache.http.legacy"
