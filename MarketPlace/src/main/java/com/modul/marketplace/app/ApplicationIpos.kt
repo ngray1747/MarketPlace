@@ -44,7 +44,6 @@ class ApplicationIpos : Application() {
         super.onCreate()
         FirebaseApp.initializeApp(this)
         FirebaseApp.getApps(this)
-        instance = this
         Log.d("APP", "ON APP")
         initBussiness()
         Log.i("APP", "ON APP Width/height ")
@@ -83,6 +82,7 @@ class ApplicationIpos : Application() {
     }
 
     fun initBussiness() {
+        instance = this
         locationBussiness = LocationBussiness(context)
         cartBussiness = CartBussiness()
         FormatNumberUtil.initInStance()
