@@ -84,6 +84,7 @@ class ApplicationIpos : Application() {
 
     fun initBussiness() {
         locationBussiness = LocationBussiness(context)
+        cartBussiness = CartBussiness()
         FormatNumberUtil.initInStance()
         Countly.applicationOnCreate()
         val config = CountlyConfig(

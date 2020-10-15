@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 //        appli.initContext(getBaseContext());
 //        appli.initBussiness();
 //        appli.loadData("aaaa","bbb","aaaa","aaaa", new ArrayList(),new ArrayList());
-//
+////
 //        Log.e("aaaacas","test: "+ appli.getCartBussiness().getCompanyId());
     }
 }

@@ -28,6 +28,14 @@ class CartBussiness {
             mListBrands.addAll(this)
         }
     }
+
+    fun addStore(data: ArrayList<DmStore>){
+        listStore.clear()
+        data?.run{
+            listStore.addAll(this)
+        }
+    }
+
     //Order Online
     fun getOrder(): DmOrderOnline {
         return mOrderModel
