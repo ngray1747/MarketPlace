@@ -13,6 +13,7 @@ import com.modul.marketplace.app.Constants
 import com.modul.marketplace.extension.showStatusBar
 import com.modul.marketplace.model.orderonline.DmServiceListOrigin
 import com.modul.marketplace.model.orderonline.RowItemModel
+import com.modul.marketplace.util.Utilities
 import kotlinx.android.synthetic.main.activity_nvl_detail.*
 
 class NvlDetailActivity : BaseActivity() {
@@ -93,6 +94,7 @@ class NvlDetailActivity : BaseActivity() {
     }
 
     private fun order() {
+        Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_ADD_SCM_PRODUCT_TO_CART)
         Intent().apply {
             putExtra(Constants.OBJECT, nvlModel)
             setResult(Activity.RESULT_OK, this)
@@ -116,5 +118,6 @@ class NvlDetailActivity : BaseActivity() {
 
     private fun initData() {
         showStatusBar(statusColor = true, color = R.color.white)
+        Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_VIEW_SCM_PRODUCT_DETAIL)
     }
 }

@@ -27,6 +27,7 @@ import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.DateTimeUtil
 import com.modul.marketplace.util.Log
 import com.modul.marketplace.util.ToastUtil
+import com.modul.marketplace.util.Utilities
 import kotlinx.android.synthetic.main.activity_article_create.*
 import kotlinx.android.synthetic.main.include_header2.*
 import java.io.*
@@ -127,6 +128,14 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
                     mAnTin.gone()
                     mDaBan.gone()
                     mTaoLaiTin.gone()
+
+                    mTieuDe.isEnabled = true
+                    price.isEnabled = true
+                    mDesc.isEnabled = true
+                    mTag.isEnabled = true
+                    mKhuVuc.isEnabled = true
+                    mSdt.isEnabled = true
+                    mNguoiDang.isEnabled = true
                 }
                 Constants.ArticlesStatus.CONFIRMED -> {
                     mAnTin.visible()
@@ -212,20 +221,24 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
     private fun apiTaoLaiTin() {
         var newArticlesModel = ArticlesModel(id = articlesModel?.id, type = "renew")
         apiEdit(newArticlesModel)
+        Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_RENEW_ARTICLE)
     }
 
     private fun apiHuyTin() {
         var newArticlesModel = ArticlesModel(id = articlesModel?.id, status = CANCELED)
         apiEdit(newArticlesModel)
+        Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_CANCLE_ARTICLE)
     }
 
     private fun apiAnTin() {
         if (articlesModel?.active == 0) {
             var newArticlesModel = ArticlesModel(id = articlesModel?.id, active = 1)
             apiEdit(newArticlesModel)
+            Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_ACTIVE_ARTICLE)
         } else {
             var newArticlesModel = ArticlesModel(id = articlesModel?.id, active = 0)
             apiEdit(newArticlesModel)
+            Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_DEACTIVE_ARTICLE)
         }
     }
 
@@ -239,7 +252,58 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
     }
 
     private fun capnhat() {
+        Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_EDIT_ARTICLE)
 
+        if (TextUtils.isEmpty(mTieuDe.text.toString())) {
+            ToastUtil.makeText(this, getString(R.string.articles_title_valid))
+            return
+        }
+        if (TextUtils.isEmpty(price.text.toString())) {
+            ToastUtil.makeText(this, getString(R.string.articles_price_valid))
+            return
+        }
+        if (TextUtils.isEmpty(mKhuVuc.text.toString())) {
+            ToastUtil.makeText(this, getString(R.string.articles_khuvuc_valid))
+            return
+        }
+        if (TextUtils.isEmpty(mNguoiDang.text.toString())) {
+            ToastUtil.makeText(this, getString(R.string.articles_nguoidang_valid))
+            return
+        }
+        if (TextUtils.isEmpty(mSdt.text.toString())) {
+            ToastUtil.makeText(this, getString(R.string.articles_sdt_valid))
+            return
+        }
+        if (TextUtils.isEmpty(mTag.text.toString())) {
+            ToastUtil.makeText(this, getString(R.string.articles_tag_valid))
+            return
+        }
+
+        var expectedValue = 0.0
+        if (!TextUtils.isEmpty(price.text.toString())) {
+            expectedValue =
+                    price.text.toString().replace(".", "").replace(",", "").toDouble()
+        }
+        var newImageChoice = ArrayList<ArticlesImageModel>()
+        mResultImageOrder?.forEachIndexed { index, imageOrderModel ->
+            if (index.plus(1) < mResultImageOrder.size) {
+                var newArticles = ArticlesImageModel(url = imageOrderModel.img_url, url_thumb = imageOrderModel.img_url_thumb)
+                newImageChoice.add(newArticles)
+            }
+        }
+        var newArticlesModel = ArticlesModel(mTitle = mTieuDe.text.toString(),
+                id = articlesModel?.id,
+                mPrice = expectedValue,
+                city_uid = areaId,
+                tags_uid = tagsList,
+                mAuthor_name = mNguoiDang.text.toString(),
+                mAuthor_phone = mSdt.text.toString(),
+                mImage_urls = newImageChoice,
+                author_id = mCartBussiness.userId,
+                brand_id = mCartBussiness.brandId,
+                company_id = mCartBussiness.companyId,
+                mContent = mDesc.text.toString())
+        apiEdit(newArticlesModel)
     }
 
     private fun tags() {
@@ -349,6 +413,7 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
                 company_id = mCartBussiness.companyId,
                 mContent = mDesc.text.toString())
         apiCreate(newArticlesModel)
+        Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_CREATE_ARTICLE)
     }
 
     private fun apiCreate(articlesModel: ArticlesModel) {
@@ -406,7 +471,6 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
 
     private fun initData() {
         showStatusBar(statusColor = true, color = R.color.grayF8)
-        price.addTextChangedListener(NumberTextWatcher(price))
         mlbTitle.text = getString(R.string.create_articles)
         text_success.text = getString(R.string.create_articles)
     }

@@ -13,6 +13,7 @@ import com.modul.marketplace.adapter.orderonline.RowItemAdapter
 import com.modul.marketplace.app.Constants
 import com.modul.marketplace.extension.showStatusBar
 import com.modul.marketplace.model.orderonline.RowItemModel
+import com.modul.marketplace.util.Utilities
 import kotlinx.android.synthetic.main.activity_purchase_detail.*
 
 class PurchaseDetailActivity : BaseActivity() {
@@ -72,6 +73,7 @@ class PurchaseDetailActivity : BaseActivity() {
     }
 
     private fun order() {
+        Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_ADD_HERMES_PRODUCT_TO_CART)
         Intent().apply {
             putExtra(Constants.OBJECT, dmServiceListOrigin)
             setResult(Activity.RESULT_OK, this)
@@ -95,5 +97,6 @@ class PurchaseDetailActivity : BaseActivity() {
 
     private fun initData() {
         showStatusBar(color = R.color.white, statusColor = true)
+        Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_VIEW_HERMES_PRODUCT_DETAIL)
     }
 }

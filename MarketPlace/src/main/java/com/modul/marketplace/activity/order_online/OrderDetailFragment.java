@@ -43,6 +43,7 @@ import com.modul.marketplace.restful.WSRestFull;
 import com.modul.marketplace.util.FormatNumberUtil;
 import com.modul.marketplace.util.Log;
 import com.modul.marketplace.util.ToastUtil;
+import com.modul.marketplace.util.Utilities;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,6 +52,7 @@ import java.util.Map;
 import vn.momo.momo_partner.AppMoMoLib;
 
 import static com.modul.marketplace.app.Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK;
+import static com.modul.marketplace.app.Constants.BROADCAST.HERMES_ORDER_CALLBACK;
 import static com.modul.marketplace.app.Constants.BROADCAST.REFRESH;
 import static com.modul.marketplace.util.Utilities.sendBoardLib;
 //import vn.zalopay.listener.ZaloPayListener;
@@ -165,11 +167,7 @@ public class OrderDetailFragment extends BaseFragment {
     private void initClick() {
         btn_back.setOnClickListener(v -> {
             if (TYPE_CREATE_ORDER.equals(type)) {
-                sendBoardLib(getContext(),BROAD_MANAGER_HOME_CALLBACK,REFRESH);
-//                Intent intent = new Intent(mActivity, HomeAcvity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                startActivity(intent);
+                sendBoardLib(getContext(),BROAD_MANAGER_HOME_CALLBACK,HERMES_ORDER_CALLBACK);
                 mActivity.finish();
             } else {
                 mActivity.onBackPressed();
@@ -180,6 +178,8 @@ public class OrderDetailFragment extends BaseFragment {
                 ToastUtil.makeText(mActivity, getString(R.string.mess_check_payment));
                 return;
             }
+
+            Utilities.sendBoardLib(getContext(), Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_ORDER_HERMES_PRODUCT);
             if (DmOrderOnline.MOMO.equals(typePayment)) {
                 tranID = mDmOrderOnline.getOrderCode() + "-" + System.currentTimeMillis();
                 requestPaymentMoMo(tranID, mDmOrderOnline.getOrderCode(), (int) mDmOrderOnline.getAmount());

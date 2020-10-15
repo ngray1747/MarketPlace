@@ -27,6 +27,7 @@ import com.modul.marketplace.holder.orderonline.ServicelistRecycleHolder
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.Log
 import com.modul.marketplace.util.ToastUtil
+import com.modul.marketplace.util.Utilities
 import kotlinx.android.synthetic.main.fragment_nvl.*
 import java.util.*
 
@@ -57,6 +58,7 @@ class NvlFragment : BaseFragment() {
     }
 
     private fun initData() {
+        Utilities.sendBoardLib(context, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_BROWSER_SCM_PRODUCT)
         callServiceList()
     }
 
@@ -96,6 +98,7 @@ class NvlFragment : BaseFragment() {
 
                 override fun onAdd(dmServiceListOrigin: DmServiceListOrigin) {
                     checkOrderType {
+                        Utilities.sendBoardLib(context, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_ADD_SCM_PRODUCT_TO_CART)
                         dmServiceListOrigin.quantity = 1.0
                         listDetails()
                         mAdapter?.notifyDataSetChanged()

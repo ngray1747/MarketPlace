@@ -11,8 +11,7 @@ import com.modul.marketplace.model.marketplace.AddressModel
 import com.modul.marketplace.R
 import com.modul.marketplace.activity.BaseActivity
 import com.modul.marketplace.app.Constants
-import com.modul.marketplace.app.Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK
-import com.modul.marketplace.app.Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_BROWSER_HERMES_PRODUCT
+import com.modul.marketplace.app.Constants.BROADCAST.*
 import com.modul.marketplace.extension.*
 import com.modul.marketplace.model.orderonline.DmOrderOnline
 import com.modul.marketplace.restful.WSRestFull
@@ -58,9 +57,11 @@ class MarketPlaceActivity : BaseActivity() {
                     }
                     1 -> {
                         pagerMain.currentItem = 1
+                        sendBoardLib(baseContext,BROAD_MANAGER_HOME_CALLBACK,MARKETPLACE_HERMES_COUNTLY_BROWSER_SCM_PRODUCT)
                     }
                     2 -> {
                         pagerMain.currentItem = 2
+                        sendBoardLib(baseContext,BROAD_MANAGER_HOME_CALLBACK,MARKETPLACE_HERMES_COUNTLY_BROWSER_ARTICLE)
                     }
                 }
             }

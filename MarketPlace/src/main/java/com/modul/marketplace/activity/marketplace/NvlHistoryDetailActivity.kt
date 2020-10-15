@@ -10,8 +10,8 @@ import com.modul.marketplace.activity.BaseActivity
 import com.modul.marketplace.activity.order_online.OrderDetailFragment
 import com.modul.marketplace.adapter.orderonline.OrderDetailRecyleAdapter
 import com.modul.marketplace.adapter.orderonline.StatusOrderRecyleAdapter
-import com.modul.marketplace.app.ApplicationMarketPlace
 import com.modul.marketplace.app.Constants
+import com.modul.marketplace.app.Constants.BROADCAST
 import com.modul.marketplace.extension.showStatusBar
 import com.modul.marketplace.model.marketplace.NvlOnlineModel
 import com.modul.marketplace.model.orderonline.DmService
@@ -19,6 +19,7 @@ import com.modul.marketplace.model.orderonline.DmStatusOrder
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.FormatNumberUtil
 import com.modul.marketplace.util.ToastUtil
+import com.modul.marketplace.util.Utilities
 import kotlinx.android.synthetic.main.fragment_orderonline_detail.*
 import kotlinx.android.synthetic.main.include_header_order_detail.*
 import java.util.*
@@ -160,19 +161,15 @@ class NvlHistoryDetailActivity : BaseActivity() {
     }
 
     private fun initClick() {
-        back.setOnClickListener {onBack()}
+        back.setOnClickListener {onBackPressed()}
     }
 
-    private fun onBack(){
+    override fun onBackPressed() {
         if (OrderDetailFragment.TYPE_CREATE_ORDER == type) {
-//            val intent = Intent(this,
-//                    HomeAcvity::class.java)
-//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//            startActivity(intent)
+            Utilities.sendBoardLib(baseContext, BROADCAST.BROAD_MANAGER_HOME_CALLBACK, BROADCAST.NVL_ORDER_CALLBACK)
             finish()
         } else {
-            onBackPressed()
+            super.onBackPressed()
         }
     }
 

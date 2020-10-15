@@ -20,6 +20,7 @@ import com.modul.marketplace.extension.openActivity
 import com.modul.marketplace.model.marketplace.ArticlesModel
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.ToastUtil
+import com.modul.marketplace.util.Utilities
 import kotlinx.android.synthetic.main.fragment_article.*
 import java.util.*
 
@@ -49,6 +50,7 @@ class ArticleFragment : BaseFragment() {
     }
 
     private fun initData() {
+        Utilities.sendBoardLib(context, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_BROWSER_ARTICLE)
         callServiceList()
     }
 

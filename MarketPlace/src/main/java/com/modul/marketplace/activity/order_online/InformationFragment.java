@@ -40,6 +40,7 @@ import com.modul.marketplace.restful.WSRestFull;
 import com.modul.marketplace.util.FormatNumberUtil;
 import com.modul.marketplace.util.Log;
 import com.modul.marketplace.util.ToastUtil;
+import com.modul.marketplace.util.Utilities;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -383,8 +384,10 @@ public class InformationFragment extends BaseFragment {
         mCartBussiness.getOrder().setBrandId(brandId);
         if (mCartBussiness.getOrder().getOrderType() == Constants.OrderType.OrderOnline) {
             createOrderOnline(mCartBussiness.convertOrderToJson());
+            Utilities.sendBoardLib(getContext(), Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_ORDER_HERMES_PRODUCT);
         } else {
             createOrderNvl(mCartBussiness.convertNvlToJson());
+            Utilities.sendBoardLib(getContext(), Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_ORDER_SCM_PRODUCT);
         }
     }
 
