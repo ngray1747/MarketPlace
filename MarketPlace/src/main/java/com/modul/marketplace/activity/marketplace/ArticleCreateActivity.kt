@@ -83,9 +83,14 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
             city_uid?.run {
                 areaId = this
             }
-            listTag?.first()?.id?.run {
-                tagsList.add(this)
+            listTag?.run{
+                if(size > 0) {
+                    listTag?.first()?.id?.run {
+                        tagsList.add(this)
+                    }
+                }
             }
+
             mImage_urls?.forEach {
                 var imageOrderModel = ImageOrderModel()
                 imageOrderModel.img_url = it.url

@@ -96,7 +96,7 @@ class SelectStartAddressActivity : BaseActivity() {
             ToastUtil.makeText(this, getString(R.string.khuvuc_valid))
             return
         }
-
+        onBackPressed()
         openActivity(MarketPlaceActivity::class.java)
     }
 
