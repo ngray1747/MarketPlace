@@ -10,7 +10,7 @@ buildscript {
         maven {
             url "https://jitpack.io"
             credentials {
-                username = "Kyun9x"
+                username = "jp_af86k1iplf5ppno9k6ma0hci34"
             }
         }
     }
@@ -33,7 +33,7 @@ allprojects {
         maven {
             url "https://jitpack.io"
             credentials {
-                username = "Kyun9x"
+                username = "jp_af86k1iplf5ppno9k6ma0hci34"
             }
         }
     }
