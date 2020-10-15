@@ -104,6 +104,13 @@ public class Utilities {
         LocalBroadcastManager.getInstance(context).sendBroadcast(i);
     }
 
+    public static void sendBoardLib(Context context, String board, String value) {
+        Intent i = new Intent();
+        i.setAction(board);
+        i.putExtra("value", value);
+        context.sendBroadcast(i);
+    }
+
     public static void sendBoardString(Context context, String board, String value, String data) {
         Intent i = new Intent();
         i.setAction(board);

@@ -104,7 +104,11 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
             mDesc.setText(StringExt.isTextEmpty(mContent))
             mNguoiDang.setText(StringExt.isTextEmpty(mAuthor_name))
             mSdt.setText(StringExt.isTextEmpty(mAuthor_phone))
-            mTag.setText(StringExt.isTextEmpty(listTag?.first()?.tag_name))
+            listTag?.run{
+                if(size > 0) {
+                    mTag.setText(StringExt.isTextEmpty(listTag?.first()?.tag_name))
+                }
+            }
             mKhuVuc.setText(StringExt.isTextEmpty(city?.city_name))
 
             mTieuDe.isEnabled = false

@@ -49,6 +49,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import vn.momo.momo_partner.AppMoMoLib;
+
+import static com.modul.marketplace.app.Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK;
+import static com.modul.marketplace.app.Constants.BROADCAST.REFRESH;
+import static com.modul.marketplace.util.Utilities.sendBoardLib;
 //import vn.zalopay.listener.ZaloPayListener;
 //import vn.zalopay.sdk.ZaloPayErrorCode;
 //import vn.zalopay.sdk.ZaloPaySDK;
@@ -161,6 +165,7 @@ public class OrderDetailFragment extends BaseFragment {
     private void initClick() {
         btn_back.setOnClickListener(v -> {
             if (TYPE_CREATE_ORDER.equals(type)) {
+                sendBoardLib(getContext(),BROAD_MANAGER_HOME_CALLBACK,REFRESH);
 //                Intent intent = new Intent(mActivity, HomeAcvity.class);
 //                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

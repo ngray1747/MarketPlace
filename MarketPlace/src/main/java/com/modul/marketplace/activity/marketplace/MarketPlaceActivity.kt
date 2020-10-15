@@ -11,11 +11,14 @@ import com.modul.marketplace.model.marketplace.AddressModel
 import com.modul.marketplace.R
 import com.modul.marketplace.activity.BaseActivity
 import com.modul.marketplace.app.Constants
+import com.modul.marketplace.app.Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK
+import com.modul.marketplace.app.Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_BROWSER_HERMES_PRODUCT
 import com.modul.marketplace.extension.*
 import com.modul.marketplace.model.orderonline.DmOrderOnline
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.ToastUtil
 import com.modul.marketplace.util.Utilities
+import com.modul.marketplace.util.Utilities.sendBoardLib
 import kotlinx.android.synthetic.main.activity_marketplace.*
 import kotlinx.android.synthetic.main.include_header2.*
 import java.util.*
@@ -51,6 +54,7 @@ class MarketPlaceActivity : BaseActivity() {
                 when (tab.position) {
                     0 -> {
                         pagerMain.currentItem = 0
+                        sendBoardLib(baseContext,BROAD_MANAGER_HOME_CALLBACK,MARKETPLACE_HERMES_COUNTLY_BROWSER_HERMES_PRODUCT)
                     }
                     1 -> {
                         pagerMain.currentItem = 1
