@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <include
         android:id="@+id/include5"
@@ -23,24 +23,24 @@
         android:id="@+id/mLb"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginTop="@dimen/d_10"
-        android:textAppearance="@style/TextView.SemiBold"
+        android:gravity="center"
         android:text="@string/rate_lb_5"
+        android:textAppearance="@style/TextView.SemiBold"
         android:textSize="@dimen/font_size_15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <RatingBar
+        android:id="@+id/mRating"
+        style="@style/CustomRatingBar"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/d_40"
-        android:id="@+id/mRating"
-        android:numStars="5"
-        style="@style/CustomRatingBar"
         android:layout_marginLeft="@dimen/d_15"
-        android:layout_marginRight="@dimen/d_15"
         android:layout_marginTop="@dimen/d_30"
+        android:layout_marginRight="@dimen/d_15"
+        android:numStars="5"
         android:rating="5"
         android:stepSize="1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,6 +56,7 @@
         android:layout_marginTop="@dimen/d_15"
         android:layout_marginRight="@dimen/d_15"
         android:textColorHint="@color/gray80"
+        android:theme="@style/Theme.MaterialComponents"
         app:boxStrokeColor="@color/mainColor"
         app:boxStrokeWidth="0.5dp"
         app:hintTextColor="@color/mainColor"
@@ -96,17 +97,18 @@
         style="@style/UnelevatedButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/d_15"
         android:layout_marginLeft="@dimen/d_15"
+        android:layout_marginRight="@dimen/d_15"
         android:layout_marginBottom="@dimen/d_10"
         android:layout_weight="1"
         android:paddingTop="@dimen/d_10"
-        android:text="@string/lb_fb"
         android:paddingBottom="@dimen/d_10"
         android:stateListAnimator="@null"
+        android:text="@string/lb_fb"
         android:textAppearance="@style/TextView.SemiBold"
         android:textColor="@color/white"
         android:textSize="@dimen/font_size_16"
+        android:theme="@style/Theme.MaterialComponents"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -116,10 +118,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/trans_CC005EA5"
-        android:visibility="gone"
-        android:clickable="true">
+        android:clickable="true"
+        android:visibility="gone">
 
-        <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+        <TextView
             android:id="@+id/success"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -130,10 +132,11 @@
             android:paddingRight="@dimen/standard_margin_double_30"
             android:paddingBottom="@dimen/standard_margin"
             android:text="@string/hoan_thanh"
+            android:textAppearance="@style/TextView.SemiBold"
             android:textColor="@color/trans_CC005EA5"
             android:textSize="@dimen/font_size_16" />
 
-        <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+        <TextView
             android:id="@+id/text_success"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -141,6 +144,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/action_bar_height"
             android:text="@string/fb_success"
+            android:textAppearance="@style/TextView.SemiBold"
             android:textColor="@color/white"
             android:textSize="@dimen/font_size_18" />
 

@@ -12,12 +12,12 @@ import androidx.fragment.app.FragmentActivity
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
-import com.modul.marketplace.app.ApplicationIpos
+import com.modul.marketplace.app.ApplicationMarketPlace
 
 object LocationExt {
     fun gpsIsEnable(): Boolean {
         val lm =
-                ApplicationIpos.instance.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+                ApplicationMarketPlace.instance.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         var gpsEnabled = false
         var networkEnabled = false
 

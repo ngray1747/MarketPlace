@@ -41,6 +41,7 @@
                 android:layout_marginRight="@dimen/d_15"
                 android:textAppearance="@style/EditText.Regular"
                 android:textColorHint="@color/gray80"
+                android:theme="@style/Theme.MaterialComponents"
                 app:boxStrokeColor="@color/mainColor"
                 app:boxStrokeWidth="0.5dp"
                 app:hintTextColor="@color/mainColor"
@@ -73,6 +74,7 @@
                 android:layout_marginRight="@dimen/d_15"
                 android:textAppearance="@style/EditText.Regular"
                 android:textColorHint="@color/gray80"
+                android:theme="@style/Theme.MaterialComponents"
                 app:boxStrokeColor="@color/mainColor"
                 app:boxStrokeWidth="0.5dp"
                 app:hintTextColor="@color/mainColor"
@@ -94,7 +96,7 @@
                     android:paddingBottom="@dimen/d_15"
                     android:singleLine="true"
                     android:textAppearance="@style/EditText.SemiBold"
-                    android:textSize="@dimen/font_size_14"/>
+                    android:textSize="@dimen/font_size_14" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -107,6 +109,7 @@
                 android:layout_marginRight="@dimen/d_15"
                 android:textAppearance="@style/EditText.Regular"
                 android:textColorHint="@color/gray80"
+                android:theme="@style/Theme.MaterialComponents"
                 app:boxStrokeColor="@color/mainColor"
                 app:boxStrokeWidth="0.5dp"
                 app:hintTextColor="@color/mainColor"
@@ -128,7 +131,7 @@
                     android:paddingBottom="@dimen/d_15"
                     android:singleLine="true"
                     android:textAppearance="@style/EditText.SemiBold"
-                    android:textSize="@dimen/font_size_14"/>
+                    android:textSize="@dimen/font_size_14" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -141,6 +144,7 @@
                 android:layout_marginRight="@dimen/d_15"
                 android:textAppearance="@style/EditText.Regular"
                 android:textColorHint="@color/gray80"
+                android:theme="@style/Theme.MaterialComponents"
                 app:boxStrokeColor="@color/mainColor"
                 app:boxStrokeWidth="0.5dp"
                 app:hintTextColor="@color/mainColor"
@@ -162,7 +166,7 @@
                     android:paddingBottom="@dimen/d_15"
                     android:singleLine="true"
                     android:textAppearance="@style/EditText.SemiBold"
-                    android:textSize="@dimen/font_size_14"/>
+                    android:textSize="@dimen/font_size_14" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -201,7 +205,8 @@
             android:text="@string/btn_cancel"
             android:textAppearance="@style/TextView.SemiBold"
             android:textColor="@color/gray80"
-            android:textSize="@dimen/font_size_16" />
+            android:textSize="@dimen/font_size_16"
+            android:theme="@style/Theme.MaterialComponents" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/mApply"
@@ -218,6 +223,7 @@
             android:stateListAnimator="@null"
             android:text="@string/save_address"
             android:textAppearance="@style/TextView.SemiBold"
-            android:textSize="@dimen/font_size_16" />
+            android:textSize="@dimen/font_size_16"
+            android:theme="@style/Theme.MaterialComponents" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

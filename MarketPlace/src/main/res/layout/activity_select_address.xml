@@ -22,8 +22,9 @@
         app:layout_constraintBottom_toTopOf="@+id/mAddAddress"
         app:layout_constraintTop_toBottomOf="@+id/include2" />
 
-    <com.lib.marketplace.customview.TextViewOpenSanRegular
+    <TextView
         android:id="@+id/mAddAddress"
+        android:textAppearance="@style/TextView.Regular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableTop="@drawable/icon_plus3"

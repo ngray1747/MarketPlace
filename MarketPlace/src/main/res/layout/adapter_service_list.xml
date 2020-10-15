@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:paddingTop="@dimen/standard_margin_15">
 
-    <com.facebook.drawee.view.SimpleDraweeView
+    <ImageView
         android:id="@+id/image"
         android:background="@drawable/icon_default"
         android:layout_width="@dimen/d_70"
@@ -16,10 +16,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+    <TextView
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/TextView.SemiBold"
         android:layout_marginLeft="@dimen/standard_margin_15"
         android:textColor="@color/black"
         android:singleLine="true"
@@ -29,10 +30,11 @@
         app:layout_constraintStart_toEndOf="@+id/image"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.lib.marketplace.customview.TextViewOpenSanRegular
+    <TextView
         android:id="@+id/adress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/TextView.Regular"
         android:layout_marginLeft="@dimen/standard_margin_15"
         android:layout_marginTop="@dimen/standard_margin_half"
         android:layout_marginRight="@dimen/d_15"
@@ -55,11 +57,12 @@
         app:layout_constraintEnd_toStartOf="@+id/quantity"
         app:layout_constraintTop_toBottomOf="@+id/adress" />
 
-    <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+    <TextView
         android:id="@+id/quantity"
         android:layout_width="@dimen/standard_margin_double_25"
         android:layout_height="@dimen/standard_margin_double_25"
         android:gravity="center"
+        android:textAppearance="@style/TextView.SemiBold"
         android:text="0"
         android:visibility="invisible"
         android:textSize="@dimen/font_size_16"
@@ -91,10 +94,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/adress" />
 
-    <com.lib.marketplace.customview.TextViewOpenSanRegular
+    <TextView
         android:id="@+id/total_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/TextView.Regular"
         android:layout_marginTop="@dimen/standard_margin_half"
         android:layout_marginRight="@dimen/font_size_12_5"
         android:gravity="start"
@@ -105,10 +109,11 @@
         app:layout_constraintStart_toEndOf="@+id/image"
         app:layout_constraintTop_toBottomOf="@+id/adress" />
 
-    <com.lib.marketplace.customview.TextViewOpenSanRegular
+    <TextView
         android:id="@+id/price_origin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/TextView.Regular"
         android:layout_marginTop="@dimen/standard_margin_half"
         android:visibility="gone"
         android:gravity="start"

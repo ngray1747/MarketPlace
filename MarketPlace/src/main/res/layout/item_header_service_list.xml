@@ -9,8 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+        <TextView
             android:id="@+id/name"
+            android:textAppearance="@style/TextView.SemiBold"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/action_bar_height"
             android:layout_toStartOf="@+id/image"

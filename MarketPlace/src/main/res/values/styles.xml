@@ -1,9 +1,12 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="AppThemeMarket" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Widget.Design.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"/>
+    <style name="Theme.MaterialComponents" parent="Base.Theme.MaterialComponents"/>
 
     <!-- Animations -->
     <style name="AnimationOverFlow">

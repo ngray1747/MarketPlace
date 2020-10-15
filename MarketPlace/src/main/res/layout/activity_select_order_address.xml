@@ -72,7 +72,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mStart"
-        style="@style/UnelevatedButton"
+        app:theme="@style/Theme.MaterialComponents"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/d_15"

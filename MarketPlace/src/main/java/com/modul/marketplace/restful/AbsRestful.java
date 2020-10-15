@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
-import com.modul.marketplace.app.ApplicationIpos;
+import com.modul.marketplace.app.ApplicationMarketPlace;
 import com.modul.marketplace.app.Constants;
 import com.modul.marketplace.util.SharedPref;
 
@@ -96,7 +96,7 @@ public class AbsRestful {
 
 
     protected <T> void addReq(Request<T> req, String TAG) {
-        ApplicationIpos.instance.addToRequestQueue(req, TAG);
+        ApplicationMarketPlace.instance.addToRequestQueue(req, TAG);
     }
 
     public static DefaultRetryPolicy reTryPolicy() {

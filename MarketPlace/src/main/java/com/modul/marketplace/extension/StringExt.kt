@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.modul.marketplace.app.ApplicationIpos
+import com.modul.marketplace.app.ApplicationMarketPlace
 import com.modul.marketplace.util.FormatNumberUtil
 import com.modul.marketplace.util.Utilities
 import timber.log.Timber
@@ -77,7 +77,7 @@ object StringExt {
 
     fun isCompareEmail(text: String, message: String): Boolean {
         if (!emailValid(text.trim())) {
-            Toast.makeText(ApplicationIpos.instance, message, Toast.LENGTH_SHORT).show()
+            Toast.makeText(ApplicationMarketPlace.instance, message, Toast.LENGTH_SHORT).show()
             return true
         }
         return false

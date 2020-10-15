@@ -5,7 +5,6 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.modul.marketplace.R;
-import com.modul.marketplace.app.ApplicationIpos;
 
 import java.io.Serializable;
 import java.util.ArrayList;

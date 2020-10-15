@@ -21,7 +21,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+    <TextView
+        android:textAppearance="@style/TextView.SemiBold"
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -33,7 +34,8 @@
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.lib.marketplace.customview.TextViewOpenSanRegular
+    <TextView
+        android:textAppearance="@style/TextView.Regular"
         android:id="@+id/time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -46,7 +48,8 @@
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
-    <com.lib.marketplace.customview.TextViewOpenSanRegular
+    <TextView
+        android:textAppearance="@style/TextView.Regular"
         android:id="@+id/adress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -60,7 +63,8 @@
         app:layout_constraintTop_toBottomOf="@+id/time" />
 
 
-    <com.lib.marketplace.customview.TextViewOpenSanRegular
+    <TextView
+        android:textAppearance="@style/TextView.Regular"
         android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,7 +81,8 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
 
-    <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+    <TextView
+        android:textAppearance="@style/TextView.SemiBold"
         android:id="@+id/price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

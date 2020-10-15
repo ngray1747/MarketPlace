@@ -21,7 +21,8 @@
         android:padding="@dimen/standard_margin_12"
         android:src="@drawable/back" />
 
-    <com.lib.marketplace.customview.TextViewOpenSanRegular
+    <TextView
+        android:textAppearance="@style/TextView.Regular"
         android:id="@+id/edit"
         android:layout_toRightOf="@+id/back"
         android:layout_width="match_parent"
@@ -41,7 +42,8 @@
         android:layout_marginBottom="100dp"
         android:clickable="true"/>
 
-    <com.lib.marketplace.customview.TextViewOpenSanRegular
+    <TextView
+        android:textAppearance="@style/TextView.Regular"
         android:id="@+id/btn_xacNhan"
         android:layout_width="match_parent"
         android:layout_height="@dimen/action_bar_height"

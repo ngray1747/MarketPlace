@@ -10,7 +10,6 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.VolleyLog
 import com.android.volley.toolbox.Volley
-import com.facebook.stetho.Stetho
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.firebase.FirebaseApp
 import com.modul.marketplace.bussiness.CartBussiness
@@ -21,23 +20,24 @@ import com.modul.marketplace.restful.AbsRestful
 import com.modul.marketplace.restful.NukeSSLCerts
 import com.modul.marketplace.restful.OkHttpStack
 import com.modul.marketplace.util.FormatNumberUtil
-import com.modul.marketplace.util.SharedPref
 import ly.count.android.sdk.Countly
 import ly.count.android.sdk.CountlyConfig
 import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
 import okhttp3.TlsVersion
 import vn.momo.momo_partner.AppMoMoLib
+
 //import vn.zalopay.sdk.ZaloPaySDK
 
-class ApplicationIpos : Application() {
+class ApplicationMarketPlace : Application() {
     private var mRequestQueue: RequestQueue? = null
     var locationBussiness: LocationBussiness? = null
     var cartBussiness: CartBussiness? = null
-    var context : Context? = null
 
-    fun initContext(c : Context){
-        this.context = c
+    private val applicationMarketPlace: ApplicationMarketPlace? = null
+
+    fun initContext(c: Context){
+        context = c
     }
 
     override fun onCreate() {
@@ -52,12 +52,12 @@ class ApplicationIpos : Application() {
 
 
     fun loadData(
-        companyId: String? = null,
-        brandId: String? = null,
-        userId: String? = null,
-        appType: String? = null,
-        listBrand: ArrayList<DmBrand>? = null,
-        listStore: ArrayList<DmStore>? = null
+            companyId: String? = null,
+            brandId: String? = null,
+            userId: String? = null,
+            appType: String? = null,
+            listBrand: ArrayList<DmBrand>? = null,
+            listStore: ArrayList<DmStore>? = null
     ) {
         companyId?.run {
             cartBussiness?.companyId = this
@@ -89,8 +89,8 @@ class ApplicationIpos : Application() {
         Countly.applicationOnCreate()
         val config = CountlyConfig(
                 context,
-            "12ee977476a2b38f5a6423f336c8e9f1e2ec7529",
-            "https://analytic.ipos.vn"
+                "12ee977476a2b38f5a6423f336c8e9f1e2ec7529",
+                "https://analytic.ipos.vn"
         )
         config.setLoggingEnabled(true)
         config.enableCrashReporting()
@@ -119,41 +119,44 @@ class ApplicationIpos : Application() {
 
     // lazy initialize the request queue, the queue instance will be
     // created when it is accessed for the first time
-    val requestQueue: RequestQueue?
-        get() {
-            if (mRequestQueue == null) {
-                //mRequestQueue = Volley.newRequestQueue(getApplicationContext());
-                val builderOk = OkHttpClient.Builder()
+
+    fun getRequestQueue(): RequestQueue? {
+        // lazy initialize the request queue, the queue instance will be
+        // created when it is accessed for the first time
+        if (mRequestQueue == null) {
+            //mRequestQueue = Volley.newRequestQueue(getApplicationContext());
+            val builderOk = OkHttpClient.Builder()
                     .addNetworkInterceptor(StethoInterceptor())
-                mRequestQueue = if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
-                    val spec = ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
+            mRequestQueue = if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+                val spec = ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
                         .tlsVersions(TlsVersion.TLS_1_2)
                         .build()
-                    val nothttps = ConnectionSpec.Builder(ConnectionSpec.CLEARTEXT)
+                val nothttps = ConnectionSpec.Builder(ConnectionSpec.CLEARTEXT)
                         .build()
-                    val list = ArrayList<ConnectionSpec>()
-                    list.add(spec)
-                    list.add(nothttps)
-                    builderOk.connectionSpecs(list)
-                    Volley.newRequestQueue(this, OkHttpStack(builderOk.build()))
-                } else {
-                    NukeSSLCerts.nuke()
-                    Volley.newRequestQueue(this)
-                }
-                VolleyLog.DEBUG = Constants.IS_LOG
+                val list = java.util.ArrayList<ConnectionSpec>()
+                list.add(spec)
+                list.add(nothttps)
+                builderOk.connectionSpecs(list)
+                Volley.newRequestQueue(context, OkHttpStack(builderOk.build()))
+            } else {
+                NukeSSLCerts.nuke()
+                Volley.newRequestQueue(context)
             }
-            return mRequestQueue
+            VolleyLog.DEBUG = Constants.IS_LOG
         }
+        return mRequestQueue
+    }
+
 
     fun <T> addToRequestQueue(req: Request<T>, tag: String) {
         // set the default tag if tag is empty
         req.tag = if (TextUtils.isEmpty(tag)) TAG else tag
         req.retryPolicy = AbsRestful.reTryPolicy()
         Log.i(
-            "App.addToRequestQueue() tag $tag",
-            "url restful " + req.url
+                "App.addToRequestQueue() tag $tag",
+                "url restful " + req.url
         )
-        requestQueue!!.add(req)
+        getRequestQueue()?.add(req)
     }
 
     fun <T> addToRequestQueue(req: Request<T>) {
@@ -161,7 +164,7 @@ class ApplicationIpos : Application() {
         req.tag = TAG
         req.retryPolicy = AbsRestful.reTryPolicy()
         Log.i("App.addToRequestQueue()", "url restful " + req.url)
-        requestQueue!!.add(req)
+        getRequestQueue()?.add(req)
     }
 
     /**
@@ -178,6 +181,7 @@ class ApplicationIpos : Application() {
     }
 
     companion object {
-        lateinit var instance: ApplicationIpos
+        lateinit var instance: ApplicationMarketPlace
+        lateinit var context: Context
     }
 }

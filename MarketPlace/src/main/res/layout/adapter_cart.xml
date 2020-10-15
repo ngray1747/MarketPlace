@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:paddingTop="@dimen/standard_margin_15">
 
-    <com.facebook.drawee.view.SimpleDraweeView
+    <ImageView
         android:id="@+id/image"
         android:background="@drawable/icon_default"
         android:layout_width="@dimen/d_40"
@@ -15,7 +15,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+    <TextView
+        android:textAppearance="@style/TextView.SemiBold"
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_marginLeft="@dimen/d_10"
@@ -27,7 +28,8 @@
         app:layout_constraintStart_toEndOf="@+id/image"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+    <TextView
+        android:textAppearance="@style/TextView.SemiBold"
         android:id="@+id/quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,7 +56,8 @@
         app:layout_constraintStart_toStartOf="@+id/title"
         app:layout_constraintTop_toBottomOf="@+id/title">
 
-        <com.lib.marketplace.customview.TextViewOpenSanRegular
+        <TextView
+            android:textAppearance="@style/TextView.Regular"
             android:id="@+id/adress"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -66,7 +69,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+        <TextView
+            android:textAppearance="@style/TextView.SemiBold"
             android:id="@+id/price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -78,7 +82,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+        <TextView
+            android:textAppearance="@style/TextView.SemiBold"
             android:id="@+id/total_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -92,7 +97,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/price" />
 
-        <com.lib.marketplace.customview.TextViewOpenSanRegular
+        <TextView
+            android:textAppearance="@style/TextView.Regular"
             android:id="@+id/promotion_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

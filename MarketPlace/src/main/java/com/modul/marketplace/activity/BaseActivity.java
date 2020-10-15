@@ -18,7 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.modul.marketplace.R;
-import com.modul.marketplace.app.ApplicationIpos;
+import com.modul.marketplace.app.ApplicationMarketPlace;
 import com.modul.marketplace.app.Constants;
 import com.modul.marketplace.bussiness.CartBussiness;
 import com.modul.marketplace.util.Log;
@@ -57,7 +57,7 @@ public class BaseActivity extends AppCompatActivity {
         config = new SharedPref(this);
         mHandler = new Handler();
 
-        mCartBussiness = ApplicationIpos.instance.getCartBussiness();
+        mCartBussiness = ApplicationMarketPlace.instance.getCartBussiness();
     }
 
     protected void finviewHomeBar() {

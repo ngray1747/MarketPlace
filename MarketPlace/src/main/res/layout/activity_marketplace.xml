@@ -14,6 +14,7 @@
         style="@style/Widget.MaterialComponents.TabLayout.Colored"
         android:layout_width="0dp"
         android:layout_height="48dp"
+        android:theme="@style/Theme.MaterialComponents"
         android:background="@color/white"
         android:translationZ="@dimen/d_1"
         app:layout_constraintEnd_toEndOf="parent"

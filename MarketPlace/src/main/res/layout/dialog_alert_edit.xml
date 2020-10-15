@@ -16,7 +16,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+    <TextView
+        android:textAppearance="@style/TextView.SemiBold"
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -81,6 +82,7 @@
         android:id="@+id/mEdit"
         style="@style/UnelevatedButton"
         android:layout_width="0dp"
+        android:theme="@style/Theme.MaterialComponents"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/d_15"
         android:layout_marginTop="@dimen/d_25"

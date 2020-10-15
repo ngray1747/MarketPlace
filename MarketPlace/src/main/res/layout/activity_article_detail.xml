@@ -76,6 +76,7 @@
         style="@style/UnelevatedButtonAccept"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:theme="@style/Theme.MaterialComponents"
         android:layout_marginRight="@dimen/d_15"
         android:layout_marginLeft="@dimen/d_15"
         android:layout_marginBottom="@dimen/d_10"

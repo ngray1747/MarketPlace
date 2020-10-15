@@ -14,7 +14,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.modul.marketplace.app.ApplicationIpos;
+import com.modul.marketplace.app.ApplicationMarketPlace;
 import com.modul.marketplace.app.Constants;
 import com.modul.marketplace.util.Log;
 import com.modul.marketplace.util.SharedPref;
@@ -94,7 +94,7 @@ public class LocationBussiness implements
     }
 
     public static Location getMyLocation() {
-        LocationBussiness mLocationBussiness = ApplicationIpos.instance.getLocationBussiness();
+        LocationBussiness mLocationBussiness = ApplicationMarketPlace.instance.getLocationBussiness();
         Location myLocation;
         myLocation = mLocationBussiness.getLocationCurrent();
         return myLocation;

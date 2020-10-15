@@ -97,8 +97,7 @@ class SelectStartAddressActivity : BaseActivity() {
             return
         }
 
-        onBackPressed()
-//        openActivity(MarketPlaceActivity::class.java)
+        openActivity(MarketPlaceActivity::class.java)
     }
 
     private fun initExtra() {

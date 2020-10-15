@@ -30,9 +30,10 @@
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false" />
 
-            <com.lib.marketplace.customview.TextViewOpenSanRegular
+            <TextView
                 android:id="@+id/status_cancel"
                 android:layout_width="match_parent"
+                android:textAppearance="@style/TextView.Regular"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="@dimen/standard_margin"
@@ -48,7 +49,8 @@
                 android:orientation="vertical"
                 android:visibility="gone">
 
-                <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+                <TextView
+                    android:textAppearance="@style/TextView.SemiBold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/F0F0F0"
@@ -57,9 +59,10 @@
                     android:textColor="@color/color_636363"
                     android:textSize="@dimen/font_size_15" />
 
-                <com.lib.marketplace.customview.TextViewOpenSanRegular
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextView.Regular"
                     android:layout_marginLeft="@dimen/standard_margin"
                     android:layout_marginTop="@dimen/standard_margin"
                     android:layout_marginRight="@dimen/standard_margin"
@@ -67,12 +70,13 @@
                     android:textColor="@color/color_808080"
                     android:textSize="@dimen/font_size_13" />
 
-                <com.lib.marketplace.customview.TextViewOpenSanRegular
+                <TextView
                     android:id="@+id/name_bussiness"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/standard_margin"
                     android:layout_marginTop="@dimen/standard_margin_half"
+                    android:textAppearance="@style/TextView.Regular"
                     android:layout_marginRight="@dimen/standard_margin"
                     android:layout_marginBottom="@dimen/standard_margin"
                     android:hint="@string/name_bussiness"
@@ -86,19 +90,21 @@
                     android:layout_marginRight="@dimen/standard_margin"
                     android:background="@color/DCDCDC" />
 
-                <com.lib.marketplace.customview.TextViewOpenSanRegular
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/standard_margin"
+                    android:textAppearance="@style/TextView.Regular"
                     android:layout_marginTop="@dimen/standard_margin"
                     android:layout_marginRight="@dimen/standard_margin"
                     android:text="@string/email"
                     android:textColor="@color/color_808080"
                     android:textSize="@dimen/font_size_13" />
 
-                <com.lib.marketplace.customview.TextViewOpenSanRegular
+                <TextView
                     android:id="@+id/email_bussiness"
                     android:layout_width="match_parent"
+                    android:textAppearance="@style/TextView.Regular"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/standard_margin"
                     android:layout_marginTop="@dimen/standard_margin_half"
@@ -116,9 +122,10 @@
                     android:background="@color/DCDCDC" />
 
 
-                <com.lib.marketplace.customview.TextViewOpenSanRegular
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextView.Regular"
                     android:layout_marginLeft="@dimen/standard_margin"
                     android:layout_marginTop="@dimen/standard_margin"
                     android:layout_marginRight="@dimen/standard_margin"
@@ -126,11 +133,12 @@
                     android:textColor="@color/color_808080"
                     android:textSize="@dimen/font_size_13" />
 
-                <com.lib.marketplace.customview.TextViewOpenSanRegular
+                <TextView
                     android:id="@+id/tax"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/standard_margin"
+                    android:textAppearance="@style/TextView.Regular"
                     android:layout_marginTop="@dimen/standard_margin_half"
                     android:layout_marginRight="@dimen/standard_margin"
                     android:layout_marginBottom="@dimen/standard_margin"
@@ -145,9 +153,10 @@
                     android:layout_marginRight="@dimen/standard_margin"
                     android:background="@color/DCDCDC" />
 
-                <com.lib.marketplace.customview.TextViewOpenSanRegular
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextView.Regular"
                     android:layout_marginLeft="@dimen/standard_margin"
                     android:layout_marginTop="@dimen/standard_margin"
                     android:layout_marginRight="@dimen/standard_margin"
@@ -155,11 +164,12 @@
                     android:textColor="@color/color_808080"
                     android:textSize="@dimen/font_size_13" />
 
-                <com.lib.marketplace.customview.TextViewOpenSanRegular
+                <TextView
                     android:id="@+id/adress_bussiness"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/standard_margin"
+                    android:textAppearance="@style/TextView.Regular"
                     android:layout_marginTop="@dimen/standard_margin_half"
                     android:layout_marginRight="@dimen/standard_margin"
                     android:layout_marginBottom="@dimen/standard_margin"
@@ -169,7 +179,8 @@
 
             </LinearLayout>
 
-            <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+            <TextView
+                android:textAppearance="@style/TextView.SemiBold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/standard_margin"
@@ -180,21 +191,23 @@
                 android:textColor="@color/color_636363"
                 android:textSize="@dimen/font_size_15" />
 
-            <com.lib.marketplace.customview.TextViewOpenSanRegular
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/standard_margin"
                 android:visibility="gone"
+                android:textAppearance="@style/TextView.Regular"
                 android:layout_marginTop="@dimen/standard_margin"
                 android:layout_marginRight="@dimen/standard_margin"
                 android:text="@string/nguoi_nhan"
                 android:textColor="@color/color_808080"
                 android:textSize="@dimen/font_size_13" />
 
-            <com.lib.marketplace.customview.TextViewOpenSanRegular
+            <TextView
                 android:id="@+id/info_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/TextView.Regular"
                 android:visibility="gone"
                 android:layout_marginLeft="@dimen/standard_margin"
                 android:layout_marginTop="@dimen/standard_margin_half"
@@ -212,9 +225,10 @@
                 android:layout_marginRight="@dimen/standard_margin"
                 android:background="@color/DCDCDC" />
 
-            <com.lib.marketplace.customview.TextViewOpenSanRegular
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/TextView.Regular"
                 android:layout_marginLeft="@dimen/standard_margin"
                 android:visibility="gone"
                 android:layout_marginTop="@dimen/standard_margin"
@@ -223,9 +237,10 @@
                 android:textColor="@color/color_808080"
                 android:textSize="@dimen/font_size_13" />
 
-            <com.lib.marketplace.customview.TextViewOpenSanRegular
+            <TextView
                 android:id="@+id/info_phone_number"
                 android:layout_width="match_parent"
+                android:textAppearance="@style/TextView.Regular"
                 android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/standard_margin"
@@ -247,8 +262,9 @@
                 android:visibility="gone"
                 android:background="@color/DCDCDC" />
 
-            <com.lib.marketplace.customview.TextViewOpenSanRegular
+            <TextView
                 android:layout_width="match_parent"
+                android:textAppearance="@style/TextView.Regular"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/standard_margin"
                 android:visibility="gone"
@@ -258,9 +274,10 @@
                 android:textColor="@color/color_808080"
                 android:textSize="@dimen/font_size_13" />
 
-            <com.lib.marketplace.customview.TextViewOpenSanRegular
+            <TextView
                 android:id="@+id/adress"
                 android:layout_width="match_parent"
+                android:textAppearance="@style/TextView.Regular"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 android:layout_marginLeft="@dimen/standard_margin"
@@ -279,21 +296,23 @@
                 android:layout_marginRight="@dimen/standard_margin"
                 android:background="@color/DCDCDC" />
 
-            <com.lib.marketplace.customview.TextViewOpenSanRegular
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/standard_margin"
                 android:visibility="gone"
+                android:textAppearance="@style/TextView.Regular"
                 android:layout_marginTop="@dimen/standard_margin"
                 android:layout_marginRight="@dimen/standard_margin"
                 android:text="@string/customer_note"
                 android:textColor="@color/color_808080"
                 android:textSize="@dimen/font_size_13" />
 
-            <com.lib.marketplace.customview.TextViewOpenSanRegular
+            <TextView
                 android:id="@+id/customer_note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/TextView.Regular"
                 android:visibility="gone"
                 android:layout_marginLeft="@dimen/standard_margin"
                 android:layout_marginTop="@dimen/standard_margin_half"
@@ -317,22 +336,24 @@
                     android:layout_marginRight="@dimen/standard_margin"
                     android:background="@color/DCDCDC" />
 
-                <com.lib.marketplace.customview.TextViewOpenSanRegular
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/standard_margin"
+                    android:textAppearance="@style/TextView.Regular"
                     android:layout_marginTop="@dimen/standard_margin"
                     android:layout_marginRight="@dimen/standard_margin"
                     android:text="@string/estimated_time_of_delivery"
                     android:textColor="@color/color_808080"
                     android:textSize="@dimen/font_size_13" />
 
-                <com.lib.marketplace.customview.TextViewOpenSanRegular
+                <TextView
                     android:id="@+id/time_estimate_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/standard_margin"
                     android:layout_marginTop="@dimen/standard_margin_half"
+                    android:textAppearance="@style/TextView.Regular"
                     android:layout_marginRight="@dimen/standard_margin"
                     android:layout_marginBottom="@dimen/standard_margin"
                     android:hint="@string/estimated_time_of_delivery"
@@ -346,9 +367,10 @@
                     android:layout_marginRight="@dimen/standard_margin"
                     android:background="@color/DCDCDC" />
 
-                <com.lib.marketplace.customview.TextViewOpenSanRegular
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextView.Regular"
                     android:layout_marginLeft="@dimen/standard_margin"
                     android:layout_marginTop="@dimen/standard_margin"
                     android:layout_marginRight="@dimen/standard_margin"
@@ -356,9 +378,10 @@
                     android:textColor="@color/color_808080"
                     android:textSize="@dimen/font_size_13" />
 
-                <com.lib.marketplace.customview.TextViewOpenSanRegular
+                <TextView
                     android:id="@+id/inven_note"
                     android:layout_width="match_parent"
+                    android:textAppearance="@style/TextView.Regular"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/standard_margin"
                     android:layout_marginTop="@dimen/standard_margin_half"
@@ -369,7 +392,8 @@
                     android:textSize="@dimen/font_size_15" />
             </LinearLayout>
 
-            <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+            <TextView
+                android:textAppearance="@style/TextView.SemiBold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/standard_margin"
@@ -426,7 +450,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+                <TextView
+                    android:textAppearance="@style/TextView.SemiBold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -439,7 +464,8 @@
                     android:textColor="@color/text_36"
                     android:textSize="@dimen/font_size_15" />
 
-                <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+                <TextView
+                    android:textAppearance="@style/TextView.SemiBold"
                     android:id="@+id/mPaymentmethod"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -463,7 +489,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+                <TextView
+                    android:textAppearance="@style/TextView.SemiBold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -476,7 +503,8 @@
                     android:textColor="@color/text_36"
                     android:textSize="@dimen/font_size_15" />
 
-                <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+                <TextView
+                    android:textAppearance="@style/TextView.SemiBold"
                     android:id="@+id/provisional"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -495,7 +523,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+                <TextView
+                    android:textAppearance="@style/TextView.SemiBold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -508,7 +537,8 @@
                     android:textColor="@color/text_36"
                     android:textSize="@dimen/font_size_15" />
 
-                <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+                <TextView
+                    android:textAppearance="@style/TextView.SemiBold"
                     android:id="@+id/voucher_amount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -527,7 +557,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+                <TextView
+                    android:textAppearance="@style/TextView.SemiBold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -540,7 +571,8 @@
                     android:textColor="@color/text_36"
                     android:textSize="@dimen/font_size_15" />
 
-                <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+                <TextView
+                    android:textAppearance="@style/TextView.SemiBold"
                     android:id="@+id/total_amount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -561,7 +593,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+                <TextView
+                    android:textAppearance="@style/TextView.SemiBold"
                     android:id="@+id/title_payment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -575,7 +608,8 @@
                     android:textColor="@color/text_36"
                     android:textSize="@dimen/font_size_15" />
 
-                <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+                <TextView
+                    android:textAppearance="@style/TextView.SemiBold"
                     android:id="@+id/amount_payment_method"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -595,11 +629,12 @@
                 android:layout_height="@dimen/height0_5"
                 android:background="@color/DCDCDC" />
 
-            <com.lib.marketplace.customview.TextViewOpenSanRegular
+            <TextView
                 android:id="@+id/payment"
                 android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/TextView.Regular"
                 android:layout_centerInParent="true"
                 android:layout_margin="@dimen/standard_margin"
                 android:background="@drawable/border_color_005ea5"
@@ -619,9 +654,10 @@
         android:layout_height="match_parent"
         android:background="@color/trans_CC005EA5">
 
-        <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+        <TextView
             android:id="@+id/success"
             android:layout_width="wrap_content"
+            android:textAppearance="@style/TextView.SemiBold"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:background="@drawable/border_text_color_fff"
@@ -633,10 +669,11 @@
             android:textColor="@color/trans_CC005EA5"
             android:textSize="@dimen/font_size_16" />
 
-        <com.lib.marketplace.customview.TextViewOpenSanSemiBold
+        <TextView
             android:id="@+id/text_success"
             android:layout_width="wrap_content"
             android:text="@string/payment_success"
+            android:textAppearance="@style/TextView.SemiBold"
             android:layout_centerHorizontal="true"
             android:layout_above="@+id/success"
             android:textSize="@dimen/font_size_18"
