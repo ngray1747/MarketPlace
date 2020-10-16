@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.google.gson.Gson;
 import com.modul.marketplace.R;
 import com.modul.marketplace.activity.BaseFragment;
 import com.modul.marketplace.adapter.orderonline.OrderDetailRecyleAdapter;
@@ -53,8 +54,10 @@ import vn.momo.momo_partner.AppMoMoLib;
 
 import static com.modul.marketplace.app.Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK;
 import static com.modul.marketplace.app.Constants.BROADCAST.HERMES_ORDER_CALLBACK;
+import static com.modul.marketplace.app.Constants.BROADCAST.HERMES_ORDER_ZALO_CALLBACK;
 import static com.modul.marketplace.app.Constants.BROADCAST.REFRESH;
 import static com.modul.marketplace.util.Utilities.sendBoardLib;
+import static com.modul.marketplace.util.Utilities.sendBoardLibString;
 //import vn.zalopay.listener.ZaloPayListener;
 //import vn.zalopay.sdk.ZaloPayErrorCode;
 //import vn.zalopay.sdk.ZaloPaySDK;
@@ -247,6 +250,8 @@ public class OrderDetailFragment extends BaseFragment {
             if (checkPayment == false) {
                 checkPayment = true;
             }
+            sendBoardLibString(getContext(),BROAD_MANAGER_HOME_CALLBACK,HERMES_ORDER_ZALO_CALLBACK,new Gson().toJson(dmQRCode));
+
 //            ZaloPaySDK.getInstance().payOrder(
 //                    getActivity(), dmQRCode.getZptranstoken(), new MyZaloPayListener(new MyZaloPayListener.OnCallBack() {
 //                        @Override
