@@ -11,13 +11,6 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
-    <permission
-        android:name="com.modul.marketplace.app.permission.C2D_MESSAGE"
-        android:protectionLevel="signature" />
-
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
     <uses-feature
         android:name="android.hardware.microphone"
         android:required="false" />
@@ -112,14 +105,14 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
 
-<!--        <receiver-->
-<!--            android:name="vn.zalopay.sdk.MerchantReceiver"-->
-<!--            android:exported="true">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="vn.zalopay.sdk.ZP_ACTION" />-->
-<!--                <category android:name="zlp" />-->
-<!--            </intent-filter>-->
-<!--        </receiver>-->
+        <receiver
+            android:name="vn.zalopay.sdk.MerchantReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="vn.zalopay.sdk.ZP_ACTION" />
+                <category android:name="zlp" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
