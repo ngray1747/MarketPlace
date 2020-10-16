@@ -111,6 +111,14 @@ public class Utilities {
         context.sendBroadcast(i);
     }
 
+    public static void sendBoardLibString(Context context, String board, String value, String data) {
+        Intent i = new Intent();
+        i.setAction(board);
+        i.putExtra("value", value);
+        i.putExtra("object", data);
+        context.sendBroadcast(i);
+    }
+
     public static void sendBoardString(Context context, String board, String value, String data) {
         Intent i = new Intent();
         i.setAction(board);

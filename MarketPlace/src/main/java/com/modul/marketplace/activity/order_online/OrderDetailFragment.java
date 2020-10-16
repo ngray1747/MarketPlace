@@ -55,9 +55,9 @@ import static com.modul.marketplace.app.Constants.BROADCAST.BROAD_MANAGER_HOME_C
 import static com.modul.marketplace.app.Constants.BROADCAST.HERMES_ORDER_CALLBACK;
 import static com.modul.marketplace.app.Constants.BROADCAST.REFRESH;
 import static com.modul.marketplace.util.Utilities.sendBoardLib;
-import vn.zalopay.listener.ZaloPayListener;
-import vn.zalopay.sdk.ZaloPayErrorCode;
-import vn.zalopay.sdk.ZaloPaySDK;
+//import vn.zalopay.listener.ZaloPayListener;
+//import vn.zalopay.sdk.ZaloPayErrorCode;
+//import vn.zalopay.sdk.ZaloPaySDK;
 
 public class OrderDetailFragment extends BaseFragment {
 
@@ -247,21 +247,21 @@ public class OrderDetailFragment extends BaseFragment {
             if (checkPayment == false) {
                 checkPayment = true;
             }
-            ZaloPaySDK.getInstance().payOrder(
-                    getActivity(), dmQRCode.getZptranstoken(), new MyZaloPayListener(new MyZaloPayListener.OnCallBack() {
-                        @Override
-                        public void onSuccess() {
-                            if (mDmOrderOnline != null) {
-                                checkOrderPayment(mDmOrderOnline);
-                            }
-                        }
-
-                        @Override
-                        public void onError() {
-                            ToastUtil.makeText(mActivity, getString(R.string.payment_error));
-                        }
-                    })
-            );
+//            ZaloPaySDK.getInstance().payOrder(
+//                    getActivity(), dmQRCode.getZptranstoken(), new MyZaloPayListener(new MyZaloPayListener.OnCallBack() {
+//                        @Override
+//                        public void onSuccess() {
+//                            if (mDmOrderOnline != null) {
+//                                checkOrderPayment(mDmOrderOnline);
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onError() {
+//                            ToastUtil.makeText(mActivity, getString(R.string.payment_error));
+//                        }
+//                    })
+//            );
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -489,33 +489,33 @@ public class OrderDetailFragment extends BaseFragment {
 
     }
 
-    private static class MyZaloPayListener implements ZaloPayListener {
-        private final String TAG = "MyZaloPayListener";
-        private MyZaloPayListener.OnCallBack onCallBack;
-
-        public MyZaloPayListener(MyZaloPayListener.OnCallBack onCallBack) {
-            this.onCallBack = onCallBack;
-
-        }
-
-        @Override
-        public void onPaymentSucceeded(String transactionId, String zpTranstoken) {
-            Log.d(TAG, "onSuccess: On successful with transactionId: " + transactionId + "- zpTransToken: " + zpTranstoken);
-            onCallBack.onSuccess();
-        }
-
-        @Override
-        public void onPaymentError(ZaloPayErrorCode errorCode, int paymentErrorCode, String zpTranstoken) {
-            Log.d(TAG, String.format("onPaymentError: payment error with [error: %s, paymentError: %d], zptranstoken: %s", errorCode, paymentErrorCode, zpTranstoken));
-            onCallBack.onError();
-        }
-
-        public interface OnCallBack {
-            void onSuccess();
-
-            void onError();
-        }
-    }
+//    private static class MyZaloPayListener implements ZaloPayListener {
+//        private final String TAG = "MyZaloPayListener";
+//        private MyZaloPayListener.OnCallBack onCallBack;
+//
+//        public MyZaloPayListener(MyZaloPayListener.OnCallBack onCallBack) {
+//            this.onCallBack = onCallBack;
+//
+//        }
+//
+//        @Override
+//        public void onPaymentSucceeded(String transactionId, String zpTranstoken) {
+//            Log.d(TAG, "onSuccess: On successful with transactionId: " + transactionId + "- zpTransToken: " + zpTranstoken);
+//            onCallBack.onSuccess();
+//        }
+//
+//        @Override
+//        public void onPaymentError(ZaloPayErrorCode errorCode, int paymentErrorCode, String zpTranstoken) {
+//            Log.d(TAG, String.format("onPaymentError: payment error with [error: %s, paymentError: %d], zptranstoken: %s", errorCode, paymentErrorCode, zpTranstoken));
+//            onCallBack.onError();
+//        }
+//
+//        public interface OnCallBack {
+//            void onSuccess();
+//
+//            void onError();
+//        }
+//    }
 
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -564,7 +564,7 @@ public class OrderDetailFragment extends BaseFragment {
             } else {
             }
         } else {
-            ZaloPaySDK.getInstance().onActivityResult(requestCode, resultCode, data);
+//            ZaloPaySDK.getInstance().onActivityResult(requestCode, resultCode, data);
         }
     }
 

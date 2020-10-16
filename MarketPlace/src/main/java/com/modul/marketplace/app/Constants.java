@@ -197,6 +197,7 @@ public class Constants {
         public static final String BROAD_NVL = "BROAD_NVL";
         public static final String REFRESH = "REFRESH";
         public static final String HERMES_ORDER_CALLBACK = "HERMES_ORDER_CALLBACK";
+        public static final String HERMES_ORDER_ZALO_CALLBACK = "HERMES_ORDER_ZALO_CALLBACK";
         public static final String NVL_ORDER_CALLBACK = "NVL_ORDER_CALLBACK";
         //Hemes counly
         public static final String MARKETPLACE_HERMES_COUNTLY_BROWSER_HERMES_PRODUCT = "MARKETPLACE_HERMES_COUNTLY_BROWSER_HERMES_PRODUCT";
