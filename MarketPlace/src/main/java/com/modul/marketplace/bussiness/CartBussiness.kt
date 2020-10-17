@@ -1,6 +1,8 @@
 package com.modul.marketplace.bussiness
 
 import com.google.gson.Gson
+import com.modul.marketplace.app.ApplicationMarketPlace
+import com.modul.marketplace.app.Constants
 import com.modul.marketplace.extension.StringExt
 import com.modul.marketplace.model.marketplace.CartLocateModel
 import com.modul.marketplace.model.marketplace.NvlModel
@@ -8,6 +10,8 @@ import com.modul.marketplace.model.marketplace.NvlOnlineModel
 import com.modul.marketplace.model.orderonline.*
 import com.modul.marketplace.util.ConverUtil
 import com.modul.marketplace.util.Log
+import com.modul.marketplace.util.Utilities
+import kotlin.coroutines.coroutineContext
 
 class CartBussiness {
     private var mOrderModel = DmOrderOnline()
@@ -177,6 +181,11 @@ class CartBussiness {
             if (dmService.serviceName == dmServiceListOrigin.name) {
                 if (dmService.quantity == 0.0) {
                     mOrderModel.originDetails.remove(dmServiceListOrigin)
+                    if (mOrderModel.orderType === Constants.OrderType.OrderOnline) {
+                        Utilities.sendBoardLib(ApplicationMarketPlace.context, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_REMOVE_HERMES_PRODUCT_TO_CART)
+                    }else{
+                        Utilities.sendBoardLib(ApplicationMarketPlace.context, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_REMOVE_SCM_PRODUCT_TO_CART)
+                    }
                 } else {
                     dmServiceListOrigin.quantity = dmService.quantity
                 }

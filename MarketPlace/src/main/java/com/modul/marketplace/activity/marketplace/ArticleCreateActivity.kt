@@ -243,6 +243,7 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
     }
 
     private fun apiDaBan() {
+        Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_MARK_SOLD_ARTICLE)
         var newArticlesModel = ArticlesModel(id = articlesModel?.id, status = SOLD)
         apiEdit(newArticlesModel)
     }
