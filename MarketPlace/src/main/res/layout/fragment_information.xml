@@ -541,6 +541,7 @@
                     android:id="@+id/zalopay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:button="@null"
                     android:checked="false"
                     android:drawableLeft="@drawable/radio_style"

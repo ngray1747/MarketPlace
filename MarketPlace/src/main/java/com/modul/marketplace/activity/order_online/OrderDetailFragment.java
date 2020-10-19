@@ -222,12 +222,14 @@ public class OrderDetailFragment extends BaseFragment {
     private void choicePaymentmethod() {
         PopupMenu popupMenu = new PopupMenu(getContext(), mPaymentmethod, Gravity.RIGHT);
 
-        popupMenu.getMenu().add(0, 0, 0, DmOrderOnline.ZALOPAY);
+//        popupMenu.getMenu().add(0, 0, 0, DmOrderOnline.ZALOPAY);
         popupMenu.getMenu().add(0, 1, 1, DmOrderOnline.MOMO);
 
         popupMenu.setOnMenuItemClickListener(item -> {
             typePayment = item.getTitle().toString();
-            mPaymentmethod.setText(item.getTitle().toString());
+            if(item.getTitle().toString() == DmOrderOnline.MOMO){
+                mPaymentmethod.setText("Ví Momo");
+            }
             return false;
         });
         popupMenu.show();

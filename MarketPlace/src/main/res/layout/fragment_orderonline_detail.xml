@@ -470,7 +470,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_border_count_food"
-                    android:text="ZALOPAY"
+                    android:text="Ví Momo"
                     android:enabled="false"
                     android:layout_marginRight="@dimen/d_5"
                     android:gravity="right"
