@@ -33,6 +33,7 @@ class ApplicationMarketPlace : Application() {
     private var mRequestQueue: RequestQueue? = null
     var locationBussiness: LocationBussiness? = null
     var cartBussiness: CartBussiness? = null
+    var accessToken : String = ""
 
     private val applicationMarketPlace: ApplicationMarketPlace? = null
 
@@ -56,6 +57,7 @@ class ApplicationMarketPlace : Application() {
             brandId: String? = null,
             userId: String? = null,
             appType: String? = null,
+            access_Token: String? = null,
             listBrand: ArrayList<DmBrand>? = null,
             listStore: ArrayList<DmStore>? = null
     ) {
@@ -70,6 +72,9 @@ class ApplicationMarketPlace : Application() {
         }
         appType?.run {
             cartBussiness?.appType = this
+        }
+        access_Token?.run {
+            accessToken = this
         }
         listBrand?.run {
             cartBussiness?.listBrand = ArrayList()

@@ -139,7 +139,13 @@ class PurchaseFragment : BaseFragment() {
 
     private fun callServiceList() {
         showProgressHub(mActivity)
-        WSRestFull(context).apiOrderOnline_ServiceList(Constants.POSPC, { response: RestAllDmServiceListOrigin -> onResponseServiceList(response.data) }) { error: VolleyError ->
+        var productType = ""
+        if (mCartBussiness.appType == Constants.FABI) {
+            productType = Constants.FABI
+        } else {
+            productType = Constants.POSPC
+        }
+        WSRestFull(context).apiOrderOnline_ServiceList(productType, { response: RestAllDmServiceListOrigin -> onResponseServiceList(response.data) }) { error: VolleyError ->
             onResponseServiceList(null)
             error.printStackTrace()
             ToastUtil.makeText(mActivity, getString(R.string.error_network2))

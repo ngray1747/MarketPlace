@@ -14,19 +14,20 @@ public class Constants {
     public static final String MENU_CACHE_RADIO = "menuradiocache";
 
     //SCM
-    public static final String REST_SCM = "https://apiscm.ipos.vn/api/partners/v1/";// Release SCM
-//    public static final String REST_SCM = "https://apiscmdev.ipos.vn/api/partners/v1/";// Test SCM
+//    public static final String REST_SCM = "https://apiscm.ipos.vn/api/partners/v1/";// Release SCM
+    public static final String REST_SCM = "https://apiscmdev.ipos.vn/api/partners/v1/";// Test SCM
     public static final String SCM_ACCESS_TOKEN = "4HPR9FGCBEITGBYW7EYPVZEAJCFGMYKDSRGC";
     public static final String SCM_SECRET_KEY = "42e78966590635e6e88ac9beec4e01ea";
 
     //Test order online
-    public static final String REST_BILLING = "https://apibilling.ipos.vn/billing/api/";// that
-//    public static final String REST_BILLING = "https://apibilling.iposdev.com/billing/api/";// test
-    public static final String BILLING_ACCESS_TOKEN = "GYIXZKY3UOQNF55S37IGUNWYLN5SPR   FY";
+//    public static final String REST_BILLING = "https://apibilling.ipos.vn/billing/api/";// that
+    public static final String REST_BILLING = "https://apibilling.iposdev.com/billing/api/";// test
+    public static final String BILLING_ACCESS_TOKEN_POSPC = "GYIXZKY3UOQNF55S37IGUNWYLN5SPRFY";
+    public static final String BILLING_ACCESS_TOKEN_FABI = "5RBTAH2QBNCV4WSMX6GD65ZKVS1897X5";
 
     //Test Box
-    public static final String REST_BOX = "https://apinotification.ipos.vn/api/v1/";// test
-//    public static final String REST_BOX = "https://apinotification-dev.ipos.vn/api/v1/";// test
+//    public static final String REST_BOX = "https://apinotification.ipos.vn/api/v1/";// that
+    public static final String REST_BOX = "https://apinotification-dev.ipos.vn/api/v1/";// test
     public static final String BOX_ACCESS_TOKEN = "YLGWVDY6Q8EKJEZQQRBQNWOD2P0Z4K1PGRMD";
     public static final String BOX_SECRET_KEY = "be5e8a68bb4d7a3029c8fa89f46d9a76";
 
