@@ -82,7 +82,6 @@
         android:id="@+id/mEdit"
         style="@style/UnelevatedButton"
         android:layout_width="0dp"
-        android:theme="@style/Theme.MaterialComponents"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/d_15"
         android:layout_marginTop="@dimen/d_25"

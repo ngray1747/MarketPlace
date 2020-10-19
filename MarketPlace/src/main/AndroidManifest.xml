@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.modul.marketplace">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -26,8 +27,11 @@
         android:name="com.modul.marketplace.app"
         android:protectionLevel="dangerous" />
 
-    <application>
-    <!--        android:name=".app.ApplicationIpos"-->
+    <application
+        tools:replace="android:theme"
+        android:theme="@style/AppThemeMarket">
+
+        <!--        android:name=".app.ApplicationIpos"-->
 <!--        android:allowBackup="true"-->
 <!--        android:hardwareAccelerated="true"-->
 <!--        android:largeHeap="true"-->

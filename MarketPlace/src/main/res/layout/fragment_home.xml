@@ -43,7 +43,7 @@
                 android:focusable="true"
                 android:visibility="visible" />
 
-            <com.lib.marketplace.customview.TextViewOpenSanLight
+            <TextView
                 android:id="@+id/error"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

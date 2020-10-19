@@ -35,7 +35,6 @@
             android:id="@+id/mCreate"
             style="@style/UnelevatedButton"
             android:layout_width="0dp"
-            android:theme="@style/Theme.MaterialComponents"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/d_15"
             android:layout_marginBottom="@dimen/d_10"
