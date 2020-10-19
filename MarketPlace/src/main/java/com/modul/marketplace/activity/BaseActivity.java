@@ -24,7 +24,7 @@ import com.modul.marketplace.bussiness.CartBussiness;
 import com.modul.marketplace.util.Log;
 import com.modul.marketplace.util.SharedPref;
 
-import ly.count.android.sdk.Countly;
+//import ly.count.android.sdk.Countly;
 
 
 public class BaseActivity extends AppCompatActivity {
@@ -224,22 +224,22 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        Countly.sharedInstance().onStart(this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Countly.sharedInstance().onStop();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        Countly.sharedInstance().onConfigurationChanged(newConfig);
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        Countly.sharedInstance().onStart(this);
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        Countly.sharedInstance().onStop();
+//    }
+//
+//    @Override
+//    public void onConfigurationChanged(Configuration newConfig) {
+//        super.onConfigurationChanged(newConfig);
+//        Countly.sharedInstance().onConfigurationChanged(newConfig);
+//    }
 
 }

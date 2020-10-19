@@ -73,7 +73,7 @@ dependencies {
     implementation("com.facebook.stetho:stetho-okhttp3:1.5.1") {
         exclude module: 'jsr305'
     }
-    implementation 'ly.count.android:sdk:20.04.2'
+//    implementation 'ly.count.android:sdk:20.04.2'
     implementation 'com.kaopiz:kprogresshud:1.2.0'
     implementation 'com.timehop.stickyheadersrecyclerview:library:0.4.3@aar'
 

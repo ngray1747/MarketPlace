@@ -51,7 +51,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import ly.count.android.sdk.Countly;
+//import ly.count.android.sdk.Countly;
 
 public class Utilities {
     public static final String[] PERMISSIONS_LOCATION = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
@@ -259,7 +259,7 @@ public class Utilities {
             if (!TextUtils.isEmpty(value)) {
                 map.put("value", value);
             }
-            Countly.sharedInstance().events().recordEvent(event, map);
+//            Countly.sharedInstance().events().recordEvent(event, map);
         } catch (Exception e) {
             e.printStackTrace();
         }

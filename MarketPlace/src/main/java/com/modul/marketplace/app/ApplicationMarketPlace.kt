@@ -20,8 +20,8 @@ import com.modul.marketplace.restful.AbsRestful
 import com.modul.marketplace.restful.NukeSSLCerts
 import com.modul.marketplace.restful.OkHttpStack
 import com.modul.marketplace.util.FormatNumberUtil
-import ly.count.android.sdk.Countly
-import ly.count.android.sdk.CountlyConfig
+//import ly.count.android.sdk.Countly
+//import ly.count.android.sdk.CountlyConfig
 import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
 import okhttp3.TlsVersion
@@ -84,16 +84,16 @@ class ApplicationMarketPlace : Application() {
         locationBussiness = LocationBussiness(context)
         cartBussiness = CartBussiness()
         FormatNumberUtil.initInStance()
-        Countly.applicationOnCreate()
-        val config = CountlyConfig(
-                context,
-                "12ee977476a2b38f5a6423f336c8e9f1e2ec7529",
-                "https://analytic.ipos.vn"
-        )
-        config.setLoggingEnabled(true)
-        config.enableCrashReporting()
-        config.setApplication(this)
-        Countly.sharedInstance().init(config)
+//        Countly.applicationOnCreate()
+//        val config = CountlyConfig(
+//                context,
+//                "12ee977476a2b38f5a6423f336c8e9f1e2ec7529",
+//                "https://analytic.ipos.vn"
+//        )
+//        config.setLoggingEnabled(true)
+//        config.enableCrashReporting()
+//        config.setApplication(this)
+//        Countly.sharedInstance().init(config)
 //        ZaloPaySDK.getInstance().initWithAppId(684)
         AppMoMoLib.getInstance().setEnvironment(AppMoMoLib.ENVIRONMENT.PRODUCTION)
 
@@ -112,7 +112,7 @@ class ApplicationMarketPlace : Application() {
     }
 
     fun changeDeviceIdCounly(deviceId: String?) {
-        Countly.sharedInstance().changeDeviceIdWithMerge(deviceId)
+//        Countly.sharedInstance().changeDeviceIdWithMerge(deviceId)
     }//mRequestQueue = Volley.newRequestQueue(getApplicationContext());
 
     // lazy initialize the request queue, the queue instance will be

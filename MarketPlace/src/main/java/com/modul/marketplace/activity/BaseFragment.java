@@ -16,7 +16,7 @@ import com.modul.marketplace.bussiness.CartBussiness;
 import com.modul.marketplace.util.SharedPref;
 import com.modul.marketplace.R;
 
-import ly.count.android.sdk.Countly;
+//import ly.count.android.sdk.Countly;
 
 
 public class BaseFragment extends Fragment {
@@ -50,23 +50,23 @@ public class BaseFragment extends Fragment {
         return R.layout.fragment_home;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        Countly.sharedInstance().onStart(getActivity());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Countly.sharedInstance().onStop();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        Countly.sharedInstance().onConfigurationChanged(newConfig);
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        Countly.sharedInstance().onStart(getActivity());
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        Countly.sharedInstance().onStop();
+//    }
+//
+//    @Override
+//    public void onConfigurationChanged(Configuration newConfig) {
+//        super.onConfigurationChanged(newConfig);
+//        Countly.sharedInstance().onConfigurationChanged(newConfig);
+//    }
 
     public void showProgressHub(Activity activity) {
         dismissProgressHub();
