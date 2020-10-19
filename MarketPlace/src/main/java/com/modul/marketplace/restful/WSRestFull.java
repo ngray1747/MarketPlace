@@ -81,7 +81,11 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<RestAllDmCheckVoucher> req = new GsonRequest<>(
                 Request.Method.POST, params.toString(),
                 RestAllDmCheckVoucher.class, json, response, error);
-        req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        }else{
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
+        }
         addReq(req, TAG_CMS);
     }
 
@@ -91,7 +95,11 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<RestAllDmCheckAutoPromotion> req = new GsonRequest<>(
                 Request.Method.POST, params.toString(),
                 RestAllDmCheckAutoPromotion.class, json, response, error);
-        req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        }else{
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
+        }
         addReq(req, TAG_CMS);
     }
 
@@ -101,7 +109,11 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<RestDmHistoryOrderOnline> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 RestDmHistoryOrderOnline.class, null, response, error);
-        req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        }else{
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
+        }
         addReq(req, TAG_CMS);
     }
 
@@ -112,7 +124,11 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<RestDmOrderOnline> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 RestDmOrderOnline.class, null, response, error);
-        req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        }else{
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
+        }
         addReq(req, TAG_CMS);
     }
 
@@ -122,7 +138,11 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<RestDmOrderOnline> req = new GsonRequest<>(
                 Request.Method.POST, params.toString(),
                 RestDmOrderOnline.class, json, response, error);
-        req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        }else{
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
+        }
         addReq(req, TAG_CMS);
     }
 
@@ -137,7 +157,11 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<RestDmOrderOnline> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 RestDmOrderOnline.class, null, response, error);
-        req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        }else{
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
+        }
         addReq(req, TAG_CMS);
     }
 
@@ -154,7 +178,11 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<RestDmQRCode> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 RestDmQRCode.class, null, response, error);
-        req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        }else{
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
+        }
         addReq(req, TAG_CMS);
     }
 
@@ -164,7 +192,11 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<DmCallBackMoMo> req = new GsonRequest<>(
                 Request.Method.POST, params.toString(),
                 DmCallBackMoMo.class, json, response, error);
-        req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        }else{
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
+        }
         addReq(req, TAG_CMS);
     }
 
@@ -174,7 +206,11 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<RestAllDmLocate> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 RestAllDmLocate.class, null, response, error);
-        req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        }else{
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
+        }
         addReq(req, TAG_CMS);
     }
 
@@ -187,7 +223,11 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<RestAllDmBrand> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 RestAllDmBrand.class, null, response, error);
-        req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        }else{
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
+        }
         addReq(req, TAG_CMS);
     }
 
@@ -200,7 +240,11 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<RestAllDmStore> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 RestAllDmStore.class, null, response, error);
-        req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
+        }else{
+            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
+        }
         addReq(req, TAG_CMS);
     }
 
