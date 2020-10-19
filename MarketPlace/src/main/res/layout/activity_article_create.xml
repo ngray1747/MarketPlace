@@ -260,6 +260,7 @@
                 android:layout_marginTop="@dimen/d_10"
                 android:gravity="start"
                 android:padding="@dimen/standard_margin"
+                android:textSize="@dimen/font_size_14"
                 android:text="@string/product_image"
                 android:textAppearance="@style/TextView.SemiBold"
                 android:textColor="@color/text_36"
