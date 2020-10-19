@@ -79,13 +79,13 @@ class ArticleDetailActivity : BaseActivity() {
     private fun initClick() {
         mClose.setOnClickListener { onBackPressed() }
         mOrder.setOnClickListener {
-            Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_TOUCH_CONTACT_AUTHOR)
+            Utilities.sendBoardCounlyLib(baseContext,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.TOUCH_CONTACT_AUTHOR)
             Utilities.callPhone(this, dataModel?.mAuthor_phone)
         }
     }
 
     private fun initData() {
         showStatusBar(statusColor = true, color = R.color.white)
-        Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_VIEW_ARTICLE_DETAIL)
+        Utilities.sendBoardCounlyLib(baseContext,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.VIEW_ARTICLE_DETAIL)
     }
 }

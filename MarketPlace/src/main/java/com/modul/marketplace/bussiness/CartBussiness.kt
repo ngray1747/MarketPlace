@@ -11,7 +11,6 @@ import com.modul.marketplace.model.orderonline.*
 import com.modul.marketplace.util.ConverUtil
 import com.modul.marketplace.util.Log
 import com.modul.marketplace.util.Utilities
-import kotlin.coroutines.coroutineContext
 
 class CartBussiness {
     private var mOrderModel = DmOrderOnline()
@@ -21,22 +20,20 @@ class CartBussiness {
     //Adding Data
     var appType = ""
     var companyId = ""
-    var brandId = ""
     var userId = ""
-    var listBrand = ArrayList<DmBrand>()
-    var listStore = ArrayList<DmStore>()
 
-    fun addBrand(data: ArrayList<DmBrand>){
-        mListBrands.clear()
-        data?.run{
-            mListBrands.addAll(this)
+    fun getListBrandId(): String {
+        var content = ""
+        mListBrands.forEach {
+            content = content + it.brandId + ","
         }
+        return content.replaceAfterLast(",","")
     }
 
-    fun addStore(data: ArrayList<DmStore>){
-        listStore.clear()
-        data?.run{
-            listStore.addAll(this)
+    fun addBrand(data: ArrayList<DmBrand>) {
+        mListBrands.clear()
+        data?.run {
+            mListBrands.addAll(this)
         }
     }
 
@@ -182,9 +179,9 @@ class CartBussiness {
                 if (dmService.quantity == 0.0) {
                     mOrderModel.originDetails.remove(dmServiceListOrigin)
                     if (mOrderModel.orderType === Constants.OrderType.OrderOnline) {
-                        Utilities.sendBoardLib(ApplicationMarketPlace.context, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_REMOVE_HERMES_PRODUCT_TO_CART)
-                    }else{
-                        Utilities.sendBoardLib(ApplicationMarketPlace.context, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_REMOVE_SCM_PRODUCT_TO_CART)
+                        Utilities.sendBoardCounlyLib(ApplicationMarketPlace.context, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.REMOVE_HERMES_PRODUCT_TO_CART)
+                    } else {
+                        Utilities.sendBoardCounlyLib(ApplicationMarketPlace.context, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.REMOVE_SCM_PRODUCT_TO_CART)
                     }
                 } else {
                     dmServiceListOrigin.quantity = dmService.quantity

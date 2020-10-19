@@ -9,6 +9,7 @@ import com.modul.marketplace.R
 import com.modul.marketplace.activity.BaseActivity
 import com.modul.marketplace.adapter.marketplace.ImageSlideAdapter
 import com.modul.marketplace.adapter.orderonline.RowItemAdapter
+import com.modul.marketplace.app.ApplicationMarketPlace
 import com.modul.marketplace.app.Constants
 import com.modul.marketplace.extension.showStatusBar
 import com.modul.marketplace.model.orderonline.DmServiceListOrigin
@@ -94,7 +95,7 @@ class NvlDetailActivity : BaseActivity() {
     }
 
     private fun order() {
-        Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_ADD_SCM_PRODUCT_TO_CART)
+        Utilities.sendBoardCounlyLib(ApplicationMarketPlace.context, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.ADD_SCM_PRODUCT_TO_CART)
         Intent().apply {
             putExtra(Constants.OBJECT, nvlModel)
             setResult(Activity.RESULT_OK, this)
@@ -118,6 +119,6 @@ class NvlDetailActivity : BaseActivity() {
 
     private fun initData() {
         showStatusBar(statusColor = true, color = R.color.white)
-        Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_VIEW_SCM_PRODUCT_DETAIL)
+        Utilities.sendBoardCounlyLib(ApplicationMarketPlace.context, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.VIEW_SCM_PRODUCT_DETAIL)
     }
 }

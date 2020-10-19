@@ -3,7 +3,7 @@
     <string name="default_notification_channel_id">default</string>
 
     <string name="google_maps_key">AIzaSyCAf3mt40x4J43ReoaU2D4o5cRrHtuwnrI</string>
-    <string name="app_name">iPOS Manager</string>
+<!--    <string name="app_name">iPOS Manager</string>-->
     <string name="web_pop_sharelink">Share link</string>
     <string name="web_pop_copylink">Copy link</string>
     <string name="load_no_result"> The system has no data</string>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">iPOS Manager</string>
+<!--    <string name="app_name">iPOS Manager</string>-->
     <string name="web_pop_sharelink">Share link</string>
     <string name="web_pop_copylink">Copy link</string>
 

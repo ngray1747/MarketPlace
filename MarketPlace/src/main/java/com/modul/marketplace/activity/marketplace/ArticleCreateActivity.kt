@@ -221,29 +221,29 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
     private fun apiTaoLaiTin() {
         var newArticlesModel = ArticlesModel(id = articlesModel?.id, type = "renew")
         apiEdit(newArticlesModel)
-        Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_RENEW_ARTICLE)
+        Utilities.sendBoardCounlyLib(baseContext,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.RENEW_ARTICLE)
     }
 
     private fun apiHuyTin() {
         var newArticlesModel = ArticlesModel(id = articlesModel?.id, status = CANCELED)
         apiEdit(newArticlesModel)
-        Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_CANCLE_ARTICLE)
+        Utilities.sendBoardCounlyLib(baseContext,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.CANCLE_ARTICLE)
     }
 
     private fun apiAnTin() {
         if (articlesModel?.active == 0) {
             var newArticlesModel = ArticlesModel(id = articlesModel?.id, active = 1)
             apiEdit(newArticlesModel)
-            Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_ACTIVE_ARTICLE)
+            Utilities.sendBoardCounlyLib(baseContext,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.ACTIVE_ARTICLE)
         } else {
             var newArticlesModel = ArticlesModel(id = articlesModel?.id, active = 0)
             apiEdit(newArticlesModel)
-            Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_DEACTIVE_ARTICLE)
+            Utilities.sendBoardCounlyLib(baseContext,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.DEACTIVE_ARTICLE)
         }
     }
 
     private fun apiDaBan() {
-        Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_MARK_SOLD_ARTICLE)
+        Utilities.sendBoardCounlyLib(baseContext,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.MARK_SOLD_ARTICLE)
         var newArticlesModel = ArticlesModel(id = articlesModel?.id, status = SOLD)
         apiEdit(newArticlesModel)
     }
@@ -253,7 +253,7 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
     }
 
     private fun capnhat() {
-        Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_EDIT_ARTICLE)
+        Utilities.sendBoardCounlyLib(baseContext,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.EDIT_ARTICLE)
 
         if (TextUtils.isEmpty(mTieuDe.text.toString())) {
             ToastUtil.makeText(this, getString(R.string.articles_title_valid))
@@ -301,7 +301,7 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
                 mAuthor_phone = mSdt.text.toString(),
                 mImage_urls = newImageChoice,
                 author_id = mCartBussiness.userId,
-                brand_id = mCartBussiness.brandId,
+                brand_id = mCartBussiness.getListBrandId(),
                 company_id = mCartBussiness.companyId,
                 mContent = mDesc.text.toString())
         apiEdit(newArticlesModel)
@@ -410,11 +410,11 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
                 mAuthor_phone = mSdt.text.toString(),
                 mImage_urls = newImageChoice,
                 author_id = mCartBussiness.userId,
-                brand_id = mCartBussiness.brandId,
+                brand_id = mCartBussiness.getListBrandId(),
                 company_id = mCartBussiness.companyId,
                 mContent = mDesc.text.toString())
         apiCreate(newArticlesModel)
-        Utilities.sendBoardLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_CREATE_ARTICLE)
+        Utilities.sendBoardCounlyLib(baseContext,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.CREATE_ARTICLE)
     }
 
     private fun apiCreate(articlesModel: ArticlesModel) {

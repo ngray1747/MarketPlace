@@ -187,7 +187,7 @@ public class OrderDetailFragment extends BaseFragment {
                 return;
             }
 
-            Utilities.sendBoardLib(getContext(), Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_ORDER_HERMES_PRODUCT);
+            Utilities.sendBoardCounlyLib(getContext(), Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.ORDER_HERMES_PRODUCT);
             if (DmOrderOnline.MOMO.equals(typePayment)) {
                 tranID = mDmOrderOnline.getOrderCode() + "-" + System.currentTimeMillis();
                 requestPaymentMoMo(tranID, mDmOrderOnline.getOrderCode(), (int) mDmOrderOnline.getAmount());

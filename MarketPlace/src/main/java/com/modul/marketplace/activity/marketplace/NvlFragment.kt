@@ -14,16 +14,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.VolleyError
 import com.google.gson.Gson
-import com.modul.marketplace.extension.DialogUtil
-import com.modul.marketplace.model.marketplace.NvlModel
-import com.modul.marketplace.model.orderonline.DmServiceListOrigin
-import com.modul.marketplace.extension.openActivityForResult
 import com.modul.marketplace.R
 import com.modul.marketplace.activity.BaseFragment
 import com.modul.marketplace.activity.CateActivity
 import com.modul.marketplace.adapter.orderonline.ServiceListRecyleAdapter
 import com.modul.marketplace.app.Constants
+import com.modul.marketplace.extension.DialogUtil
+import com.modul.marketplace.extension.openActivityForResult
 import com.modul.marketplace.holder.orderonline.ServicelistRecycleHolder
+import com.modul.marketplace.model.marketplace.NvlModel
+import com.modul.marketplace.model.orderonline.DmServiceListOrigin
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.Log
 import com.modul.marketplace.util.ToastUtil
@@ -58,7 +58,7 @@ class NvlFragment : BaseFragment() {
     }
 
     private fun initData() {
-        Utilities.sendBoardLib(context, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_BROWSER_SCM_PRODUCT)
+        Utilities.sendBoardCounlyLib(context, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.BROWSER_SCM_PRODUCT)
         callServiceList()
     }
 
@@ -98,7 +98,7 @@ class NvlFragment : BaseFragment() {
 
                 override fun onAdd(dmServiceListOrigin: DmServiceListOrigin) {
                     checkOrderType {
-                        Utilities.sendBoardLib(context, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_ADD_SCM_PRODUCT_TO_CART)
+                        Utilities.sendBoardCounlyLib(context, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.ADD_SCM_PRODUCT_TO_CART)
                         dmServiceListOrigin.quantity = 1.0
                         listDetails()
                         mAdapter?.notifyDataSetChanged()
@@ -111,7 +111,7 @@ class NvlFragment : BaseFragment() {
 
     private fun callServiceList() {
         showProgressHub(mActivity)
-        WSRestFull(context).apiSCMProducts(mCartBussiness.getCartLocate().locateId,{ (data) -> onResponseServiceList(data) }) { error: VolleyError ->
+        WSRestFull(context).apiSCMProducts(mCartBussiness.getCartLocate().locateId, { (data) -> onResponseServiceList(data) }) { error: VolleyError ->
             onResponseServiceList(null)
             error.printStackTrace()
             ToastUtil.makeText(mActivity, getString(R.string.error_network2))
@@ -124,7 +124,7 @@ class NvlFragment : BaseFragment() {
         response?.forEach {
             val dmServiceListOrigin = DmServiceListOrigin()
             dmServiceListOrigin.quantity = 0.0
-            it.image_urls?.let{imageUrl->
+            it.image_urls?.let{ imageUrl->
                 if(imageUrl.size > 0){
                     imageUrl[0].url_thumb?.run{
                         dmServiceListOrigin.image = this

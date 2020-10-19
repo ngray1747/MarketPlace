@@ -53,15 +53,15 @@ class MarketPlaceActivity : BaseActivity() {
                 when (tab.position) {
                     0 -> {
                         pagerMain.currentItem = 0
-                        sendBoardLib(baseContext,BROAD_MANAGER_HOME_CALLBACK,MARKETPLACE_HERMES_COUNTLY_BROWSER_HERMES_PRODUCT)
+                        Utilities.sendBoardCounlyLib(baseContext,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.BROWSER_HERMES_PRODUCT)
                     }
                     1 -> {
                         pagerMain.currentItem = 1
-                        sendBoardLib(baseContext,BROAD_MANAGER_HOME_CALLBACK,MARKETPLACE_HERMES_COUNTLY_BROWSER_SCM_PRODUCT)
+                        Utilities.sendBoardCounlyLib(baseContext,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.BROWSER_SCM_PRODUCT)
                     }
                     2 -> {
                         pagerMain.currentItem = 2
-                        sendBoardLib(baseContext,BROAD_MANAGER_HOME_CALLBACK,MARKETPLACE_HERMES_COUNTLY_BROWSER_ARTICLE)
+                        Utilities.sendBoardCounlyLib(baseContext,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.BROWSER_ARTICLE)
                     }
                 }
             }

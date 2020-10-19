@@ -30,7 +30,7 @@ class MyArticlesActivity : BaseActivity() {
 
     private fun api() {
         var articlesModel = ArticlesModel()
-        articlesModel.brand_id = mCartBussiness.brandId
+        articlesModel.brand_id = mCartBussiness.getListBrandId()
         articlesModel.company_id = mCartBussiness.companyId
         Log.e("data","aaaa: "+ articlesModel.toJson())
         WSRestFull(applicationContext).apiSCMArticlesCount(articlesModel,

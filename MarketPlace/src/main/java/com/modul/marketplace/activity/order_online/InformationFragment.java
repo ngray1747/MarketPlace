@@ -260,10 +260,10 @@ public class InformationFragment extends BaseFragment {
 
     protected void loadStore(String brandId) {
         mStores.clear();
-        if (mCartBussiness.getListStore() != null && mCartBussiness.getListStore().size() > 0) {
-            for (DmStore dmStore : mCartBussiness.getListStore()) {
-                if (dmStore.getBrandId().equals(brandId)) {
-                    mStores.add(dmStore);
+        if (mCartBussiness.getMListBrands() != null && mCartBussiness.getMListBrands().size() > 0) {
+            for (DmBrand brand : mCartBussiness.getMListBrands()) {
+                if (brand.getBrandId().equals(brandId)) {
+                    mStores.addAll(brand.getStores());
                 }
             }
         }
@@ -389,10 +389,10 @@ public class InformationFragment extends BaseFragment {
         mCartBussiness.getOrder().setBrandId(brandId);
         if (mCartBussiness.getOrder().getOrderType() == Constants.OrderType.OrderOnline) {
             createOrderOnline(mCartBussiness.convertOrderToJson());
-            Utilities.sendBoardLib(getContext(), Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_ORDER_HERMES_PRODUCT);
+            Utilities.sendBoardCounlyLib(getContext(),Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.ORDER_HERMES_PRODUCT);
         } else {
             createOrderNvl(mCartBussiness.convertNvlToJson());
-            Utilities.sendBoardLib(getContext(), Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_ORDER_SCM_PRODUCT);
+            Utilities.sendBoardCounlyLib(getContext(),Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.ORDER_SCM_PRODUCT);
         }
     }
 

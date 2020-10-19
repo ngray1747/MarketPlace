@@ -52,7 +52,7 @@ class PurchaseFragment : BaseFragment() {
     }
 
     private fun initData() {
-        Utilities.sendBoardLib(context, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_BROWSER_HERMES_PRODUCT)
+        Utilities.sendBoardCounlyLib(context, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.BROWSER_HERMES_PRODUCT)
         callServiceList()
     }
 
@@ -102,7 +102,7 @@ class PurchaseFragment : BaseFragment() {
 
                 override fun onAdd(dmServiceListOrigin: DmServiceListOrigin) {
                     checkOrderType {
-                        Utilities.sendBoardLib(context, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY_BROWSER_HERMES_PRODUCT)
+                        Utilities.sendBoardCounlyLib(context, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.BROWSER_HERMES_PRODUCT)
                         if (DmServiceListOrigin.TYPE_SUB == dmServiceListOrigin.type) {
                             dmServiceListOrigin.quantity = dmServiceListOrigin.minChoice
                         } else {

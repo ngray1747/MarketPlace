@@ -51,31 +51,17 @@ class ApplicationMarketPlace : Application() {
 
     fun loadData(
             companyId: String? = null,
-            brandId: String? = null,
             userId: String? = null,
-            appType: String? = null,
-            listBrand: ArrayList<DmBrand>? = null,
-            listStore: ArrayList<DmStore>? = null
+            appType: String? = null
     ) {
         companyId?.run {
             cartBussiness?.companyId = this
-        }
-        brandId?.run {
-            cartBussiness?.brandId = this
         }
         userId?.run {
             cartBussiness?.userId = this
         }
         appType?.run {
             cartBussiness?.appType = this
-        }
-        listBrand?.run {
-            cartBussiness?.listBrand = ArrayList()
-            cartBussiness?.listBrand?.addAll(this)
-        }
-        listStore?.run {
-            cartBussiness?.listStore = ArrayList()
-            cartBussiness?.listStore?.addAll(this)
         }
     }
 

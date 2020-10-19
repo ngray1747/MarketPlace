@@ -42,7 +42,7 @@ class MyArticlesListFragment(var putStatus: String) : BaseFragment() {
     private fun api() {
         showProgressHub(mActivity)
         var articlesMode = ArticlesModel()
-        articlesMode.brand_id = mCartBussiness.brandId
+        articlesMode.brand_id = mCartBussiness.getListBrandId()
         articlesMode.company_id = mCartBussiness.companyId
         articlesMode.author_id = mCartBussiness.userId
         if (Constants.ArticlesStatus.EXPIRED == putStatus) {

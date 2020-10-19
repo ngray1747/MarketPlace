@@ -116,6 +116,7 @@ public class Constants {
     };
 
     public static class CounlyComponent {
+        public static final String MARKET_PLACE = "MARKET_PLACE";
         public static final String DASHBOARD_DAILY_REPORT = "DASHBOARD_DAILY_REPORT";
         public static final String DASHBOARD_MONTHLY_REPORT = "DASHBOARD_MONTHLY_REPORT";
         public static final String DASHBOARD_HOURLY_REPORT = "DASHBOARD_HOURLY_REPORT";
@@ -202,6 +203,8 @@ public class Constants {
         public static final String HERMES_ORDER_ZALO_CALLBACK = "HERMES_ORDER_ZALO_CALLBACK";
         public static final String NVL_ORDER_CALLBACK = "NVL_ORDER_CALLBACK";
         //Hemes counly
+        public static final String MARKETPLACE_HERMES_COUNTLY = "MARKETPLACE_HERMES_COUNTLY";
+
         public static final String MARKETPLACE_HERMES_COUNTLY_BROWSER_HERMES_PRODUCT = "MARKETPLACE_HERMES_COUNTLY_BROWSER_HERMES_PRODUCT";
         public static final String MARKETPLACE_HERMES_COUNTLY_VIEW_HERMES_PRODUCT_DETAIL = "MARKETPLACE_HERMES_COUNTLY_VIEW_HERMES_PRODUCT_DETAIL";
         public static final String MARKETPLACE_HERMES_COUNTLY_ADD_HERMES_PRODUCT_TO_CART = "MARKETPLACE_HERMES_COUNTLY_ADD_HERMES_PRODUCT_TO_CART";
@@ -238,6 +241,43 @@ public class Constants {
         public static class Unit {
             public static final String SECOND = "second";
             public static final String MILLISECOND = "millisecond";
+        }
+    }
+
+    public static class Countly {
+        public static class EVENT {
+            public static String FEATURE = "FEATURE";
+            public static String EXCEPTION = "EXCEPTION";
+        }
+
+        public static class CounlyComponent {
+            public static final String MARKET_PLACE = "MARKET_PLACE";
+        }
+
+        public static class CounlyFeature {
+            //Hermes
+            public static final String BROWSER_HERMES_PRODUCT = "BROWSER_HERMES_PRODUCT";
+            public static final String VIEW_HERMES_PRODUCT_DETAIL = "VIEW_HERMES_PRODUCT_DETAIL";
+            public static final String ADD_HERMES_PRODUCT_TO_CART = "ADD_HERMES_PRODUCT_TO_CART";
+            public static final String ORDER_HERMES_PRODUCT = "ORDER_HERMES_PRODUCT";
+            public static final String REMOVE_HERMES_PRODUCT_TO_CART = "REMOVE_HERMES_PRODUCT_TO_CART";
+            //NVL
+            public static final String BROWSER_SCM_PRODUCT = "BROWSER_SCM_PRODUCT";
+            public static final String VIEW_SCM_PRODUCT_DETAIL = "VIEW_SCM_PRODUCT_DETAIL";
+            public static final String ADD_SCM_PRODUCT_TO_CART = "ADD_SCM_PRODUCT_TO_CART";
+            public static final String ORDER_SCM_PRODUCT = "ORDER_SCM_PRODUCT";
+            public static final String REMOVE_SCM_PRODUCT_TO_CART = "REMOVE_SCM_PRODUCT_TO_CART";
+            //Article
+            public static final String BROWSER_ARTICLE = "BROWSER_ARTICLE";
+            public static final String VIEW_ARTICLE_DETAIL = "VIEW_ARTICLE_DETAIL";
+            public static final String TOUCH_CONTACT_AUTHOR = "TOUCH_CONTACT_AUTHOR";
+            public static final String EDIT_ARTICLE = "EDIT_ARTICLE";
+            public static final String CREATE_ARTICLE = "CREATE_ARTICLE";
+            public static final String ACTIVE_ARTICLE = "ACTIVE_ARTICLE";
+            public static final String DEACTIVE_ARTICLE = "DEACTIVE_ARTICLE";
+            public static final String CANCLE_ARTICLE = "CANCLE_ARTICLE";
+            public static final String RENEW_ARTICLE = "RENEW_ARTICLE";
+            public static final String MARK_SOLD_ARTICLE = "MARK_SOLD_ARTICLE";
         }
     }
 }

@@ -19,6 +19,8 @@ public class DmBrand implements Serializable {
     @SerializedName("cities")
     private ArrayList<DmCity> cities = new ArrayList<>();
 
+    private ArrayList<DmStore> stores = new ArrayList<>();
+
     @SerializedName("check")
     private boolean check;
 
@@ -32,6 +34,14 @@ public class DmBrand implements Serializable {
 
     public ArrayList<DmCity> getCities() {
         return cities;
+    }
+
+    public ArrayList<DmStore> getStores() {
+        return stores;
+    }
+
+    public void setStores(ArrayList<DmStore> stores) {
+        this.stores = stores;
     }
 
     public void setCities(ArrayList<DmCity> cities) {

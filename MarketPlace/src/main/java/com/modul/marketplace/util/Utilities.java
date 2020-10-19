@@ -111,6 +111,16 @@ public class Utilities {
         context.sendBroadcast(i);
     }
 
+    public static void sendBoardCounlyLib(Context context, String board, String value,String event, String component,  String feature) {
+        Intent i = new Intent();
+        i.setAction(board);
+        i.putExtra("value", value);
+        i.putExtra("event", event);
+        i.putExtra("component", component);
+        i.putExtra("feature", feature);
+        context.sendBroadcast(i);
+    }
+
     public static void sendBoardLibString(Context context, String board, String value, String data) {
         Intent i = new Intent();
         i.setAction(board);
