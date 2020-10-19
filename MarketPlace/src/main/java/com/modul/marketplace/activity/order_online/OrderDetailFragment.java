@@ -25,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.google.gson.Gson;
 import com.modul.marketplace.R;
 import com.modul.marketplace.activity.BaseFragment;
+import com.modul.marketplace.activity.marketplace.MarketPlaceActivity;
 import com.modul.marketplace.adapter.orderonline.OrderDetailRecyleAdapter;
 import com.modul.marketplace.adapter.orderonline.StatusOrderRecyleAdapter;
 import com.modul.marketplace.app.Constants;
@@ -170,8 +171,12 @@ public class OrderDetailFragment extends BaseFragment {
     private void initClick() {
         btn_back.setOnClickListener(v -> {
             if (TYPE_CREATE_ORDER.equals(type)) {
-                sendBoardLib(getContext(),BROAD_MANAGER_HOME_CALLBACK,HERMES_ORDER_CALLBACK);
-                mActivity.finish();
+                mCartBussiness.OrderOnlineCartClear();
+                Intent intent = new Intent(getContext(), MarketPlaceActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+//                sendBoardLib(getContext(),BROAD_MANAGER_HOME_CALLBACK,HERMES_ORDER_CALLBACK);
+//                mActivity.finish();
             } else {
                 mActivity.onBackPressed();
             }

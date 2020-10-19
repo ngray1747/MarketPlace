@@ -1,6 +1,5 @@
 package com.modul.marketplace.activity.order_online;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,6 @@ import com.android.volley.VolleyError;
 import com.modul.marketplace.R;
 import com.modul.marketplace.activity.BaseFragment;
 import com.modul.marketplace.activity.CateActivity;
-import com.modul.marketplace.activity.marketplace.MarketPlaceActivity;
 import com.modul.marketplace.adapter.orderonline.HistoryOrderOnlineRecyleAdapter;
 import com.modul.marketplace.model.orderonline.DmHistoryOrderDetail;
 import com.modul.marketplace.model.orderonline.DmOrderOnline;
@@ -75,14 +73,9 @@ public class HistoryOrderDetailFragment extends BaseFragment {
 
     }
 
-        private void initAdapter() {
+    private void initAdapter() {
         mAdapter = new HistoryOrderOnlineRecyleAdapter(mActivity, mDatas, dmOrderOnline -> {
-            mCartBussiness.OrderOnlineCartClear();
-            Intent intent = new Intent(getContext(), MarketPlaceActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-//            openActivity(com.modul.marketplace.activity.marketplace.MarketPlaceActivity::class.java)
-//            CateActivity.gotoOrderDetailFragment(mActivity, dmOrderOnline.getOrderCode(), OrderDetailFragment.TYPE_ORDER_HISTORY);
+            CateActivity.gotoOrderDetailFragment(mActivity, dmOrderOnline.getOrderCode(), OrderDetailFragment.TYPE_ORDER_HISTORY);
         });
         mRecycleView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
