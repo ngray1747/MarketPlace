@@ -27,7 +27,11 @@ class CartBussiness {
         mListBrands.forEach {
             content = content + it.brandId + ","
         }
-        return content.replaceAfterLast(",","")
+        if(content.endsWith(","))
+        {
+            content = content.substring(0,content.length - 1);
+        }
+        return content
     }
 
     fun addBrand(data: ArrayList<DmBrand>) {

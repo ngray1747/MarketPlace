@@ -83,14 +83,29 @@ class PurchaseDetailActivity : BaseActivity() {
 
     private fun plus() {
         var quantity = mQuantity.text.toString().toInt()
-        mQuantity.text = "" + quantity.plus(1)
+
+        if (DmServiceListOrigin.TYPE_SUB == dmServiceListOrigin?.type) {
+            dmServiceListOrigin?.minChoice?.run{
+                mQuantity.text = "" + this
+            }
+        } else {
+            mQuantity.text = "" + quantity.plus(1)
+        }
         dmServiceListOrigin?.quantity = mQuantity.text.toString().toDouble()
     }
 
     private fun minus() {
         var quantity = mQuantity.text.toString().toInt()
-        if (quantity > 0) {
-            mQuantity.text = "" + quantity.minus(1)
+        if (DmServiceListOrigin.TYPE_SUB == dmServiceListOrigin?.type) {
+            dmServiceListOrigin?.maxChoice?.run{
+                if (quantity <= this) {
+                    mQuantity.text = "" + 0
+                }
+            }
+        }else{
+            if (quantity > 0) {
+                mQuantity.text = "" + quantity.minus(1)
+            }
         }
         dmServiceListOrigin?.quantity = mQuantity.text.toString().toDouble()
     }
