@@ -389,7 +389,7 @@ public class OrderDetailFragment extends BaseFragment {
                     mPaymentmethod.setText(DmPaymentInfo.NAME_ZALOPAY);
 //                    mTitlePayment.setText(getString(R.string.da_thanh_toan) + " (" + DmPaymentInfo.NAME_ZALOPAY + ")");
                 } else {
-                    mPaymentmethod.setText(DmPaymentInfo.NAME_MOMO);
+                    mPaymentmethod.setText("Ví Momo");
 //                    mTitlePayment.setText(getString(R.string.da_thanh_toan) + " (" + DmPaymentInfo.NAME_MOMO + ")");
                 }
                 mAmountPaymentMethod.setText(FormatNumberUtil.formatCurrency(dmPaymentInfo.getPayAmount()));

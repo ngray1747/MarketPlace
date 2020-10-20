@@ -83,10 +83,9 @@ class PurchaseDetailActivity : BaseActivity() {
 
     private fun plus() {
         var quantity = mQuantity.text.toString().toInt()
-
         if (DmServiceListOrigin.TYPE_SUB == dmServiceListOrigin?.type) {
             dmServiceListOrigin?.minChoice?.run{
-                mQuantity.text = "" + this
+                mQuantity.text = "" + this.toInt()
             }
         } else {
             mQuantity.text = "" + quantity.plus(1)

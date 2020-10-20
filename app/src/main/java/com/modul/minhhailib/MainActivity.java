@@ -16,13 +16,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        com.modul.marketplace.app.ApplicationMarketPlace appli = new ApplicationMarketPlace();
-//        appli.initContext(getBaseContext());
-//        appli.initBussiness();
-//        appli.loadData("O78LYZQLY72G","admin","POSPC");
-//
-//        Log.e("aaaacas","test: "+ appli.getCartBussiness().getCompanyId());
-//        Intent intent = new Intent(this, com.modul.marketplace.activity.marketplace.SelectStartAddressActivity.class);
-//        startActivity(intent);
+        com.modul.marketplace.app.ApplicationMarketPlace appli = new ApplicationMarketPlace();
+        appli.initContext(getBaseContext());
+        appli.initBussiness();
+        appli.loadData("O78LYZQLY72G","admin","POSPC");
+
+        Log.e("aaaacas","test: "+ appli.getCartBussiness().getCompanyId());
+        Intent intent = new Intent(this, com.modul.marketplace.activity.marketplace.SelectStartAddressActivity.class);
+        startActivity(intent);
     }
 }

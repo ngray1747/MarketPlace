@@ -100,7 +100,7 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
             }
             mAdapterImageOrder.notifyDataSetChanged()
 
-            mTieuDe.setText(StringExt.isTextEmpty(title))
+            mTieuDe.setText(StringExt.isTextEmpty(mTitle))
             price.setText(StringExt.isTextEmpty(mPrice))
             mDesc.setText(StringExt.isTextEmpty(mContent))
             mNguoiDang.setText(StringExt.isTextEmpty(mAuthor_name))
@@ -438,7 +438,11 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
     private fun createDone(data: ArticlesModel?) {
         dismissProgressHub()
         data?.run {
-            layout_success.visible()
+            id?.run{
+                layout_success.visible()
+            }?:run{
+                showToast(getString(R.string.error_network2))
+            }
         }
     }
 

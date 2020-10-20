@@ -103,8 +103,11 @@ public class WSRestFull extends AbsRestful {
         addReq(req, TAG_CMS);
     }
 
-    public void apiOrderHistory(Response.Listener<RestDmHistoryOrderOnline> response, Response.ErrorListener error) {
+    public void apiOrderHistoryHermes(String company_id,int page, Response.Listener<RestDmHistoryOrderOnline> response, Response.ErrorListener error) {
         CreateResfulString params = new CreateResfulString(ORDER_HISTORY);
+        params.AddParam("company_id", company_id);
+        params.AddParam("page", page);
+        params.AddParam("numPerPage", 10);
 
         GsonRequest<RestDmHistoryOrderOnline> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
@@ -523,9 +526,11 @@ public class WSRestFull extends AbsRestful {
         addReq(req, TAG_CMS);
     }
 
-    public void apiSCMInvoicesHistory(String company_id, Response.Listener<NvlOnlineModelDataList> response, Response.ErrorListener error) {
+    public void apiSCMInvoicesHistory(String company_id,int page, Response.Listener<NvlOnlineModelDataList> response, Response.ErrorListener error) {
         CreateResfulString params = new CreateResfulString(SCM_INVOICES);
         params.AddParam("company_id",company_id);
+        params.AddParam("page",page);
+        params.AddParam("results_per_page",10);
 
         GsonRequest<NvlOnlineModelDataList> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),

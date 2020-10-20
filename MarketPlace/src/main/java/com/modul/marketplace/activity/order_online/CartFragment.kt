@@ -187,8 +187,8 @@ class CartFragment : BaseFragment() {
     }
 
     private fun validAmountCart() {
-        provisional.text = FormatNumberUtil.formatCurrency(mCartBussiness.OrderOnlineAmountItem())
-        total_amount.text = FormatNumberUtil.formatCurrency(mCartBussiness.OrderOnlineTotalAmount())
+        provisional?.text = FormatNumberUtil.formatCurrency(mCartBussiness.OrderOnlineAmountItem())
+        total_amount?.text = FormatNumberUtil.formatCurrency(mCartBussiness.OrderOnlineTotalAmount())
     }
 
     companion object {
