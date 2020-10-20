@@ -18,7 +18,6 @@ public class AbsRestful {
     private static float mBackoffMultiplier = 1.0f;
     protected String REST_BILLING = Constants.REST_BILLING;
     protected String BASE_URL_SCM = Constants.REST_SCM;
-    protected String BASE_URL_BOX = Constants.REST_BOX;
     protected String GET_NOTIFICATION = "https://onesignal.com/api/v1/notifications"; //API lay ds tang
 
     protected String ORDER_ONLINE_SERVICELIST = REST_BILLING + "partner/service/menu";
@@ -46,11 +45,6 @@ public class AbsRestful {
     protected String SCM_DISTRICTS = BASE_URL_SCM + "districts";
     protected String SCM_PRECINCTS = BASE_URL_SCM + "precincts";
     protected String SCM_FEEDBACK = BASE_URL_SCM + "feedback";
-
-    protected String BOX_REGIS_FIREBASE = BASE_URL_BOX + "users/firebase-registration";
-    protected String BOX_GET_NOTIFY = BASE_URL_BOX + "services/notifications";
-    protected String BOX_GET_INBOX = BASE_URL_BOX + "services/notifications/box";
-    protected String BOX_CHECK_INBOX = BASE_URL_BOX + "services/notification/checked-info";
 
     public static String TAG_REPORT = "TAG_RP";
     public static String TAG_LOGIN = "TAG_LOGIN";

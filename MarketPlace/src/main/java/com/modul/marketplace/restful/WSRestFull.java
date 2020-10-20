@@ -1,5 +1,6 @@
 package com.modul.marketplace.restful;
 
+import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
@@ -61,50 +62,38 @@ public class WSRestFull extends AbsRestful {
 
 
     public void apiOrderOnline_ServiceList(String productCode, Response.Listener<RestAllDmServiceListOrigin> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(ORDER_ONLINE_SERVICELIST);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getHERMES_LINK() + ORDER_ONLINE_SERVICELIST);
         params.AddParam("productCode", productCode);
 
         GsonRequest<RestAllDmServiceListOrigin> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 RestAllDmServiceListOrigin.class, null, response, error);
-        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
-        }else{
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
-        }
+        req.setHeader("accessToken", ApplicationMarketPlace.instance.getHERMES_ACCESS_TOKEN());
         addReq(req, TAG_CMS);
     }
 
     public void apiCheckVoucher(String json, Response.Listener<RestAllDmCheckVoucher> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(ORDER_CHECK_VOUCHER);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getHERMES_LINK() + ORDER_CHECK_VOUCHER);
 
         GsonRequest<RestAllDmCheckVoucher> req = new GsonRequest<>(
                 Request.Method.POST, params.toString(),
                 RestAllDmCheckVoucher.class, json, response, error);
-        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
-        }else{
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
-        }
+        req.setHeader("accessToken", ApplicationMarketPlace.instance.getHERMES_ACCESS_TOKEN());
         addReq(req, TAG_CMS);
     }
 
     public void apiCheckAutoPromotion(String json, Response.Listener<RestAllDmCheckAutoPromotion> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(ORDER_CHECK_AUTO_PROMOTION);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getHERMES_LINK() + ORDER_CHECK_AUTO_PROMOTION);
 
         GsonRequest<RestAllDmCheckAutoPromotion> req = new GsonRequest<>(
                 Request.Method.POST, params.toString(),
                 RestAllDmCheckAutoPromotion.class, json, response, error);
-        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
-        }else{
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
-        }
+        req.setHeader("accessToken", ApplicationMarketPlace.instance.getHERMES_ACCESS_TOKEN());
         addReq(req, TAG_CMS);
     }
 
     public void apiOrderHistoryHermes(String company_id,int page, Response.Listener<RestDmHistoryOrderOnline> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(ORDER_HISTORY);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getHERMES_LINK() + ORDER_HISTORY);
         params.AddParam("company_id", company_id);
         params.AddParam("page", page);
         params.AddParam("numPerPage", 10);
@@ -112,45 +101,33 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<RestDmHistoryOrderOnline> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 RestDmHistoryOrderOnline.class, null, response, error);
-        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
-        }else{
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
-        }
+        req.setHeader("accessToken", ApplicationMarketPlace.instance.getHERMES_ACCESS_TOKEN());
         addReq(req, TAG_CMS);
     }
 
     public void apiOrderHistory(String orderCode, Response.Listener<RestDmOrderOnline> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(ORDER_HISTORY_DETAIL);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getHERMES_LINK() + ORDER_HISTORY_DETAIL);
         params.AddParam("orderCode", orderCode);
 
         GsonRequest<RestDmOrderOnline> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 RestDmOrderOnline.class, null, response, error);
-        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
-        }else{
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
-        }
+            req.setHeader("accessToken", ApplicationMarketPlace.instance.getHERMES_ACCESS_TOKEN());
         addReq(req, TAG_CMS);
     }
 
     public void apiOrderOnline(String json, Response.Listener<RestDmOrderOnline> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(ORDER_ONLINE);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getHERMES_LINK() + ORDER_ONLINE);
 
         GsonRequest<RestDmOrderOnline> req = new GsonRequest<>(
                 Request.Method.POST, params.toString(),
                 RestDmOrderOnline.class, json, response, error);
-        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
-        }else{
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
-        }
+        req.setHeader("accessToken", ApplicationMarketPlace.instance.getHERMES_ACCESS_TOKEN());
         addReq(req, TAG_CMS);
     }
 
     public void apiOrderCheckPayment(String companyId, String storeId, String brandId, String paymentMethod, String tranId, Response.Listener<RestDmOrderOnline> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(ORDER_CHECK_PAYMENT);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getHERMES_LINK() + ORDER_CHECK_PAYMENT);
         params.AddParam("companyId", companyId);
         params.AddParam("storeId", storeId);
         params.AddParam("brandId", brandId);
@@ -160,16 +137,12 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<RestDmOrderOnline> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 RestDmOrderOnline.class, null, response, error);
-        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
-        }else{
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
-        }
+        req.setHeader("accessToken", ApplicationMarketPlace.instance.getHERMES_ACCESS_TOKEN());
         addReq(req, TAG_CMS);
     }
 
     public void apiZaloPaymentCreate(String companyId, String storeId, String brandId, String paymentMethod, double amount, String tranId, String desc, Response.Listener<RestDmQRCode> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(ORDER_CREATE_PAYMENT_ZALO);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getHERMES_LINK() + ORDER_CREATE_PAYMENT_ZALO);
         params.AddParam("companyId", companyId);
         params.AddParam("storeId", storeId);
         params.AddParam("brandId", brandId);
@@ -181,44 +154,32 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<RestDmQRCode> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 RestDmQRCode.class, null, response, error);
-        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
-        }else{
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
-        }
+        req.setHeader("accessToken", ApplicationMarketPlace.instance.getHERMES_ACCESS_TOKEN());
         addReq(req, TAG_CMS);
     }
 
     public void apiPaymentMoMo(String json, Response.Listener<DmCallBackMoMo> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(ORDER_PAYMENT_MOMO);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getHERMES_LINK() + ORDER_PAYMENT_MOMO);
 
         GsonRequest<DmCallBackMoMo> req = new GsonRequest<>(
                 Request.Method.POST, params.toString(),
                 DmCallBackMoMo.class, json, response, error);
-        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
-        }else{
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
-        }
+        req.setHeader("accessToken", ApplicationMarketPlace.instance.getHERMES_ACCESS_TOKEN());
         addReq(req, TAG_CMS);
     }
 
     public void apiLocate(Response.Listener<RestAllDmLocate> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(ORDER_LOCATE);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getHERMES_LINK() + ORDER_LOCATE);
 
         GsonRequest<RestAllDmLocate> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 RestAllDmLocate.class, null, response, error);
-        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
-        }else{
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
-        }
+        req.setHeader("accessToken", ApplicationMarketPlace.instance.getHERMES_ACCESS_TOKEN());
         addReq(req, TAG_CMS);
     }
 
     public void apiBrand(String companyId, Response.Listener<RestAllDmBrand> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(ORDER_BRAND);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getHERMES_LINK() + ORDER_BRAND);
         if (companyId != null) {
             params.AddParam("companyId", companyId);
         }
@@ -226,16 +187,12 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<RestAllDmBrand> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 RestAllDmBrand.class, null, response, error);
-        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
-        }else{
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
-        }
+        req.setHeader("accessToken", ApplicationMarketPlace.instance.getHERMES_ACCESS_TOKEN());
         addReq(req, TAG_CMS);
     }
 
     public void apiStore(String companyId, Response.Listener<RestAllDmStore> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(ORDER_STORE);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getHERMES_LINK() + ORDER_STORE);
         if (companyId != null) {
             params.AddParam("companyId", companyId);
         }
@@ -243,16 +200,12 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<RestAllDmStore> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 RestAllDmStore.class, null, response, error);
-        if(ApplicationMarketPlace.instance.getCartBussiness().getAppType() == Constants.POSPC) {
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_POSPC);
-        }else{
-            req.setHeader("accessToken", Constants.BILLING_ACCESS_TOKEN_FABI);
-        }
+        req.setHeader("accessToken", ApplicationMarketPlace.instance.getHERMES_ACCESS_TOKEN());
         addReq(req, TAG_CMS);
     }
 
     public void apiSCMProducts(String cityId, Response.Listener<NvlModelData> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(SCM_PRODUCTS);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() + SCM_PRODUCTS);
         params.AddParam("active", 1);
         if (cityId != null) {
             params.AddParam("city_uid", cityId);
@@ -261,81 +214,81 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<NvlModelData> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 NvlModelData.class, null, response, error);
-        req.setHeader("access-token", Constants.SCM_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.SCM_SECRET_KEY);
+        req.setHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN());
+        req.setHeader("secret-key",ApplicationMarketPlace.instance.getSCM_SECRET_KEY());
         addReq(req, TAG_CMS);
     }
 
     public void apiSCMBrands(Response.Listener<NvlBrandModelData> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(SCM_BRANDS);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_BRANDS);
         params.AddParam("active", 1);
 
         GsonRequest<NvlBrandModelData> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 NvlBrandModelData.class, null, response, error);
-        req.setHeader("access-token", Constants.SCM_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.SCM_SECRET_KEY);
+        req.setHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN());
+        req.setHeader("secret-key",ApplicationMarketPlace.instance.getSCM_SECRET_KEY());
         addReq(req, TAG_CMS);
     }
 
     public void apiSCMTags(Response.Listener<TagsModelData> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(SCM_TAG);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_TAG);
 
         GsonRequest<TagsModelData> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 TagsModelData.class, null, response, error);
-        req.setHeader("access-token", Constants.SCM_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.SCM_SECRET_KEY);
+        req.setHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN());
+        req.setHeader("secret-key",ApplicationMarketPlace.instance.getSCM_SECRET_KEY());
         addReq(req, TAG_CMS);
     }
 
     public void apiSCMLocation(Response.Listener<LocationModelData> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(SCM_LOCATIONS);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_LOCATIONS);
 
         GsonRequest<LocationModelData> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 LocationModelData.class, null, response, error);
-        req.setHeader("access-token", Constants.SCM_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.SCM_SECRET_KEY);
+        req.setHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN());
+        req.setHeader("secret-key",ApplicationMarketPlace.instance.getSCM_SECRET_KEY());
         addReq(req, TAG_CMS);
     }
 
     public void apiSCMLocationCreate(String json, Response.Listener<LocationModelDataObject> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(SCM_LOCATIONS);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_LOCATIONS);
 
         GsonRequest<LocationModelDataObject> req = new GsonRequest<>(
                 Request.Method.POST, params.toString(),
                 LocationModelDataObject.class, json, response, error);
-        req.setHeader("access-token", Constants.SCM_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.SCM_SECRET_KEY);
+        req.setHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN());
+        req.setHeader("secret-key",ApplicationMarketPlace.instance.getSCM_SECRET_KEY());
         addReq(req, TAG_CMS);
     }
 
     public void apiSCMLocationEdit(String json, Response.Listener<LocationModelDataObject> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(SCM_LOCATIONS);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_LOCATIONS);
 
         GsonRequest<LocationModelDataObject> req = new GsonRequest<>(
                 Request.Method.PUT, params.toString(),
                 LocationModelDataObject.class, json, response, error);
-        req.setHeader("access-token", Constants.SCM_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.SCM_SECRET_KEY);
+        req.setHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN());
+        req.setHeader("secret-key",ApplicationMarketPlace.instance.getSCM_SECRET_KEY());
         addReq(req, TAG_CMS);
     }
 
     public void apiSCMCity(Response.Listener<AddressModelData> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(SCM_CITIES);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_CITIES);
         params.AddParam("results_per_page", 1000);
 
         GsonRequest<AddressModelData> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 AddressModelData.class, null, response, error);
-        req.setHeader("access-token", Constants.SCM_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.SCM_SECRET_KEY);
+        req.setHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN());
+        req.setHeader("secret-key",ApplicationMarketPlace.instance.getSCM_SECRET_KEY());
         addReq(req, TAG_CMS);
     }
 
     public void apiSCMDistricts(AddressModel addressModel, Response.Listener<AddressModelData> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(SCM_DISTRICTS);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_DISTRICTS);
         if (addressModel != null) {
             if (!TextUtils.isEmpty(addressModel.getCity_id())) {
                 params.AddParam("city_uid", addressModel.getCity_id());
@@ -345,13 +298,13 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<AddressModelData> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 AddressModelData.class, null, response, error);
-        req.setHeader("access-token", Constants.SCM_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.SCM_SECRET_KEY);
+        req.setHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN());
+        req.setHeader("secret-key",ApplicationMarketPlace.instance.getSCM_SECRET_KEY());
         addReq(req, TAG_CMS);
     }
 
     public void apiSCMPrecincts(AddressModel addressModel, Response.Listener<AddressModelData> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(SCM_PRECINCTS);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_PRECINCTS);
         if (addressModel != null) {
             if (!TextUtils.isEmpty(addressModel.getCity_id())) {
                 params.AddParam("city_uid", addressModel.getCity_id());
@@ -364,50 +317,50 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<AddressModelData> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 AddressModelData.class, null, response, error);
-        req.setHeader("access-token", Constants.SCM_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.SCM_SECRET_KEY);
+        req.setHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN());
+        req.setHeader("secret-key",ApplicationMarketPlace.instance.getSCM_SECRET_KEY());
         addReq(req, TAG_CMS);
     }
 
     public void apiSCMFeedback(String json, Response.Listener<FeedbackModelData> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(SCM_FEEDBACK);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_FEEDBACK);
 
         GsonRequest<FeedbackModelData> req = new GsonRequest<>(
                 Request.Method.POST, params.toString(),
                 FeedbackModelData.class, json, response, error);
-        req.setHeader("access-token", Constants.SCM_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.SCM_SECRET_KEY);
+        req.setHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN());
+        req.setHeader("secret-key",ApplicationMarketPlace.instance.getSCM_SECRET_KEY());
         addReq(req, TAG_CMS);
     }
 
     public void apiSCMArticles(String cityId, Response.Listener<ArticlesModelData> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(SCM_ARTICLES);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_ARTICLES);
         if (cityId != null) {
             params.AddParam("city_uid", cityId);
         }
         GsonRequest<ArticlesModelData> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 ArticlesModelData.class, null, response, error);
-        req.setHeader("access-token", Constants.SCM_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.SCM_SECRET_KEY);
+        req.setHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN());
+        req.setHeader("secret-key",ApplicationMarketPlace.instance.getSCM_SECRET_KEY());
         addReq(req, TAG_CMS);
     }
 
     public void apiSCMArticlesDetail(String uId, Response.Listener<ArticlesModelDataObject> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(SCM_ARTICLES);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_ARTICLES);
         if (uId != null) {
             params.AddParam("uid", uId);
         }
         GsonRequest<ArticlesModelDataObject> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 ArticlesModelDataObject.class, null, response, error);
-        req.setHeader("access-token", Constants.SCM_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.SCM_SECRET_KEY);
+        req.setHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN());
+        req.setHeader("secret-key",ApplicationMarketPlace.instance.getSCM_SECRET_KEY());
         addReq(req, TAG_CMS);
     }
 
     public void apiSCMArticlesByStatus(ArticlesModel articlesModel, Response.Listener<ArticlesModelData> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(SCM_ARTICLES);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_ARTICLES);
         if (articlesModel != null) {
             if(articlesModel.getStatus() != null){
                 params.AddParam("status", articlesModel.getStatus());
@@ -429,8 +382,8 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<ArticlesModelData> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 ArticlesModelData.class, null, response, error);
-        req.setHeader("access-token", Constants.SCM_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.SCM_SECRET_KEY);
+        req.setHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN());
+        req.setHeader("secret-key",ApplicationMarketPlace.instance.getSCM_SECRET_KEY());
         addReq(req, TAG_CMS);
     }
 
@@ -444,10 +397,10 @@ public class WSRestFull extends AbsRestful {
                 .build();
 
         okhttp3.Request request = new okhttp3.Request.Builder()
-                .url(SCM_UPLOAD + "?thumb_size=100, 100")
+                .url(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_UPLOAD + "?thumb_size=100, 100")
                 .method("POST", body)
-                .addHeader("access-token", Constants.SCM_ACCESS_TOKEN)
-                .addHeader("secret-key", Constants.SCM_SECRET_KEY)
+                .addHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN())
+                .addHeader("secret-key", ApplicationMarketPlace.instance.getSCM_SECRET_KEY())
                 .build();
 
 //            okhttp3.Response response = client.newCall(request).execute();
@@ -463,38 +416,32 @@ public class WSRestFull extends AbsRestful {
             });
     }
 
-    public byte[] getFileDataFromDrawable(Bitmap bitmap) {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
-        return byteArrayOutputStream.toByteArray();
-    }
-
     public void apiSCMArticlesCreate(String json, Response.Listener<ArticlesModelDataObject> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(SCM_ARTICLES);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_ARTICLES);
 //        params.AddParam("file", MultipartBody.Part );
 
         GsonRequest<ArticlesModelDataObject> req = new GsonRequest<>(
                 Request.Method.POST, params.toString(),
                 ArticlesModelDataObject.class, json, response, error);
-        req.setHeader("access-token", Constants.SCM_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.SCM_SECRET_KEY);
+        req.setHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN());
+        req.setHeader("secret-key",ApplicationMarketPlace.instance.getSCM_SECRET_KEY());
         addReq(req, TAG_CMS);
     }
 
     public void apiSCMArticlesEdit(String json, Response.Listener<ArticlesModelDataObject> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(SCM_ARTICLES);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_ARTICLES);
 //        params.AddParam("file", MultipartBody.Part );
 
         GsonRequest<ArticlesModelDataObject> req = new GsonRequest<>(
                 Request.Method.PUT, params.toString(),
                 ArticlesModelDataObject.class, json, response, error);
-        req.setHeader("access-token", Constants.SCM_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.SCM_SECRET_KEY);
+        req.setHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN());
+        req.setHeader("secret-key",ApplicationMarketPlace.instance.getSCM_SECRET_KEY());
         addReq(req, TAG_CMS);
     }
 
     public void apiSCMArticlesCount(ArticlesModel articlesModel, Response.Listener<ArticlesCountModelData> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(SCM_ARTICLES_COUNT);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_ARTICLES_COUNT);
         if (articlesModel != null) {
             if(articlesModel.getBrand_id() != null){
                 params.AddParam("brand_id", articlesModel.getBrand_id());
@@ -510,24 +457,24 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<ArticlesCountModelData> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 ArticlesCountModelData.class, null, response, error);
-        req.setHeader("access-token", Constants.SCM_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.SCM_SECRET_KEY);
+        req.setHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN());
+        req.setHeader("secret-key",ApplicationMarketPlace.instance.getSCM_SECRET_KEY());
         addReq(req, TAG_CMS);
     }
 
     public void apiSCMInvoices(String json, Response.Listener<NvlOnlineModelData> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(SCM_INVOICES);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_INVOICES);
 
         GsonRequest<NvlOnlineModelData> req = new GsonRequest<>(
                 Request.Method.POST, params.toString(),
                 NvlOnlineModelData.class, json, response, error);
-        req.setHeader("access-token", Constants.SCM_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.SCM_SECRET_KEY);
+        req.setHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN());
+        req.setHeader("secret-key",ApplicationMarketPlace.instance.getSCM_SECRET_KEY());
         addReq(req, TAG_CMS);
     }
 
     public void apiSCMInvoicesHistory(String company_id,int page, Response.Listener<NvlOnlineModelDataList> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(SCM_INVOICES);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_INVOICES);
         params.AddParam("company_id",company_id);
         params.AddParam("page",page);
         params.AddParam("results_per_page",10);
@@ -535,102 +482,21 @@ public class WSRestFull extends AbsRestful {
         GsonRequest<NvlOnlineModelDataList> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 NvlOnlineModelDataList.class, null, response, error);
-        req.setHeader("access-token", Constants.SCM_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.SCM_SECRET_KEY);
+        req.setHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN());
+        req.setHeader("secret-key",ApplicationMarketPlace.instance.getSCM_SECRET_KEY());
         addReq(req, TAG_CMS);
     }
 
     public void apiSCMInvoicesHistoryDetail(String company_id, String uId, Response.Listener<NvlOnlineModelData> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(SCM_INVOICES);
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_INVOICES);
         params.AddParam("company_id",company_id);
         params.AddParam("uid",uId);
 
         GsonRequest<NvlOnlineModelData> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 NvlOnlineModelData.class, null, response, error);
-        req.setHeader("access-token", Constants.SCM_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.SCM_SECRET_KEY);
-        addReq(req, TAG_CMS);
-    }
-
-    public void apiBoxRegisFirebase(String json, Response.Listener<GetPushModel> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(BOX_REGIS_FIREBASE);
-
-        GsonRequest<GetPushModel> req = new GsonRequest<>(
-                Request.Method.POST, params.toString(),
-                GetPushModel.class, json, response, error);
-        req.setHeader("access-token", Constants.BOX_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.BOX_SECRET_KEY);
-        addReq(req, TAG_CMS);
-    }
-
-    public void apiBoxRead(String uId, Response.Listener<InBoxModelDataObject> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(BOX_GET_INBOX);
-        if(uId != null){
-            params.AddParam("uid",uId);
-        }
-
-        GsonRequest<InBoxModelDataObject> req = new GsonRequest<>(
-                Request.Method.PUT, params.toString(),
-                InBoxModelDataObject.class, null, response, error);
-        req.setHeader("access-token", Constants.BOX_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.BOX_SECRET_KEY);
-        addReq(req, TAG_CMS);
-    }
-
-    public void apiBoxInbox(InboxModel inbox, Response.Listener<InBoxModelData> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(BOX_GET_INBOX);
-        if (inbox != null) {
-            if(inbox.getPage() != null){
-                params.AddParam("page",inbox.getPage());
-            }
-            if(inbox.getResults_per_page() != null){
-                params.AddParam("results_per_page",inbox.getResults_per_page());
-            }
-            if(inbox.getUser_id() != null){
-                params.AddParam("user_id",inbox.getUser_id());
-            }
-            if(inbox.getBrand_id() != null){
-                params.AddParam("brand_id",inbox.getBrand_id());
-            }
-            if(inbox.getCompany_id() != null){
-                params.AddParam("company_id",inbox.getCompany_id());
-            }
-        }
-
-        GsonRequest<InBoxModelData> req = new GsonRequest<>(
-                Request.Method.GET, params.toString(),
-                InBoxModelData.class, null, response, error);
-        req.setHeader("access-token", Constants.BOX_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.BOX_SECRET_KEY);
-        addReq(req, TAG_CMS);
-    }
-
-    public void apiNotifyList(InboxModel inbox, Response.Listener<InBoxModelData> response, Response.ErrorListener error) {
-        CreateResfulString params = new CreateResfulString(BOX_GET_NOTIFY);
-        if (inbox != null) {
-            if(inbox.getPage() != null){
-                params.AddParam("page",inbox.getPage());
-            }
-            if(inbox.getResults_per_page() != null){
-                params.AddParam("results_per_page",inbox.getResults_per_page());
-            }
-            if(inbox.getUser_id() != null){
-                params.AddParam("user_id",inbox.getUser_id());
-            }
-            if(inbox.getBrand_id() != null){
-                params.AddParam("brand_id",inbox.getBrand_id());
-            }
-            if(inbox.getCompany_id() != null){
-                params.AddParam("company_id",inbox.getCompany_id());
-            }
-        }
-
-        GsonRequest<InBoxModelData> req = new GsonRequest<>(
-                Request.Method.GET, params.toString(),
-                InBoxModelData.class, null, response, error);
-        req.setHeader("access-token", Constants.BOX_ACCESS_TOKEN);
-        req.setHeader("secret-key", Constants.BOX_SECRET_KEY);
+        req.setHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN());
+        req.setHeader("secret-key",ApplicationMarketPlace.instance.getSCM_SECRET_KEY());
         addReq(req, TAG_CMS);
     }
 }

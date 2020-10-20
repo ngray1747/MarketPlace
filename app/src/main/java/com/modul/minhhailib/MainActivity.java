@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         appli.initContext(getBaseContext());
         appli.initBussiness();
         appli.loadData("O78LYZQLY72G","admin","POSPC");
+        appli.AddLink("https://apiscmdev.ipos.vn/api/partners/v1/","4HPR9FGCBEITGBYW7EYPVZEAJCFGMYKDSRGC","42e78966590635e6e88ac9beec4e01ea","https://apibilling.iposdev.com/billing/api/","GYIXZKY3UOQNF55S37IGUNWYLN5SPRFY");
 
         Log.e("aaaacas","test: "+ appli.getCartBussiness().getCompanyId());
         Intent intent = new Intent(this, com.modul.marketplace.activity.marketplace.SelectStartAddressActivity.class);

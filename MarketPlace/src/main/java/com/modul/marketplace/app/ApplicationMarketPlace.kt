@@ -34,6 +34,13 @@ class ApplicationMarketPlace : Application() {
     var locationBussiness: LocationBussiness? = null
     var cartBussiness: CartBussiness? = null
 
+    var SCM_LINK = ""
+    var SCM_ACCESS_TOKEN = ""
+    var SCM_SECRET_KEY = ""
+
+    var HERMES_LINK = ""
+    var HERMES_ACCESS_TOKEN = ""
+
     private val applicationMarketPlace: ApplicationMarketPlace? = null
 
     fun initContext(c: Context){
@@ -47,6 +54,24 @@ class ApplicationMarketPlace : Application() {
         Log.d("APP", "ON APP")
         initBussiness()
         Log.i("APP", "ON APP Width/height ")
+    }
+
+    fun AddLink(scm_link: String? = null,scm_access_token: String? = null,scm_secret_key: String? = null,hermes_link: String? = null,hermes_access_token: String? = null){
+        scm_link?.run {
+            SCM_LINK = this
+        }
+        scm_access_token?.run {
+            SCM_ACCESS_TOKEN = this
+        }
+        scm_secret_key?.run {
+            SCM_SECRET_KEY = this
+        }
+        hermes_link?.run {
+            HERMES_LINK = this
+        }
+        hermes_access_token?.run {
+            HERMES_ACCESS_TOKEN = this
+        }
     }
 
     fun loadData(
