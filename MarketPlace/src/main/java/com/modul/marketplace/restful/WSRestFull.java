@@ -499,6 +499,9 @@ public class WSRestFull extends AbsRestful {
             if(articlesModel.getCompany_id() != null){
                 params.AddParam("company_id", articlesModel.getCompany_id());
             }
+            if(articlesModel.getAuthor_id() != null){
+                params.AddParam("author_id", articlesModel.getAuthor_id());
+            }
         }
 
         GsonRequest<ArticlesCountModelData> req = new GsonRequest<>(

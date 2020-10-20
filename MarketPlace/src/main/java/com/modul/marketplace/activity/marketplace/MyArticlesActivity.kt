@@ -32,6 +32,7 @@ class MyArticlesActivity : BaseActivity() {
         var articlesModel = ArticlesModel()
         articlesModel.brand_id = mCartBussiness.getListBrandId()
         articlesModel.company_id = mCartBussiness.companyId
+        articlesModel.author_id = mCartBussiness.userId
         Log.e("data","aaaa: "+ articlesModel.toJson())
         WSRestFull(applicationContext).apiSCMArticlesCount(articlesModel,
                 { response ->
@@ -63,8 +64,8 @@ class MyArticlesActivity : BaseActivity() {
         tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.cho_duyet).replace("#value", "" + data?.pending)))
         tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.dang_ban).replace("#value", "" + data?.confirmed)))
         tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.het_han).replace("#value", "" + data?.expired)))
-        tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.bi_huy)))
-        tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.da_ban)))
+        tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.bi_huy2).replace("#value", "" + data?.canceled)))
+        tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.da_ban2).replace("#value", "" + data?.canceled)))
         tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 when (tab.position) {

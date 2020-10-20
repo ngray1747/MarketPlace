@@ -276,6 +276,8 @@
     <string name="precint_valid">You have not selected ward / commune</string>
     <string name="re_post_articles">Repost this news</string>
     <string name="da_ban">Sold</string>
+    <string name="bi_huy2">Canceled (#value)</string>
+    <string name="da_ban2">Sold (#value)</string>
     <string name="hide_tin">Cancel news</string>
     <string name="huytin_success">Successfully canceled</string>
     <string name="an_tin">Hide</string>

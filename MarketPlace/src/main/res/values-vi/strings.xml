@@ -186,6 +186,7 @@
     <string name="da_xu_ly_Xong">Đã xử lý xong</string>
     <string name="dnag_giao_hang">Đang giao hàng</string>
     <string name="bi_huy">Bị huỷ</string>
+    <string name="bi_huy2">Bị huỷ (#value)</string>
     <string name="don_hang">Đơn hàng</string>
     <string name="nguoi_nhan">Người nhận</string>
     <string name="dia_chi_nhan_hang">Địa chỉ nhận hàng</string>
@@ -289,6 +290,7 @@
     <string name="precint_valid">Bạn chưa chọn phường/xã</string>
     <string name="re_post_articles">Đăng lại tin này</string>
     <string name="da_ban">Đã bán</string>
+    <string name="da_ban2">Đã bán (#value)</string>
     <string name="da_ban_success">Đã bán thành công</string>
     <string name="da_ban_lb">Tin của bạn đã bán thành công</string>
     <string name="hide_tin">Hủy tin</string>
