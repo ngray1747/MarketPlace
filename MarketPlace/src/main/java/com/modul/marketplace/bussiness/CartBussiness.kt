@@ -105,7 +105,7 @@ class CartBussiness {
         nvlOnline.customer_id = mOrderModel.dmDeliveryInfo?.receiverPhone
         nvlOnline.customer_name = mOrderModel.dmDeliveryInfo?.receiverName
         nvlOnline.recipient_name = userId
-        nvlOnline.recipient_id = mOrderModel.dmDeliveryInfo?.receiverPhone
+        nvlOnline.recipient_id = userId
         nvlOnline.company_id = companyId
 
         mOrderModel.companyTaxCode?.run {
