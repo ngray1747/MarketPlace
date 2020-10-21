@@ -30,10 +30,7 @@ import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.Log
 import com.modul.marketplace.util.ToastUtil
 import com.modul.marketplace.util.Utilities
-import kotlinx.android.synthetic.main.fragment_article.*
 import kotlinx.android.synthetic.main.fragment_nvl.*
-import kotlinx.android.synthetic.main.fragment_nvl.mError
-import kotlinx.android.synthetic.main.fragment_nvl.relativeLayout_cart
 import java.util.*
 
 class NvlFragment : BaseFragment() {
@@ -129,9 +126,9 @@ class NvlFragment : BaseFragment() {
         response?.forEach {
             val dmServiceListOrigin = DmServiceListOrigin()
             dmServiceListOrigin.quantity = 0.0
-            it.image_urls?.let{ imageUrl->
-                if(imageUrl.size > 0){
-                    imageUrl[0].url_thumb?.run{
+            it.image_urls?.let { imageUrl ->
+                if (imageUrl.size > 0) {
+                    imageUrl[0].url_thumb?.run {
                         dmServiceListOrigin.image = this
                     }
                 }
@@ -152,10 +149,12 @@ class NvlFragment : BaseFragment() {
             mDatas.add(dmServiceListOrigin)
         }
 
-        if(mDatas.size == 0){
-            mError.visible()
-        }else{
-            mError.gone()
+        if (mError != null) {
+            if (mDatas.size == 0) {
+                mError.visible()
+            } else {
+                mError.gone()
+            }
         }
         mAdapter?.notifyDataSetChanged()
     }
@@ -227,7 +226,7 @@ class NvlFragment : BaseFragment() {
         }
     }
 
-       override fun onDestroy() {
+    override fun onDestroy() {
         super.onDestroy()
         context?.let {
             LocalBroadcastManager.getInstance(it).unregisterReceiver(onNotice)
