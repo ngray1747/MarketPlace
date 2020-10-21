@@ -101,9 +101,10 @@ class CartBussiness {
         }
         nvlOnline.final_amount = mOrderModel.amount
         nvlOnline.is_red_invoice = mOrderModel.requestInvoice
+
         nvlOnline.customer_id = userId
         nvlOnline.customer_name = userId
-        nvlOnline.recipient_name = mOrderModel.contactName
+        nvlOnline.recipient_name = userId
         nvlOnline.recipient_id = mOrderModel.dmDeliveryInfo?.receiverPhone
         nvlOnline.company_id = companyId
 
