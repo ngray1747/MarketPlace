@@ -24,6 +24,8 @@ import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.ToastUtil
 import com.modul.marketplace.util.Utilities
 import kotlinx.android.synthetic.main.fragment_article.*
+import kotlinx.android.synthetic.main.fragment_article.mError
+import kotlinx.android.synthetic.main.fragment_nvl.*
 import java.util.*
 
 class ArticleFragment : BaseFragment() {
@@ -87,10 +89,12 @@ class ArticleFragment : BaseFragment() {
             mDatas.addAll(data)
         }
 
-        if(mDatas.size == 0){
-            mError.visible()
-        }else{
-            mError.gone()
+        if (mError != null) {
+            if (mDatas.size == 0) {
+                mError.visible()
+            } else {
+                mError.gone()
+            }
         }
         mAdapter?.notifyDataSetChanged()
     }

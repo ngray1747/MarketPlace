@@ -166,10 +166,12 @@ class PurchaseFragment : BaseFragment() {
                 mDatas.addAll(response)
         }
 
-        if(mDatas.size == 0){
-            mError.visible()
-        }else{
-            mError.gone()
+        if (mError != null) {
+            if (mDatas.size == 0) {
+                mError.visible()
+            } else {
+                mError.gone()
+            }
         }
 
         mAdapter?.notifyDataSetChanged()
