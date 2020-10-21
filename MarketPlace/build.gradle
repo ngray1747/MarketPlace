@@ -100,9 +100,9 @@ dependencies {
     //Recyclerview swipe action
     implementation "com.daimajia.swipelayout:library:1.2.0@aar"
 
-    implementation "com.squareup.okhttp3:okhttp:3.12.2"
-    implementation "com.squareup.okhttp3:logging-interceptor:3.12.2"
-    implementation 'com.squareup.okhttp:okhttp:2.5.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+    implementation 'com.squareup.okhttp:okhttp:2.7.5'
     implementation 'com.github.chivorns.androidx:smartmaterialspinner:1.2.1'
 
     testImplementation 'junit:junit:4.12'
