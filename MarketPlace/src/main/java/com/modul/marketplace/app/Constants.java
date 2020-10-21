@@ -198,6 +198,10 @@ public class Constants {
         public static final String BROAD_BOX = "BROAD_BOX";
         public static final String BROAD_ARTICLES = "BROAD_ARTICLES";
         public static final String BROAD_NVL = "BROAD_NVL";
+        public static final String BROAD_CART = "BROAD_CART";
+        public static final String BROAD_INFOMATION = "BROAD_INFOMATION";
+        public static final String BROAD_MAKETPLACE = "BROAD_MAKETPLACE";
+        public static final String BACK = "BACK";
         public static final String REFRESH = "REFRESH";
         public static final String HERMES_ORDER_CALLBACK = "HERMES_ORDER_CALLBACK";
         public static final String HERMES_ORDER_ZALO_CALLBACK = "HERMES_ORDER_ZALO_CALLBACK";

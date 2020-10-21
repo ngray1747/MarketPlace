@@ -172,11 +172,13 @@ public class OrderDetailFragment extends BaseFragment {
         btn_back.setOnClickListener(v -> {
             if (TYPE_CREATE_ORDER.equals(type)) {
                 mCartBussiness.OrderOnlineCartClear();
+                Utilities.sendBoard(getContext(),Constants.BROADCAST.BROAD_MAKETPLACE,Constants.BROADCAST.BACK);
+                Utilities.sendBoard(getContext(),Constants.BROADCAST.BROAD_CART,Constants.BROADCAST.BACK);
+                Utilities.sendBoard(getContext(),Constants.BROADCAST.BROAD_INFOMATION,Constants.BROADCAST.BACK);
                 Intent intent = new Intent(getContext(), MarketPlaceActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
 //                sendBoardLib(getContext(),BROAD_MANAGER_HOME_CALLBACK,HERMES_ORDER_CALLBACK);
-//                mActivity.finish();
+                mActivity.finish();
             } else {
                 mActivity.onBackPressed();
             }

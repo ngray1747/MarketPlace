@@ -17,6 +17,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/mError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:drawableTop="@drawable/icon_no_item"
+android:drawablePadding="@dimen/d_10"
+        android:gravity="center"
+        android:text="@string/error"
+        android:textAppearance="@style/TextView.Regular"
+        android:textColor="@color/gray80"
+        android:textSize="@dimen/font_size_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/relativeLayout_cart"
         android:layout_width="match_parent"

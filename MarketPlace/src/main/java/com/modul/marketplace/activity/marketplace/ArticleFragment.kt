@@ -16,7 +16,9 @@ import com.modul.marketplace.R
 import com.modul.marketplace.activity.BaseFragment
 import com.modul.marketplace.adapter.marketplace.ArtilesAdapter
 import com.modul.marketplace.app.Constants
+import com.modul.marketplace.extension.gone
 import com.modul.marketplace.extension.openActivity
+import com.modul.marketplace.extension.visible
 import com.modul.marketplace.model.marketplace.ArticlesModel
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.ToastUtil
@@ -83,6 +85,12 @@ class ArticleFragment : BaseFragment() {
         mDatas.clear()
         if (data != null) {
             mDatas.addAll(data)
+        }
+
+        if(mDatas.size == 0){
+            mError.visible()
+        }else{
+            mError.gone()
         }
         mAdapter?.notifyDataSetChanged()
     }

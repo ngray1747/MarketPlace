@@ -20,7 +20,9 @@ import com.modul.marketplace.activity.CateActivity
 import com.modul.marketplace.adapter.orderonline.ServiceListRecyleAdapter
 import com.modul.marketplace.app.Constants
 import com.modul.marketplace.extension.DialogUtil
+import com.modul.marketplace.extension.gone
 import com.modul.marketplace.extension.openActivityForResult
+import com.modul.marketplace.extension.visible
 import com.modul.marketplace.holder.orderonline.ServicelistRecycleHolder
 import com.modul.marketplace.model.marketplace.NvlModel
 import com.modul.marketplace.model.orderonline.DmServiceListOrigin
@@ -28,7 +30,10 @@ import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.Log
 import com.modul.marketplace.util.ToastUtil
 import com.modul.marketplace.util.Utilities
+import kotlinx.android.synthetic.main.fragment_article.*
 import kotlinx.android.synthetic.main.fragment_nvl.*
+import kotlinx.android.synthetic.main.fragment_nvl.mError
+import kotlinx.android.synthetic.main.fragment_nvl.relativeLayout_cart
 import java.util.*
 
 class NvlFragment : BaseFragment() {
@@ -146,6 +151,12 @@ class NvlFragment : BaseFragment() {
             dmServiceListOrigin.brand_name = it.brand?.brand_name
             mDatas.add(dmServiceListOrigin)
         }
+
+        if(mDatas.size == 0){
+            mError.visible()
+        }else{
+            mError.gone()
+        }
         mAdapter?.notifyDataSetChanged()
     }
 
@@ -216,7 +227,7 @@ class NvlFragment : BaseFragment() {
         }
     }
 
-    override fun onDestroy() {
+       override fun onDestroy() {
         super.onDestroy()
         context?.let {
             LocalBroadcastManager.getInstance(it).unregisterReceiver(onNotice)

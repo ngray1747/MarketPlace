@@ -16,7 +16,9 @@ import com.modul.marketplace.activity.CateActivity
 import com.modul.marketplace.adapter.orderonline.ServiceListRecyleAdapter
 import com.modul.marketplace.app.Constants
 import com.modul.marketplace.extension.DialogUtil
+import com.modul.marketplace.extension.gone
 import com.modul.marketplace.extension.openActivityForResult
+import com.modul.marketplace.extension.visible
 import com.modul.marketplace.holder.orderonline.ServicelistRecycleHolder
 import com.modul.marketplace.model.orderonline.DmServiceListOrigin
 import com.modul.marketplace.paser.orderonline.RestAllDmServiceListOrigin
@@ -25,7 +27,12 @@ import com.modul.marketplace.util.Log
 import com.modul.marketplace.util.ToastUtil
 import com.modul.marketplace.util.Utilities
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration
+import kotlinx.android.synthetic.main.fragment_nvl.*
 import kotlinx.android.synthetic.main.fragment_purchase.*
+import kotlinx.android.synthetic.main.fragment_purchase.mError
+import kotlinx.android.synthetic.main.fragment_purchase.mQuantity
+import kotlinx.android.synthetic.main.fragment_purchase.mRecyclerView
+import kotlinx.android.synthetic.main.fragment_purchase.relativeLayout_cart
 import java.util.*
 
 class PurchaseFragment : BaseFragment() {
@@ -156,9 +163,16 @@ class PurchaseFragment : BaseFragment() {
         dismissProgressHub()
         mDatas.clear()
         if (response != null) {
-            mDatas.addAll(response)
-            mAdapter?.notifyDataSetChanged()
+                mDatas.addAll(response)
         }
+
+        if(mDatas.size == 0){
+            mError.visible()
+        }else{
+            mError.gone()
+        }
+
+        mAdapter?.notifyDataSetChanged()
     }
 
     private fun listDetails() {

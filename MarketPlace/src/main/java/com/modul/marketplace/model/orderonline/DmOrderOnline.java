@@ -26,6 +26,9 @@ public class DmOrderOnline implements Serializable {
     @SerializedName("contactId")
     private String contactId;
 
+    @SerializedName("contactEmail")
+    private String contactEmail;
+
     @SerializedName("contactName")
     private String contactName;
 
@@ -145,6 +148,14 @@ public class DmOrderOnline implements Serializable {
 
     public void setDmPaymentInfo(DmPaymentInfo dmPaymentInfo) {
         this.dmPaymentInfo = dmPaymentInfo;
+    }
+
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
     }
 
     public DmVoucher getDmVoucher() {

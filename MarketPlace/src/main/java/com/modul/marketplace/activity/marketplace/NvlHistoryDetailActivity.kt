@@ -168,11 +168,13 @@ class NvlHistoryDetailActivity : BaseActivity() {
     override fun onBackPressed() {
         if (OrderDetailFragment.TYPE_CREATE_ORDER == type) {
             mCartBussiness.OrderOnlineCartClear()
+            Utilities.sendBoard(this, BROADCAST.BROAD_MAKETPLACE, BROADCAST.BACK)
+            Utilities.sendBoard(this, BROADCAST.BROAD_CART, BROADCAST.BACK)
+            Utilities.sendBoard(this, BROADCAST.BROAD_INFOMATION, BROADCAST.BACK)
             val intent = Intent(this@NvlHistoryDetailActivity, MarketPlaceActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
 //            Utilities.sendBoardLib(baseContext, BROADCAST.BROAD_MANAGER_HOME_CALLBACK, BROADCAST.NVL_ORDER_CALLBACK)
-//            finish()
+            finish()
         } else {
             super.onBackPressed()
         }

@@ -1,7 +1,10 @@
 package com.modul.marketplace.activity.order_online;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -18,6 +21,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -138,6 +142,8 @@ public class InformationFragment extends BaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+            LocalBroadcastManager.getInstance(getContext())
+                    .registerReceiver(onNotice, new IntentFilter(Constants.BROADCAST.BROAD_INFOMATION));
         initData();
         initClick();
     }
@@ -360,9 +366,7 @@ public class InformationFragment extends BaseFragment {
         mCartBussiness.getOrder().getDmDeliveryInfo().setReceiverName(namedl);
         mCartBussiness.getOrder().getDmDeliveryInfo().setReceiverPhone(phonedl);
 
-        mCartBussiness.getOrder().setCompanyId(mCartBussiness.getCompanyId());
         mCartBussiness.getOrder().setContactCompany(nameB);
-        mCartBussiness.getOrder().setContactName(namedl);
         mCartBussiness.getOrder().setCustomerName(nameB);
         mCartBussiness.getOrder().setCompanyTaxCode(tax);
         mCartBussiness.getOrder().setCompanyTaxEmail(emailB);
@@ -616,4 +620,21 @@ public class InformationFragment extends BaseFragment {
 //            void onError();
 //        }
 //    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(onNotice);
+    }
+
+    BroadcastReceiver onNotice = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String value = intent.getStringExtra("value");
+            if(intent.getStringExtra("value") == Constants.BROADCAST.BACK){
+                mActivity.finish();
+            }
+        }
+    };
 }

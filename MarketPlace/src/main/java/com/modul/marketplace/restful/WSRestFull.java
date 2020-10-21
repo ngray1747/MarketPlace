@@ -275,6 +275,18 @@ public class WSRestFull extends AbsRestful {
         addReq(req, TAG_CMS);
     }
 
+    public void apiSCMLocationDelete(String uid, Response.Listener<LocationModelDataObject> response, Response.ErrorListener error) {
+        CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_LOCATIONS);
+        params.AddParam("uid", uid);
+
+        GsonRequest<LocationModelDataObject> req = new GsonRequest<>(
+                Request.Method.DELETE, params.toString(),
+                LocationModelDataObject.class, null, response, error);
+        req.setHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN());
+        req.setHeader("secret-key",ApplicationMarketPlace.instance.getSCM_SECRET_KEY());
+        addReq(req, TAG_CMS);
+    }
+
     public void apiSCMCity(Response.Listener<AddressModelData> response, Response.ErrorListener error) {
         CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_CITIES);
         params.AddParam("results_per_page", 1000);

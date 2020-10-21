@@ -56,20 +56,29 @@ class CartBussiness {
 
         orderOnline.isHaveAutoPromotion = null
         orderOnline.originDetails = null
-        orderOnline.companyId = mOrderModel.companyId
+        orderOnline.companyId = companyId
         orderOnline.contactCompany = mOrderModel.contactCompany
-        orderOnline.contactName = mOrderModel.contactName
+
         orderOnline.customerName = mOrderModel.customerName
+        orderOnline.customerNote = mOrderModel.customerNote
         orderOnline.companyTaxCode = mOrderModel.companyTaxCode
         orderOnline.companyTaxEmail = mOrderModel.companyTaxEmail
         orderOnline.companyFullAddress = mOrderModel.companyFullAddress
-        orderOnline.customerNote = mOrderModel.customerNote
+
         orderOnline.requestInvoice = mOrderModel.requestInvoice
 
         orderOnline.storeId = mOrderModel.storeId
         orderOnline.storeName = mOrderModel.storeName
         orderOnline.brandId = mOrderModel.brandId
         orderOnline.dmDeliveryInfo = mOrderModel.dmDeliveryInfo
+
+        if(appType == Constants.FABI){
+            orderOnline.productCode = Constants.FABI
+            orderOnline.contactEmail = userId
+        }else{
+            orderOnline.productCode = Constants.POSPC
+            orderOnline.contactName = userId
+        }
 
         orderOnline.details.addAll(mOrderModel.details)
         Log.e("json", "data: " + Gson().toJson(orderOnline))

@@ -33,14 +33,28 @@ class SelectAddressOrderNvlActivity : BaseActivity() {
         api()
     }
 
-
-
     private fun api() {
         showProgressHub(this)
         WSRestFull(this).apiSCMLocation({ (data) -> locationDone(data) }) { error: VolleyError ->
             locationDone(null)
             error.printStackTrace()
             ToastUtil.makeText(this, getString(R.string.error_network2))
+        }
+    }
+
+    private fun apiXoaLocation(locationModel: LocationModel) {
+        showProgressHub(this)
+        WSRestFull(this).apiSCMLocationDelete(locationModel.id,{ (data) -> deleteDone(data) }) { error: VolleyError ->
+            deleteDone(null)
+            error.printStackTrace()
+            ToastUtil.makeText(this, getString(R.string.error_network2))
+        }
+    }
+
+    private fun deleteDone(data: LocationModel?) {
+        dismissProgressHub()
+        data?.run{
+            api()
         }
     }
 
@@ -82,7 +96,7 @@ class SelectAddressOrderNvlActivity : BaseActivity() {
                 bundle.putSerializable(Constants.OBJECT,it)
                 openActivityForResult(AddAddressOrderNvlActivity::class.java,bundle = bundle,requestCode = REQUEST_CODE_PICK_LOCATION)
             }, itemDelete = {
-
+                apiXoaLocation(it)
             }, object : SelectAddressAdapter.OnSwipeItem {
                 override fun onSwipeLeft(item: LocationModel) {}
                 override fun onSwipeRight(item: LocationModel) {}

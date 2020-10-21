@@ -1,9 +1,14 @@
 package com.modul.marketplace.activity.marketplace
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.Gravity
 import android.view.MenuItem
 import androidx.appcompat.widget.PopupMenu
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.android.volley.VolleyError
 import com.google.android.material.tabs.TabLayout
 import com.modul.marketplace.adapter.marketplace.MarketPlaceAdapter
@@ -31,6 +36,8 @@ class MarketPlaceActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_marketplace)
+            LocalBroadcastManager.getInstance(this)
+                    .registerReceiver(onNotice, IntentFilter(BROAD_MAKETPLACE))
         initMenu()
         initData()
         initClick()
@@ -182,4 +189,18 @@ class MarketPlaceActivity : BaseActivity() {
         }
         getLocate()
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+            LocalBroadcastManager.getInstance(this).unregisterReceiver(onNotice)
+    }
+
+    var onNotice: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            if(intent.getStringExtra("value") == BACK){
+                finish()
+            }
+        }
+    }
+
 }

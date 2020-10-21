@@ -1,5 +1,9 @@
 package com.modul.marketplace.activity.order_online
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
@@ -7,6 +11,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.VolleyError
@@ -14,6 +19,7 @@ import com.modul.marketplace.R
 import com.modul.marketplace.activity.BaseFragment
 import com.modul.marketplace.activity.CateActivity
 import com.modul.marketplace.adapter.orderonline.CartRecyleAdapter
+import com.modul.marketplace.app.Constants
 import com.modul.marketplace.extension.DialogUtil
 import com.modul.marketplace.model.orderonline.DmService
 import com.modul.marketplace.model.orderonline.DmVoucher
@@ -38,6 +44,10 @@ class CartFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        context?.let {
+            LocalBroadcastManager.getInstance(it)
+                    .registerReceiver(onNotice, IntentFilter(Constants.BROADCAST.BROAD_CART))
+        }
         initData()
         initClick()
     }
@@ -189,6 +199,21 @@ class CartFragment : BaseFragment() {
     private fun validAmountCart() {
         provisional?.text = FormatNumberUtil.formatCurrency(mCartBussiness.OrderOnlineAmountItem())
         total_amount?.text = FormatNumberUtil.formatCurrency(mCartBussiness.OrderOnlineTotalAmount())
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        context?.let {
+            LocalBroadcastManager.getInstance(it).unregisterReceiver(onNotice)
+        }
+    }
+
+    var onNotice: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            if(intent.getStringExtra("value") == Constants.BROADCAST.BACK){
+                mActivity.finish()
+            }
+        }
     }
 
     companion object {
