@@ -28,11 +28,6 @@ import com.modul.marketplace.util.ToastUtil
 import com.modul.marketplace.util.Utilities
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration
 import kotlinx.android.synthetic.main.fragment_nvl.*
-import kotlinx.android.synthetic.main.fragment_purchase.*
-import kotlinx.android.synthetic.main.fragment_purchase.mError
-import kotlinx.android.synthetic.main.fragment_purchase.mQuantity
-import kotlinx.android.synthetic.main.fragment_purchase.mRecyclerView
-import kotlinx.android.synthetic.main.fragment_purchase.relativeLayout_cart
 import java.util.*
 
 class PurchaseFragment : BaseFragment() {
@@ -166,11 +161,11 @@ class PurchaseFragment : BaseFragment() {
                 mDatas.addAll(response)
         }
 
-        if (mError != null) {
+        if (mLoi != null) {
             if (mDatas.size == 0) {
-                mError.visible()
+                mLoi.visible()
             } else {
-                mError.gone()
+                mLoi.gone()
             }
         }
 

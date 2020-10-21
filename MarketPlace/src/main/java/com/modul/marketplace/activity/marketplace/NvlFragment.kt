@@ -149,11 +149,11 @@ class NvlFragment : BaseFragment() {
             mDatas.add(dmServiceListOrigin)
         }
 
-        if (mError != null) {
+        if (mLoi != null) {
             if (mDatas.size == 0) {
-                mError.visible()
+                mLoi.visible()
             } else {
-                mError.gone()
+                mLoi.gone()
             }
         }
         mAdapter?.notifyDataSetChanged()
