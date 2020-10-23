@@ -20,7 +20,7 @@
         android:name="android.hardware.telephony"
         android:required="false" />
 
-    <uses-permission android:name="com.ipos.iposmanage.app.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.modul.marketplace.app.permission.C2D_MESSAGE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <permission
