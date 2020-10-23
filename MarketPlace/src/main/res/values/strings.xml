@@ -288,6 +288,8 @@
     <string name="an_tin_lb">Your message is hidden in the classifieds section</string>
     <string name="da_ban_success">Sold successfully</string>
     <string name="da_ban_lb">Your news has been sold successfully</string>
+    <string name="tao_don_thanh_cong">Create Bill success</string>
     <string name="lb_huytin">Your message has been canceled, you can review it in the canceled section</string>
+    <string name="tao_raovat_thanhcong">Create a successful ad</string>
     <string name="create_content_articles">Successfully created your ad ", message:" Your news is in the process of moderating the content, and will be displayed in the classified ads right after content moderating.</string>
 </resources>

@@ -275,10 +275,6 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
             ToastUtil.makeText(this, getString(R.string.articles_sdt_valid))
             return
         }
-        if (TextUtils.isEmpty(mTag.text.toString())) {
-            ToastUtil.makeText(this, getString(R.string.articles_tag_valid))
-            return
-        }
 
         var expectedValue = 0.0
         if (!TextUtils.isEmpty(price.text.toString())) {
@@ -435,6 +431,8 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
         dismissProgressHub()
         data?.run {
             id?.run{
+                text_success.text = getString(R.string.tao_raovat_thanhcong)
+                text_success2.text = getString(R.string.create_content_articles)
                 layout_success.visible()
             }?:run{
                 showToast(getString(R.string.error_network2))
@@ -474,6 +472,8 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
         showStatusBar(statusColor = true, color = R.color.grayF8)
         mlbTitle.text = getString(R.string.create_articles)
         text_success.text = getString(R.string.create_articles)
+        price.addTextChangedListener(NumberTextWatcher(price))
+
     }
 
     override fun onSingleImageSelected(uri: Uri?, tag: String?) {

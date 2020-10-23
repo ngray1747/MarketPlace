@@ -194,6 +194,7 @@
                 android:textAppearance="@style/EditText.Regular"
                 android:textColorHint="@color/gray80"
                 app:boxStrokeColor="@color/mainColor"
+                android:visibility="gone"
                 app:boxStrokeWidth="0.5dp"
                 app:hintTextColor="@color/mainColor"
                 app:layout_constraintEnd_toEndOf="parent"

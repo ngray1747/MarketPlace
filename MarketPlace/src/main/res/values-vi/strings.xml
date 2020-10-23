@@ -301,6 +301,8 @@
     <string name="mo_tin_lb">Tin của bạn được hiện thị lại trên phần rao vặt</string>
     <string name="an_tin_lb">Tin của bạn được ẩn tại phần rao vặt</string>
     <string name="hien_tin">Hiện tin</string>
+    <string name="tao_don_thanh_cong">Tạo đơn thành công</string>
     <string name="lb_huytin">Tin của bạn đã bị hủy, bạn có thể xem lại tin này ở mục bị hủy</string>
+    <string name="tao_raovat_thanhcong">Tạo tin rao vặt thành công</string>
     <string name="create_content_articles">Tin của bạn đang trong quá trình kiểm duyệt nội dung, và sẽ được hiển thị trong phần rao vặt ngay sau khi kiểm duyệt xong nội dung</string>
 </resources>

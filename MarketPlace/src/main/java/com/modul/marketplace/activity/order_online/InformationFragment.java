@@ -70,6 +70,7 @@ public class InformationFragment extends BaseFragment {
     private ImageView btn_back;
     private TextView tvHeader;
     private TextView mAddress;
+    private TextView text_success;
     private LinearLayout mLayoutInvoice;
     private CheckBox mCheckInvoice;
     private TextInputEditText mBrand;
@@ -135,6 +136,7 @@ public class InformationFragment extends BaseFragment {
         mMomo = v.findViewById(R.id.momo);
         mAddAddress = v.findViewById(R.id.mAddAddress);
         mAddress = v.findViewById(R.id.mAddress);
+        text_success = v.findViewById(R.id.text_success);
         mTIPStore = v.findViewById(R.id.mTIPStore);
         return v;
     }
@@ -412,6 +414,7 @@ public class InformationFragment extends BaseFragment {
     private void onReponseOrderNvl(NvlOnlineModelData response) {
         dismissProgressHub();
         if (response != null) {
+            text_success.setText(getString(R.string.tao_don_thanh_cong));
             mCartBussiness.getOrder().setInvoice_id(response.getData().getId());
             mLayoutSuccess.setVisibility(View.VISIBLE);
         }

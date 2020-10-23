@@ -122,7 +122,7 @@ class NvlHistoryDetailActivity : BaseActivity() {
                 it.product?.run{
                     var dmService = DmService()
                     dmService.serviceName = name
-                    price?.run{
+                    price_sale?.run{
                         dmService.orgPrice = this
                     }
                     it.quantity?.run{

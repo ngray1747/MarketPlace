@@ -5,6 +5,7 @@ import com.google.android.material.tabs.TabLayout
 import com.modul.marketplace.adapter.marketplace.MyArticlesAdapter
 import com.modul.marketplace.R
 import com.modul.marketplace.activity.BaseActivity
+import com.modul.marketplace.extension.StringExt
 import com.modul.marketplace.extension.invisible
 import com.modul.marketplace.extension.showStatusBar
 import com.modul.marketplace.model.marketplace.ArticlesCountModel
@@ -61,11 +62,11 @@ class MyArticlesActivity : BaseActivity() {
 
     private fun initTab(data: ArticlesCountModel? = null) {
         tab_layout.removeAllTabs()
-        tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.cho_duyet).replace("#value", "" + data?.pending)))
-        tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.dang_ban).replace("#value", "" + data?.confirmed)))
-        tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.het_han).replace("#value", "" + data?.expired)))
-        tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.bi_huy2).replace("#value", "" + data?.canceled)))
-        tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.da_ban2).replace("#value", "" + data?.canceled)))
+        tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.cho_duyet).replace("#value", "" + StringExt.isTextEmpty(data?.pending))))
+        tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.dang_ban).replace("#value", "" + StringExt.isTextEmpty(data?.confirmed))))
+        tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.het_han).replace("#value", "" + StringExt.isTextEmpty(data?.expired))))
+        tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.bi_huy2).replace("#value", "" + StringExt.isTextEmpty(data?.canceled))))
+        tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.da_ban2).replace("#value", "" + StringExt.isTextEmpty(data?.canceled))))
         tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 when (tab.position) {
