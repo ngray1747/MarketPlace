@@ -100,7 +100,7 @@ class NvlHistoryDetailActivity : BaseActivity() {
                     textStatus = getString(R.string.da_xac_nhan)
                 }
 
-                if (textStatus == mListStatus[i].type) {
+                if (textStatus.equals(mListStatus[i].type)) {
                     position = i
                     mListStatus[i].isCorectPosition = true
                 } else {
