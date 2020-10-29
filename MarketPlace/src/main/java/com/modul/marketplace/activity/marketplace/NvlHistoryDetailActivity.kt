@@ -89,18 +89,18 @@ class NvlHistoryDetailActivity : BaseActivity() {
 
             var position = 0
             for (i in mListStatus.indices) {
-                var textStatus = ""
-                if(status.equals(Constants.OrderNvlStatus.CANCELED)){
-                    textStatus = getString(R.string.da_huy)
-                }else if (status.equals(Constants.OrderNvlStatus.COMPLETED)) {
-                    textStatus = getString(R.string.hoan_thanh)
-                }else if (status.equals(Constants.OrderNvlStatus.PENDING)) {
-                    textStatus = getString(R.string.cho_xy_ly)
-                }else if (status.equals(Constants.OrderNvlStatus.CONFIRMED)) {
-                    textStatus = getString(R.string.da_xac_nhan)
-                }
+//                var textStatus = ""
+//                if(status.equals(Constants.OrderNvlStatus.CANCELED)){
+//                    textStatus = getString(R.string.da_huy)
+//                }else if (status.equals(Constants.OrderNvlStatus.COMPLETED)) {
+//                    textStatus = getString(R.string.hoan_thanh)
+//                }else if (status.equals(Constants.OrderNvlStatus.PENDING)) {
+//                    textStatus = getString(R.string.cho_xy_ly)
+//                }else if (status.equals(Constants.OrderNvlStatus.CONFIRMED)) {
+//                    textStatus = getString(R.string.da_xac_nhan)
+//                }
 
-                if (textStatus.equals(mListStatus[i].type)) {
+                if (status.equals(mListStatus[i].type)) {
                     position = i
                     mListStatus[i].isCorectPosition = true
                 } else {
