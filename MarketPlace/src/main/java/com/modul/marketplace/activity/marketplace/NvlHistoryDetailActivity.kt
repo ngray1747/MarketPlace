@@ -90,13 +90,13 @@ class NvlHistoryDetailActivity : BaseActivity() {
             var position = 0
             for (i in mListStatus.indices) {
                 var textStatus = ""
-                if(status == Constants.OrderNvlStatus.CANCELED){
+                if(status.equals(Constants.OrderNvlStatus.CANCELED)){
                     textStatus = getString(R.string.da_huy)
-                }else if (status == Constants.OrderNvlStatus.COMPLETED) {
+                }else if (status.equals(Constants.OrderNvlStatus.COMPLETED)) {
                     textStatus = getString(R.string.hoan_thanh)
-                }else if (status == Constants.OrderNvlStatus.PENDING) {
+                }else if (status.equals(Constants.OrderNvlStatus.PENDING)) {
                     textStatus = getString(R.string.cho_xy_ly)
-                }else if (status == Constants.OrderNvlStatus.CONFIRMED) {
+                }else if (status.equals(Constants.OrderNvlStatus.CONFIRMED)) {
                     textStatus = getString(R.string.da_xac_nhan)
                 }
 
@@ -154,7 +154,7 @@ class NvlHistoryDetailActivity : BaseActivity() {
         mListStatus.clear()
         mListStatus.add(DmStatusOrder(Constants.OrderNvlStatus.PENDING, getString(R.string.cho_xy_ly), true, true, false, true))
         mListStatus.add(DmStatusOrder(Constants.OrderNvlStatus.CONFIRMED, getString(R.string.da_xac_nhan), false, false, false, false))
-        if(data?.status == Constants.OrderNvlStatus.CANCELED){
+        if(data?.status.equals(Constants.OrderNvlStatus.CANCELED)){
             mListStatus.add(DmStatusOrder(Constants.OrderNvlStatus.CANCELED, getString(R.string.da_huy), false, false, true, false))
         }else{
             mListStatus.add(DmStatusOrder(Constants.OrderNvlStatus.COMPLETED, getString(R.string.hoan_thanh), false, false, true, false))

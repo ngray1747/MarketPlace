@@ -331,7 +331,7 @@
                 android:paddingTop="@dimen/d_5"
                 android:paddingRight="@dimen/d_10"
                 android:paddingBottom="@dimen/d_5"
-                android:text="@string/change_address"
+                android:text="@string/chon_dia_chi"
                 android:textColor="@color/mainColor"
                 android:textSize="@dimen/font_size_13" />
 

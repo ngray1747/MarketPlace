@@ -158,7 +158,8 @@ class PurchaseFragment : BaseFragment() {
         dismissProgressHub()
         mDatas.clear()
         if (response != null) {
-                mDatas.addAll(response)
+            val sortedList = response.sortedWith(compareBy { it.type })
+            mDatas.addAll(sortedList)
         }
 
         if (mLoi != null) {

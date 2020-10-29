@@ -61,13 +61,13 @@ public class HistoryNvlRecycleHolder extends AbsRecyleHolder {
             mAdress.setText(nguoinhan);
         }
         mPrice.setText(FormatNumberUtil.formatCurrency(dmOrderOnline.getFinal_amount()));
-        if(dmOrderOnline.getStatus() == Constants.OrderNvlStatus.COMPLETED){
+        if(dmOrderOnline.getStatus().equals(Constants.OrderNvlStatus.COMPLETED)){
             mStatus.setText(mContext.getString(R.string.hoan_thanh));
-        }else if(dmOrderOnline.getStatus() == Constants.OrderNvlStatus.CANCELED){
+        }else if(dmOrderOnline.getStatus().equals(Constants.OrderNvlStatus.CANCELED)){
             mStatus.setText(mContext.getString(R.string.da_huy));
         }else if(dmOrderOnline.getStatus().equals(Constants.OrderNvlStatus.PENDING)){
             mStatus.setText(mContext.getString(R.string.cho_xy_ly));
-        }else if(dmOrderOnline.getStatus() == Constants.OrderNvlStatus.CONFIRMED){
+        }else if(dmOrderOnline.getStatus().equals(Constants.OrderNvlStatus.CONFIRMED)){
             mStatus.setText(mContext.getString(R.string.da_xac_nhan));
         }
         mTime.setText(DateTimeUtil.convertTimeStampToDate(dmOrderOnline.getCreated_at(),

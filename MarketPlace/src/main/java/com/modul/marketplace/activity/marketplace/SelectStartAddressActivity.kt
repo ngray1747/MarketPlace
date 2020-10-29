@@ -7,6 +7,7 @@ import android.widget.AdapterView
 import com.android.volley.VolleyError
 import com.modul.marketplace.R
 import com.modul.marketplace.activity.BaseActivity
+import com.modul.marketplace.extension.DialogUtil
 import com.modul.marketplace.extension.StringExt
 import com.modul.marketplace.extension.openActivity
 import com.modul.marketplace.extension.showStatusBar
@@ -64,21 +65,6 @@ class SelectStartAddressActivity : BaseActivity() {
             }
             override fun onNothingSelected(adapterView: AdapterView<*>?) {}
         }
-
-
-//        val popupMenu = PopupMenu(this, mSelectAddress, Gravity.RIGHT)
-//
-//        mCitys.forEachIndexed { index, team ->
-//            popupMenu.menu.add(0, index.plus(1), index.plus(1), team.city_name)
-//        }
-//
-//        popupMenu.setOnMenuItemClickListener { item: MenuItem ->
-//            val cityName = item.title.toString()
-//            mSelectAddress.setText(cityName)
-//            selectCodeCity(cityName)
-//            false
-//        }
-//        popupMenu.show()
     }
 
     private fun selectCodeCity(title: String) {
@@ -119,6 +105,8 @@ class SelectStartAddressActivity : BaseActivity() {
         if (data != null) {
             mCitys.addAll(data)
             showDialogCity()
+        }else{
+            getLocate()
         }
     }
 
