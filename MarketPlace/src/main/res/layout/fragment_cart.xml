@@ -180,7 +180,7 @@
                     android:paddingRight="@dimen/standard_margin"
                     android:paddingBottom="@dimen/standard_margin_half"
                     android:text="-0 đ"
-                    android:textColor="@color/text_36"
+                    android:textColor="@color/green21"
                     android:textSize="@dimen/font_size_15" />
             </LinearLayout>
 

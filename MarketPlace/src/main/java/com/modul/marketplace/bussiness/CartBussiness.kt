@@ -159,6 +159,10 @@ class CartBussiness {
     fun OrderOnlineTotalAmount(): Double {
         var amount = OrderOnlineAmountItem()
         mOrderModel.amount = amount - mOrderModel.discountAmount
+
+        mOrderModel.discountAmount?.run{
+            mOrderModel.amount = mOrderModel.amount.minus(this)
+        }
         return amount
     }
 
