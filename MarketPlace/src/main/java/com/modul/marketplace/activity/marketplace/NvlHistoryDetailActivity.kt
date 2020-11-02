@@ -153,10 +153,10 @@ class NvlHistoryDetailActivity : BaseActivity() {
     private fun loadDataStatus(data: NvlOnlineModel?) {
         mListStatus.clear()
         mListStatus.add(DmStatusOrder(Constants.OrderNvlStatus.PENDING, getString(R.string.cho_xy_ly), true, true, false, true))
-        mListStatus.add(DmStatusOrder(Constants.OrderNvlStatus.CONFIRMED, getString(R.string.da_xac_nhan), false, false, false, false))
         if(data?.status.equals(Constants.OrderNvlStatus.CANCELED)){
             mListStatus.add(DmStatusOrder(Constants.OrderNvlStatus.CANCELED, getString(R.string.da_huy), false, false, true, false))
         }else{
+            mListStatus.add(DmStatusOrder(Constants.OrderNvlStatus.CONFIRMED, getString(R.string.da_xac_nhan), false, false, false, false))
             mListStatus.add(DmStatusOrder(Constants.OrderNvlStatus.COMPLETED, getString(R.string.hoan_thanh), false, false, true, false))
         }
     }

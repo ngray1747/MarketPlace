@@ -348,10 +348,12 @@ public class WSRestFull extends AbsRestful {
         addReq(req, TAG_CMS);
     }
 
-    public void apiSCMArticles(String cityId, Response.Listener<ArticlesModelData> response, Response.ErrorListener error) {
+    public void apiSCMArticles(String cityId,String companyId, String BrandId, Response.Listener<ArticlesModelData> response, Response.ErrorListener error) {
         CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_ARTICLES);
         if (cityId != null) {
             params.AddParam("city_uid", cityId);
+            params.AddParam("companyId", companyId);
+            params.AddParam("BrandId", BrandId);
         }
         GsonRequest<ArticlesModelData> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.VolleyError
 import com.modul.marketplace.R
+import com.modul.marketplace.ToastShow
 import com.modul.marketplace.activity.BaseFragment
 import com.modul.marketplace.activity.CateActivity
 import com.modul.marketplace.adapter.orderonline.CartRecyleAdapter
@@ -112,6 +113,9 @@ class CartFragment : BaseFragment() {
         WSRestFull(context).apiCheckVoucher(restAllDmCheckVoucher.toJson(), { response: RestAllDmCheckVoucher ->
             dismissProgressHub()
             onReponseCheckVoucher(response.data)
+            response?.error?.run{
+                ToastShow.showMessage(context,message.toString())
+            }
         }) { error: VolleyError ->
             dismissProgressHub()
             onReponseCheckVoucher(null)

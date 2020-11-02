@@ -75,7 +75,7 @@ class ArticleFragment : BaseFragment() {
 
     private fun callServiceList() {
         showProgressHub(mActivity)
-        WSRestFull(context).apiSCMArticles(mCartBussiness.getCartLocate().locateId,{ (data) -> onResponseServiceList(data) }) { error: VolleyError ->
+        WSRestFull(context).apiSCMArticles(mCartBussiness.getCartLocate().locateId,mCartBussiness.companyId,mCartBussiness.getListBrandId(), { (data) -> onResponseServiceList(data) }) { error: VolleyError ->
             onResponseServiceList(null)
             error.printStackTrace()
             ToastUtil.makeText(mActivity, getString(R.string.error_network2))

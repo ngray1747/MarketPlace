@@ -191,7 +191,8 @@ class CartBussiness {
             val dmServiceListOrigin: DmServiceListOrigin = it.next()
             if (dmService.serviceName == dmServiceListOrigin.name) {
                 if (dmService.quantity == 0.0) {
-                    mOrderModel.originDetails.remove(dmServiceListOrigin)
+                    it.remove()
+//                    mOrderModel.originDetails.remove(dmServiceListOrigin)
                     if (mOrderModel.orderType === Constants.OrderType.OrderOnline) {
                         Utilities.sendBoardCounlyLib(ApplicationMarketPlace.context, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.REMOVE_HERMES_PRODUCT_TO_CART)
                     } else {

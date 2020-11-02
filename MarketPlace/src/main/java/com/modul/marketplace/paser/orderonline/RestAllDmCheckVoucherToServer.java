@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class RestAllDmCheckVoucherToServer implements Serializable {
-    @SerializedName("data")
+    @SerializedName("details")
     private ArrayList<DmService> objects = null;
 
     @SerializedName("voucherCode")
