@@ -106,7 +106,9 @@ class SelectStartAddressActivity : BaseActivity() {
             mCitys.addAll(data)
             showDialogCity()
         }else{
-            getLocate()
+            DialogUtil.showAlert(this,textTitle = R.string.thongbao,textMessage = R.string.error_network,cancelable = false,okListener = {
+                getLocate()
+            })
         }
     }
 
