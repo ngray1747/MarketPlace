@@ -36,7 +36,7 @@ allprojects {
                 username = "jp_af86k1iplf5ppno9k6ma0hci34"
             }
         }
-    }
+    } 
 }
 
 task clean(type: Delete) {
