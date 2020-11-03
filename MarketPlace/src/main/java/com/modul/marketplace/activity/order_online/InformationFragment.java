@@ -318,6 +318,11 @@ public class InformationFragment extends BaseFragment {
             return;
         }
 
+        if (TextUtils.isEmpty(infoPhone.getText().toString()) && infoPhone.length() < 9) {
+            ToastUtil.makeText(mActivity, getString(R.string.phone_valid));
+            return;
+        }
+
         //info bussiness
         String nameB = nameBussiness.getText().toString();
         String emailB = mailBussiness.getText().toString();

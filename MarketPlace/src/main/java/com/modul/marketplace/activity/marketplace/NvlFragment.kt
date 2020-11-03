@@ -235,7 +235,19 @@ class NvlFragment : BaseFragment() {
 
     var onNotice: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            callServiceList()
+
+            if (intent.getStringExtra("value") == Constants.BROADCAST.CHANGE_ITEM) {
+                mDatas.forEach { menu ->
+                    mCartBussiness.getOrder().details.forEach { detail ->
+                        if (menu.code == detail.serviceCode) {
+                            menu.quantity = detail.quantity
+                        }
+                    }
+                }
+            } else {
+                callServiceList()
+            }
+
         }
     }
 

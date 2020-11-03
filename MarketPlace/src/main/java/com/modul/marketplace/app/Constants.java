@@ -194,10 +194,13 @@ public class Constants {
 
     public static class BROADCAST {
         public static final String EVENT = "BROAD_EVENT";
+        public static final String BROAD_PURCHASE = "BROAD_PURCHASE";
+        public static final String BROAD_NL = "BROAD_NL";
         public static final String BROAD_NOTIFY = "BROAD_NOTIFY";
         public static final String BROAD_BOX = "BROAD_BOX";
         public static final String BROAD_ARTICLES = "BROAD_ARTICLES";
         public static final String BROAD_NVL = "BROAD_NVL";
+        public static final String CHANGE_ITEM = "CHANGE_ITEM";
         public static final String BROAD_CART = "BROAD_CART";
         public static final String BROAD_INFOMATION = "BROAD_INFOMATION";
         public static final String BROAD_MAKETPLACE = "BROAD_MAKETPLACE";

@@ -198,6 +198,7 @@
     <string name="customer_note">Ghi chú khách hàng</string>
     <string name="name">Tên</string>
     <string name="phone_number">Số điện thoại</string>
+    <string name="phone_valid">Số điện thoại chưa đủ điều kiện</string>
     <string name="note">Ghi chú</string>
     <string name="payment_method">Phương thức thanh toán</string>
     <string name="hoan_thanh">Hoàn thành</string>
@@ -265,6 +266,7 @@
     <string name="articles_tag_valid">Chưa chọn tag</string>
     <string name="articles_nguoidang_valid">Chưa nhập tên người đăng</string>
     <string name="articles_sdt_valid">Chưa nhập SDT</string>
+    <string name="image_valid">Chưa chọn ảnh sản phẩm</string>
     <string name="chon_dia_chi">chọn địa chỉ</string>
     <string name="change_address">Thay đổi địa chỉ</string>
     <string name="detail">Chi tiết</string>

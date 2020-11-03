@@ -28,10 +28,7 @@ import com.modul.marketplace.paser.orderonline.RestAllDmCheckAutoPromotion
 import com.modul.marketplace.paser.orderonline.RestAllDmCheckVoucher
 import com.modul.marketplace.paser.orderonline.RestAllDmCheckVoucherToServer
 import com.modul.marketplace.restful.WSRestFull
-import com.modul.marketplace.util.DialogYesNo
-import com.modul.marketplace.util.FormatNumberUtil
-import com.modul.marketplace.util.Log
-import com.modul.marketplace.util.ToastUtil
+import com.modul.marketplace.util.*
 import kotlinx.android.synthetic.main.fragment_cart.*
 import kotlinx.android.synthetic.main.include_header2.*
 import java.util.*
@@ -189,6 +186,8 @@ class CartFragment : BaseFragment() {
                         addVoucher()
                     }
                     initAdapter()
+                    Utilities.sendBoard(context,Constants.BROADCAST.BROAD_PURCHASE,Constants.BROADCAST.CHANGE_ITEM)
+                    Utilities.sendBoard(context,Constants.BROADCAST.BROAD_NVL, Constants.BROADCAST.CHANGE_ITEM)
                 })
             }
             adapter = mAdapter

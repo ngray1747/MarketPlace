@@ -381,6 +381,10 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
             ToastUtil.makeText(this, getString(R.string.articles_sdt_valid))
             return
         }
+        if (mResultImageOrder.size == 0) {
+            ToastUtil.makeText(this, getString(R.string.image_valid))
+            return
+        }
 
         var expectedValue = 0.0
         if (!TextUtils.isEmpty(price.text.toString())) {

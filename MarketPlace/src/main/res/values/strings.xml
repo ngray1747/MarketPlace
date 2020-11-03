@@ -251,7 +251,9 @@
     <string name="articles_tag_valid">No tag selected</string>
     <string name="articles_nguoidang_valid">Have not entered the poster name</string>
     <string name="articles_sdt_valid">SDT not entered</string>
+    <string name="image_valid">Image need valid</string>
     <string name="chon_dia_chi">Select address</string>
+    <string name="phone_valid">Phone number need valid</string>
     <string name="change_address">Change address</string>
     <string name="cod_e_wallet">Cash</string>
     <string name="error">No data</string>

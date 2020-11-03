@@ -1,11 +1,15 @@
 package com.modul.marketplace.activity.order_online
 
 import android.app.Activity
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.VolleyError
@@ -28,6 +32,7 @@ import com.modul.marketplace.util.ToastUtil
 import com.modul.marketplace.util.Utilities
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration
 import kotlinx.android.synthetic.main.fragment_nvl.*
+import timber.log.Timber
 import java.util.*
 
 class PurchaseFragment : BaseFragment() {
@@ -42,6 +47,10 @@ class PurchaseFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        context?.let{
+            LocalBroadcastManager.getInstance(it)
+                    .registerReceiver(onNotice, IntentFilter(Constants.BROADCAST.BROAD_PURCHASE))
+        }
         initAdapter()
         initData()
         initClick()
@@ -219,6 +228,28 @@ class PurchaseFragment : BaseFragment() {
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        context?.let{
+            LocalBroadcastManager.getInstance(it).unregisterReceiver(onNotice)
+        }
+    }
+
+    var onNotice: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            if (intent.getStringExtra("value") == Constants.BROADCAST.CHANGE_ITEM) {
+                mDatas.forEach { menu ->
+                    mCartBussiness.getOrder().details.forEach { detail ->
+                        if (menu.code == detail.serviceCode) {
+                            menu.quantity = detail.quantity
+                        }
+                    }
+                }
+            }
         }
     }
 
