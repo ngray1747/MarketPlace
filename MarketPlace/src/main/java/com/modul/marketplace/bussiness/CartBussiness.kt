@@ -59,6 +59,9 @@ class CartBussiness {
         orderOnline.companyId = companyId
         orderOnline.contactCompany = mOrderModel.contactCompany
 
+        orderOnline.amount = mOrderModel.amount
+        orderOnline.discountAmount = mOrderModel.discountAmount
+
         orderOnline.customerName = mOrderModel.customerName
         orderOnline.customerNote = mOrderModel.customerNote
         orderOnline.companyTaxCode = mOrderModel.companyTaxCode
