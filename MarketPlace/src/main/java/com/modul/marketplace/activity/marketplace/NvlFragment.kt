@@ -237,6 +237,7 @@ class NvlFragment : BaseFragment() {
         override fun onReceive(context: Context, intent: Intent) {
 
             if (intent.getStringExtra("value") == Constants.BROADCAST.CHANGE_ITEM) {
+                mDatas.forEach { it.quantity = 0.0 }
                 mDatas.forEach { menu ->
                     mCartBussiness.getOrder().details.forEach { detail ->
                         if (menu.productUid == detail.productUid) {

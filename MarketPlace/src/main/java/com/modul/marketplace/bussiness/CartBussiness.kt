@@ -157,12 +157,12 @@ class CartBussiness {
     }
 
     fun OrderOnlineTotalAmount(): Double {
-        var amount = OrderOnlineAmountItem()
-        mOrderModel.amount = amount - mOrderModel.discountAmount
+        Log.e("gia item: ","gia item: "+ OrderOnlineAmountItem())
+        Log.e("gia mOrderModel.discountAmount: ","gia mOrderModel.discountAmount: "+ mOrderModel.discountAmount)
+        var amount = OrderOnlineAmountItem().minus(mOrderModel.discountAmount)
+        mOrderModel.amount = amount
+        Log.e("gia mOrderModel.amount: ","gia mOrderModel.amount: "+ mOrderModel.amount)
 
-        mOrderModel.discountAmount?.run{
-            mOrderModel.amount = mOrderModel.amount.minus(this)
-        }
         return amount
     }
 
