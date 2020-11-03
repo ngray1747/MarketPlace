@@ -185,9 +185,14 @@ class CartFragment : BaseFragment() {
                     } else {
                         addVoucher()
                     }
-                    initAdapter()
                     Utilities.sendBoard(context,Constants.BROADCAST.BROAD_PURCHASE,Constants.BROADCAST.CHANGE_ITEM)
                     Utilities.sendBoard(context,Constants.BROADCAST.BROAD_NVL, Constants.BROADCAST.CHANGE_ITEM)
+
+                    if(mCartBussiness.getOrder().cart.size ==0){
+                        mCartBussiness.OrderOnlineClearData()
+                        mActivity.finish()
+                    }
+                    initAdapter()
                 })
             }
             adapter = mAdapter
@@ -206,6 +211,7 @@ class CartFragment : BaseFragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+        mCartBussiness.OrderOnlineClearData()
         context?.let {
             LocalBroadcastManager.getInstance(it).unregisterReceiver(onNotice)
         }

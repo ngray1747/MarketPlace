@@ -142,6 +142,11 @@ class CartBussiness {
         mOrderModel.orderType = orderType
     }
 
+    fun OrderOnlineClearData(){
+        mOrderModel.dmVoucher = null
+        mOrderModel.discountAmount = 0.0
+    }
+
     fun OrderOnlineAmountItem(): Double {
         var amount = 0.0
         mOrderModel.details?.forEach {
@@ -160,11 +165,8 @@ class CartBussiness {
     }
 
     fun OrderOnlineTotalAmount(): Double {
-        Log.e("gia item: ","gia item: "+ OrderOnlineAmountItem())
-        Log.e("gia mOrderModel.discountAmount: ","gia mOrderModel.discountAmount: "+ mOrderModel.discountAmount)
         var amount = OrderOnlineAmountItem().minus(mOrderModel.discountAmount)
         mOrderModel.amount = amount
-        Log.e("gia mOrderModel.amount: ","gia mOrderModel.amount: "+ mOrderModel.amount)
 
         return amount
     }
