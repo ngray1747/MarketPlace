@@ -381,10 +381,6 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
             ToastUtil.makeText(this, getString(R.string.articles_sdt_valid))
             return
         }
-        if (mResultImageOrder.size == 0) {
-            ToastUtil.makeText(this, getString(R.string.image_valid))
-            return
-        }
 
         var expectedValue = 0.0
         if (!TextUtils.isEmpty(price.text.toString())) {
@@ -397,6 +393,11 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
                 var newArticles = ArticlesImageModel(url = imageOrderModel.img_url, url_thumb = imageOrderModel.img_url_thumb)
                 newImageChoice.add(newArticles)
             }
+        }
+
+        if (newImageChoice.size == 0) {
+            ToastUtil.makeText(this, getString(R.string.image_valid))
+            return
         }
         var newArticlesModel = ArticlesModel(mTitle = mTieuDe.text.toString(),
                 mPrice = expectedValue,

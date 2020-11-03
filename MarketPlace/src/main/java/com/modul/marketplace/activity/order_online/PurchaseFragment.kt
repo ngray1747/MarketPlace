@@ -249,6 +249,7 @@ class PurchaseFragment : BaseFragment() {
                         }
                     }
                 }
+                mAdapter?.notifyDataSetChanged()
             }
         }
     }

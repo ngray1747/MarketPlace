@@ -136,11 +136,11 @@ class CartFragment : BaseFragment() {
                         dmService.position = mCartBussiness.getOrder().details.size + 1
                         mCartBussiness.getOrder().details.add(dmService)
                     }
-                    mAdapter?.notifyDataSetChanged()
                 }
             }
-            validAmountCart()
         }
+        mAdapter?.notifyDataSetChanged()
+        validAmountCart()
     }
 
     private fun checkAutoPromotion() {

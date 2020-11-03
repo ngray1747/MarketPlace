@@ -239,11 +239,12 @@ class NvlFragment : BaseFragment() {
             if (intent.getStringExtra("value") == Constants.BROADCAST.CHANGE_ITEM) {
                 mDatas.forEach { menu ->
                     mCartBussiness.getOrder().details.forEach { detail ->
-                        if (menu.code == detail.serviceCode) {
+                        if (menu.productUid == detail.productUid) {
                             menu.quantity = detail.quantity
                         }
                     }
                 }
+                mAdapter?.notifyDataSetChanged()
             } else {
                 callServiceList()
             }
