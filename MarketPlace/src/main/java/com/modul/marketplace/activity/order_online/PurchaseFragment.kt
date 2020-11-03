@@ -185,6 +185,10 @@ class PurchaseFragment : BaseFragment() {
     private fun listDetails() {
         mCartBussiness.OrderOnlineConvertItemToOrigin(mDatas)
         mQuantity.text = mCartBussiness.OrderOnlineQuantity()
+        refreshView()
+    }
+
+    private fun refreshView(){
         if (mCartBussiness.getOrder().originDetails.size > 0) {
             relativeLayout_cart.visibility = View.VISIBLE
             mCartBussiness.setOrderOnline(Constants.OrderType.OrderOnline)
@@ -250,6 +254,7 @@ class PurchaseFragment : BaseFragment() {
                         }
                     }
                 }
+                refreshView()
                 mAdapter?.notifyDataSetChanged()
             }
         }

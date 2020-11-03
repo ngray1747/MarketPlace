@@ -180,6 +180,10 @@ class NvlFragment : BaseFragment() {
     private fun listDetails() {
         mCartBussiness.OrderOnlineConvertItemToOrigin(mDatas)
         mQuantity.text = mCartBussiness.OrderOnlineQuantity()
+        refreshView()
+    }
+
+    private fun refreshView(){
         if (mCartBussiness.getOrder().originDetails.size > 0) {
             relativeLayout_cart.visibility = View.VISIBLE
             mCartBussiness.setOrderOnline(Constants.OrderType.OrderNvl)
@@ -245,6 +249,7 @@ class NvlFragment : BaseFragment() {
                         }
                     }
                 }
+                refreshView()
                 mAdapter?.notifyDataSetChanged()
             } else {
                 callServiceList()
