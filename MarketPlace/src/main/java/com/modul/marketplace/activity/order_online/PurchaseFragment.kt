@@ -248,15 +248,9 @@ class PurchaseFragment : BaseFragment() {
             if (intent.getStringExtra("value") == Constants.BROADCAST.CHANGE_ITEM) {
                 var id = intent.getStringExtra("id")
                 var quantity = intent.getDoubleExtra("quantity",0.0)
-                Log.e("broadcast:","mDatas: "+ mDatas)
-                Log.e("broadcast:","id: "+ id)
-                Log.e("broadcast:","quantity: "+ quantity)
                 mDatas.forEach { menu ->
-                    Log.e("broadcast:","menu code: "+ menu.code)
                     if(menu.code.equals(id)){
-                        Log.e("broadcast:","old quantity: "+ menu.quantity)
                         menu.quantity = quantity
-                        Log.e("broadcast:","new quantity: "+ menu.quantity)
                     }
                 }
                 refreshView()

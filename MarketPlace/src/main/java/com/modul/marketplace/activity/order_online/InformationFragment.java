@@ -504,7 +504,9 @@ public class InformationFragment extends BaseFragment {
             }
         } else if (requestCode == AppMoMoLib.getInstance().REQUEST_CODE_MOMO) {
             if (resultCode == Activity.RESULT_OK) {
+                Log.e("momo:","callback: "+ data);
                 if (data != null) {
+                    Log.e("momo:","status: "+ data.getIntExtra("status",-1));
                     if (data.getIntExtra("status", -1) == 0) {
                         String token = data.getStringExtra("data"); //Token response
                         String phoneNumber = data.getStringExtra("phonenumber");
