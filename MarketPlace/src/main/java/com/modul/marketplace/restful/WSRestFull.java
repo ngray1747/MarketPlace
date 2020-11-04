@@ -353,7 +353,7 @@ public class WSRestFull extends AbsRestful {
         if (cityId != null) {
             params.AddParam("city_uid", cityId);
             params.AddParam("companyId", companyId);
-            params.AddParam("BrandId", BrandId);
+            params.AddParam("brand_ids", BrandId);
         }
         GsonRequest<ArticlesModelData> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),

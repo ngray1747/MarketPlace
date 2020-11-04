@@ -243,7 +243,7 @@ class NvlFragment : BaseFragment() {
                 mDatas.forEach { it.quantity = 0.0 }
                 mDatas.forEach { menu ->
                     mCartBussiness.getOrder().details.forEach { detail ->
-                        if (menu.productUid == detail.productUid) {
+                        if (menu.code == detail.serviceCode && detail.quantity > 0) {
                             menu.quantity = detail.quantity
                         }
                     }
