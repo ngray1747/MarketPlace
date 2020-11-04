@@ -185,8 +185,8 @@ class CartFragment : BaseFragment() {
                     } else {
                         addVoucher()
                     }
-                    Utilities.sendBoard(context,Constants.BROADCAST.BROAD_PURCHASE,Constants.BROADCAST.CHANGE_ITEM)
-                    Utilities.sendBoard(context,Constants.BROADCAST.BROAD_NVL, Constants.BROADCAST.CHANGE_ITEM)
+                    Utilities.sendBoardItem(context,Constants.BROADCAST.BROAD_PURCHASE,Constants.BROADCAST.CHANGE_ITEM,it.serviceCode,it.quantity)
+                    Utilities.sendBoardItem(context,Constants.BROADCAST.BROAD_NVL, Constants.BROADCAST.CHANGE_ITEM,it.serviceCode,it.quantity)
 
                     if(mCartBussiness.getOrder().cart.size ==0){
                         mCartBussiness.OrderOnlineClearData()
