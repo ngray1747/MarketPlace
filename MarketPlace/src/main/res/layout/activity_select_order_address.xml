@@ -62,6 +62,7 @@
         app:smsp_isSearchable="true"
         app:smsp_itemColor="@color/white"
         app:smsp_itemListColor="@color/black"
+        app:smsp_floatingLabelColor="@color/white9B"
         app:smsp_itemListHintBackgroundColor="@color/white9B"
         app:smsp_itemListHintColor="@color/white9B"
         app:smsp_multilineError="false"
