@@ -132,13 +132,12 @@ class NvlFragment : BaseFragment() {
                         dmServiceListOrigin.image = this
                     }
                 }
-
             }
             dmServiceListOrigin.imageUrls = it.image_urls
-            dmServiceListOrigin.unitPrice = it.price_sale!!
             dmServiceListOrigin.name = it.name
             dmServiceListOrigin.desc = it.description
-            dmServiceListOrigin.priceSale = it.price!!
+            dmServiceListOrigin.unitPrice = it.price!!
+            dmServiceListOrigin.marketPrice = it.price_sale!!
             dmServiceListOrigin.productUid = it.id
             dmServiceListOrigin.unitName = it.unit?.unit_name
             dmServiceListOrigin.supplier_address = it.supplier?.supplier_address
@@ -183,7 +182,7 @@ class NvlFragment : BaseFragment() {
         refreshView()
     }
 
-    private fun refreshView(){
+    private fun refreshView() {
         if (mCartBussiness.getOrder().originDetails.size > 0) {
             relativeLayout_cart.visibility = View.VISIBLE
             mCartBussiness.setOrderOnline(Constants.OrderType.OrderNvl)

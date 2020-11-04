@@ -27,6 +27,7 @@ public class ConverUtil {
         dmService.setComboDesc(dmServiceListOrigin.getComboDesc());
         dmService.setSupplierUid(dmServiceListOrigin.getSupplierUid());
         dmService.setProductUid(dmServiceListOrigin.getProductUid());
+        dmService.setMarketPrice(dmServiceListOrigin.getMarketPrice());
         return dmService;
     }
 

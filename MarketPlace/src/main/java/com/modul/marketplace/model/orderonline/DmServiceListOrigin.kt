@@ -12,6 +12,7 @@ data class DmServiceListOrigin(
         @SerializedName("type") var type: String? = "",
         @SerializedName("image") var image: String? = "",
         @SerializedName("isPrePaid") var isPrePaid: Int? = 0,
+        @SerializedName("marketPrice") var marketPrice: Double = 0.0,
         @SerializedName("unitPrice") var unitPrice: Double = 0.0,
         @SerializedName("price_sale") var priceSale: Double = 0.0,
         @SerializedName("unitScope") var unitScope: String? = "",
@@ -51,7 +52,17 @@ data class DmServiceListOrigin(
     }
 
     fun getOriginAmount(): Double {
-        orgAmount = unitPrice * quantity
+        orgAmount = getPrice() * quantity
         return orgAmount
+    }
+
+    fun getPrice():Double{
+        var price = 0.0
+        if(this.marketPrice > 0){
+            price = marketPrice
+        }else{
+            price = unitPrice
+        }
+        return price
     }
 }

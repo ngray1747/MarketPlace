@@ -92,10 +92,7 @@ public class ServicelistRecycleHolder extends AbsRecyleHolder {
         Glide.with(mContext).load(item.getImage()).into(mImage);
 
         price_origin.setVisibility(View.INVISIBLE);
-        if (DmServiceListOrigin.TYPE_HARDWARE.equals(item.getType())) {
-            mSubTitle.setVisibility(View.INVISIBLE);
-            mPrice.setText(FormatNumberUtil.formatCurrency(item.getUnitPrice()) + "/" + item.getUnitName());
-        } else if (DmServiceListOrigin.TYPE_COMBO.equals(item.getType())) {
+         if (DmServiceListOrigin.TYPE_COMBO.equals(item.getType())) {
             mSubTitle.setVisibility(View.VISIBLE);
             String details = "";
             double amount = 0.0;
@@ -103,19 +100,19 @@ public class ServicelistRecycleHolder extends AbsRecyleHolder {
             if (mDetails != null) {
                 for (DmServiceListOrigin dmServiceListOrigin : mDetails) {
                     details += "+ " + FormatNumberUtil.fmt(dmServiceListOrigin.getQuantity()) + " " + dmServiceListOrigin.getUnitName() + " " + dmServiceListOrigin.getName() + "\n";
-                    amount += dmServiceListOrigin.getUnitPrice() * dmServiceListOrigin.getQuantity();
+                    amount += dmServiceListOrigin.getPrice() * dmServiceListOrigin.getQuantity();
                 }
             }
             mSubTitle.setText(details.substring(0, details.length() - 1));
             mPrice.setText(FormatNumberUtil.formatCurrency(amount) + "/" + item.getUnitName());
         } else {
-            if(item.getUnitPrice() !=  item.getPriceSale()){
+            if(item.getUnitPrice() !=  item.getMarketPrice()){
                 price_origin.setVisibility(View.VISIBLE);
             }
             mSubTitle.setVisibility(View.INVISIBLE);
-            mPrice.setText(FormatNumberUtil.formatCurrency(item.getUnitPrice()) + "/" + item.getUnitName());
+            mPrice.setText(FormatNumberUtil.formatCurrency(item.getPrice()) + "/" + item.getUnitName());
             price_origin.setPaintFlags(price_origin.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-            price_origin.setText(FormatNumberUtil.formatCurrency(item.getPriceSale()));
+            price_origin.setText(FormatNumberUtil.formatCurrency(item.getUnitPrice()));
         }
         mName.setText(item.getName());
         if (item.getQuantity() > 0) {
