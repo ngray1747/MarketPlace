@@ -185,8 +185,11 @@ class CartFragment : BaseFragment() {
                     } else {
                         addVoucher()
                     }
-                    Utilities.sendBoardItem(context,Constants.BROADCAST.BROAD_PURCHASE,Constants.BROADCAST.CHANGE_ITEM,it.serviceCode,it.quantity)
-                    Utilities.sendBoardItem(context,Constants.BROADCAST.BROAD_NVL, Constants.BROADCAST.CHANGE_ITEM,it.serviceCode,it.quantity)
+                    if(mCartBussiness.getOrder().orderType == Constants.OrderType.OrderOnline){
+                        Utilities.sendBoardItem(context,Constants.BROADCAST.BROAD_PURCHASE,Constants.BROADCAST.CHANGE_ITEM,it.serviceCode,it.quantity)
+                    }else{
+                        Utilities.sendBoardItem(context,Constants.BROADCAST.BROAD_NVL, Constants.BROADCAST.CHANGE_ITEM,it.serviceCode,it.quantity)
+                    }
 
                     if(mCartBussiness.getOrder().cart.size ==0){
                         mCartBussiness.OrderOnlineClearData()
