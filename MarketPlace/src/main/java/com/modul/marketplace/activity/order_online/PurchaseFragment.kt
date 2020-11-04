@@ -246,12 +246,11 @@ class PurchaseFragment : BaseFragment() {
     var onNotice: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             if (intent.getStringExtra("value") == Constants.BROADCAST.CHANGE_ITEM) {
-                mDatas.forEach { it.quantity = 0.0 }
+                var id = intent.getStringExtra("id")
+                var quantity = intent.getDoubleExtra("quantity",0.0)
                 mDatas.forEach { menu ->
-                    mCartBussiness.getOrder().details.forEach { detail ->
-                        if (menu.code == detail.serviceCode) {
-                            menu.quantity = detail.quantity
-                        }
+                    if(menu.code.equals(id)){
+                        menu.quantity = quantity
                     }
                 }
                 refreshView()
