@@ -503,8 +503,8 @@ public class InformationFragment extends BaseFragment {
                 refreshAddress();
             }
         } else if (requestCode == AppMoMoLib.getInstance().REQUEST_CODE_MOMO) {
+            Log.e("momo:","resultCode: "+ resultCode);
             if (resultCode == Activity.RESULT_OK) {
-                Log.e("momo:","callback: "+ data);
                 if (data != null) {
                     Log.e("momo:","status: "+ data.getIntExtra("status",-1));
                     if (data.getIntExtra("status", -1) == 0) {
@@ -540,6 +540,7 @@ public class InformationFragment extends BaseFragment {
 
                 }
             } else {
+                mActivity.onBackPressed();
             }
         } else {
 //            ZaloPaySDK.getInstance().onActivityResult(requestCode, resultCode, data);
