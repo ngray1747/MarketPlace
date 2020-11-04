@@ -108,7 +108,7 @@ public class Utilities {
         Intent i = new Intent();
         i.setAction(board);
         i.putExtra("value", value);
-        i.putExtra("id", value);
+        i.putExtra("id", id);
         i.putExtra("quantity", quantity);
         LocalBroadcastManager.getInstance(context).sendBroadcast(i);
     }
