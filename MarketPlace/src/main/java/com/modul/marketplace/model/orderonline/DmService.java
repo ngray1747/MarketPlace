@@ -32,7 +32,7 @@ public class DmService implements Serializable {
     private double amount;
 
     @SerializedName("marketPrice")
-    private double marketPrice;
+    private Double marketPrice;
 
     @SerializedName("discountAmount")
     private double discountAmount;
@@ -127,6 +127,14 @@ public class DmService implements Serializable {
         return comboDesc;
     }
 
+    public Double getMarketPrice() {
+        return marketPrice;
+    }
+
+    public void setMarketPrice(Double marketPrice) {
+        this.marketPrice = marketPrice;
+    }
+
     public void setComboDesc(String comboDesc) {
         this.comboDesc = comboDesc;
     }
@@ -145,14 +153,6 @@ public class DmService implements Serializable {
 
     public void setProductUid(String productUid) {
         this.productUid = productUid;
-    }
-
-    public double getMarketPrice() {
-        return marketPrice;
-    }
-
-    public void setMarketPrice(double marketPrice) {
-        this.marketPrice = marketPrice;
     }
 
     public void setPosition(int position) {
