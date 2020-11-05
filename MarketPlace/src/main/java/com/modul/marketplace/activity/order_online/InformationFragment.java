@@ -540,7 +540,7 @@ public class InformationFragment extends BaseFragment {
 
                 }
             } else {
-                mActivity.onBackPressed();
+//                mActivity.onBackPressed();
             }
         } else {
 //            ZaloPaySDK.getInstance().onActivityResult(requestCode, resultCode, data);
