@@ -82,9 +82,7 @@ public class ServicelistRecycleHolder extends AbsRecyleHolder {
 
     @Override
     public void setElement(Object obj) {
-
         setData((DmServiceListOrigin) obj);
-
     }
 
     private void setData(DmServiceListOrigin item) {
@@ -93,7 +91,6 @@ public class ServicelistRecycleHolder extends AbsRecyleHolder {
 
         price_origin.setVisibility(View.INVISIBLE);
          if (DmServiceListOrigin.TYPE_COMBO.equals(item.getType())) {
-            mSubTitle.setVisibility(View.VISIBLE);
             String details = "";
             double amount = 0.0;
             ArrayList<DmServiceListOrigin> mDetails = item.getDetails();
@@ -109,12 +106,12 @@ public class ServicelistRecycleHolder extends AbsRecyleHolder {
             if(item.getMarketPrice() != null && item.getUnitPrice() !=  item.getMarketPrice()){
                 price_origin.setVisibility(View.VISIBLE);
             }
-            mSubTitle.setVisibility(View.INVISIBLE);
             mPrice.setText(FormatNumberUtil.formatCurrency(item.getPrice()) + "/" + item.getUnitName());
             price_origin.setPaintFlags(price_origin.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             price_origin.setText(FormatNumberUtil.formatCurrency(item.getUnitPrice()));
         }
         mName.setText(item.getName());
+        mSubTitle.setText(item.getDesc());
         if (item.getQuantity() > 0) {
             hideLayoutQuantity();
         } else {

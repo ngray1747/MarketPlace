@@ -294,4 +294,9 @@
     <string name="lb_huytin">Your message has been canceled, you can review it in the canceled section</string>
     <string name="tao_raovat_thanhcong">Create a successful ad</string>
     <string name="create_content_articles">Successfully created your ad ", message:" Your news is in the process of moderating the content, and will be displayed in the classified ads right after content moderating.</string>
+    <string name="status">Status</string>
+    <string name="conhang">Stocking</string>
+    <string name="hethang">Out of stock</string>
+    <string name="gia_ban">Price sale</string>
+    <string name="tao_don_thanh_cong_hermes">Your order has been recorded, we will prepare and deliver to you as soon as possible. \ n \ n * Note: The hardware products will be warranted, as well as the software products will be extended to use immediately after the order is completed.</string>
 </resources>

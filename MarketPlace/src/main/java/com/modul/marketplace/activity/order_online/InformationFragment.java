@@ -598,6 +598,7 @@ public class InformationFragment extends BaseFragment {
     private void onResponseOrderPayment(DmOrderOnline dmOrderOnline) {
         dismissProgressHub();
         if (dmOrderOnline != null) {
+            text_success.setText(getString(R.string.tao_don_thanh_cong_hermes));
             mLayoutSuccess.setVisibility(View.VISIBLE);
         } else {
             mLayoutSuccess.setVisibility(View.GONE);

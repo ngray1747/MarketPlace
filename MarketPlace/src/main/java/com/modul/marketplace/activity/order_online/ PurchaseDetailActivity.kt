@@ -50,6 +50,9 @@ class PurchaseDetailActivity : BaseActivity() {
             }
             mResult.add(RowItemModel(title = name, isOnlyTitle = true))
             mResult.add(RowItemModel(title = getString(R.string.gia), content = StringExt.convertToMoney(unitPrice) + "/ " + unitName, contentColor = R.color.mainColor, contentStyle = R.style.TextView_SemiBold))
+            marketPrice?.run{
+                mResult.add(RowItemModel(title = getString(R.string.gia_ban), content = marketPrice?.let { StringExt.convertToMoney(it) } + "/ " + unitName, contentColor = R.color.mainColor, contentStyle = R.style.TextView_SemiBold))
+            }
             mResult.add(RowItemModel(title = getString(R.string.description), content = desc))
         }
         mAdapter.notifyDataSetChanged()

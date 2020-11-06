@@ -581,7 +581,6 @@
                     android:textSize="@dimen/font_size_15" />
 
                 <TextView
-                    android:textAppearance="@style/TextView.SemiBold"
                     android:id="@+id/provisional"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -591,6 +590,7 @@
                     android:paddingTop="@dimen/standard_margin_half"
                     android:paddingRight="@dimen/standard_margin"
                     android:paddingBottom="@dimen/standard_margin_half"
+                    android:textAppearance="@style/TextView.SemiBold"
                     android:textColor="@color/text_36"
                     android:textSize="@dimen/font_size_15" />
             </LinearLayout>
@@ -723,7 +723,7 @@
             android:paddingTop="@dimen/standard_margin"
             android:paddingRight="@dimen/standard_margin_double_30"
             android:paddingBottom="@dimen/standard_margin"
-            android:text="@string/hoan_thanh"
+            android:text="OK"
             android:textColor="@color/trans_CC005EA5"
             android:textSize="@dimen/font_size_16" />
 

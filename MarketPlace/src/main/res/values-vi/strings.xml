@@ -235,6 +235,7 @@
     <string name="cart">Giỏ hàng</string>
     <string name="create_article">Tạo tin rao vặt</string>
     <string name="gia">Giá</string>
+    <string name="gia_ban">Giá bán</string>
     <string name="description">Mô tả</string>
     <string name="thongtin_xuat_bill">Thông tin xuất hóa đơn</string>
     <string name="add_address">Thêm địa chỉ</string>
@@ -267,7 +268,7 @@
     <string name="articles_nguoidang_valid">Chưa nhập tên người đăng</string>
     <string name="articles_sdt_valid">Chưa nhập SDT</string>
     <string name="image_valid">Chưa chọn ảnh sản phẩm</string>
-    <string name="chon_dia_chi">chọn địa chỉ</string>
+    <string name="chon_dia_chi">Chọn địa chỉ</string>
     <string name="change_address">Thay đổi địa chỉ</string>
     <string name="detail">Chi tiết</string>
     <string name="error">Không có dữ liệu</string>
@@ -307,4 +308,8 @@
     <string name="lb_huytin">Tin của bạn đã bị hủy, bạn có thể xem lại tin này ở mục bị hủy</string>
     <string name="tao_raovat_thanhcong">Tạo tin rao vặt thành công</string>
     <string name="create_content_articles">Tin của bạn đang trong quá trình kiểm duyệt nội dung, và sẽ được hiển thị trong phần rao vặt ngay sau khi kiểm duyệt xong nội dung</string>
+    <string name="status">Trạng thái</string>
+    <string name="conhang">Còn hàng</string>
+    <string name="hethang">Hết hàng</string>
+    <string name="tao_don_thanh_cong_hermes">Đơn hàng của bạn đã được ghi nhận, chúng tôi sẽ chuẩn bị và giao cho bạn sớm nhất có thể. \n\n* Lưu ý: Các sản phẩm phần cứng sẽ được kích hoạt bảo hành, cũng như các sản phẩm phần mềm sẽ được gia hạn sử dụng ngay sau khi đơn hàng hoàn thành</string>
 </resources>

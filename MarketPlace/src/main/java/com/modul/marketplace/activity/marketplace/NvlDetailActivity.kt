@@ -51,9 +51,18 @@ class NvlDetailActivity : BaseActivity() {
             }
             mResult.add(RowItemModel(title = name, isOnlyTitle = true))
             mResult.add(RowItemModel(title = getString(R.string.gia), content = unitPrice.let { StringExt.convertToMoney(it) } + "/ " + unitName, contentColor = R.color.mainColor, contentStyle = R.style.TextView_SemiBold))
+            marketPrice?.run{
+                mResult.add(RowItemModel(title = getString(R.string.gia_ban), content = marketPrice?.let { StringExt.convertToMoney(it) } + "/ " + unitName, contentColor = R.color.mainColor, contentStyle = R.style.TextView_SemiBold))
+            }
+
             mResult.add(RowItemModel(title = getString(R.string.khu_vuc2), content = supplier_address))
             mResult.add(RowItemModel(title = getString(R.string.brand), content = brand_name))
             mResult.add(RowItemModel(title = getString(R.string.nha_cung_cap), content = supplier_name))
+            if(quantity > 0){
+                mResult.add(RowItemModel(title = getString(R.string.status), content = getString(R.string.conhang)))
+            }else{
+                mResult.add(RowItemModel(title = getString(R.string.status), content = getString(R.string.hethang)))
+            }
             mResult.add(RowItemModel(title = getString(R.string.description), content = desc))
             initMenu()
         }
