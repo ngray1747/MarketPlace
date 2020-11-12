@@ -189,7 +189,11 @@ public class DmOrderOnline implements Serializable {
     public String getStatusName(Context context) {
         if (DmStatusOrder.TYPE_PAYING.equals(status)) {
             statusName = context.getString(R.string.cho_thanh_toan);
-        } else if (DmStatusOrder.TYPE_PENDING.equals(status)) {
+        } else if (DmStatusOrder.TYPE_WAITCONFIRM.equals(status)) {
+            statusName = context.getString(R.string.cho_xy_ly);
+        }  else if (DmStatusOrder.TYPE_CONFIRMED.equals(status)) {
+            statusName = context.getString(R.string.confirmed);
+        }  else if (DmStatusOrder.TYPE_PENDING.equals(status)) {
             statusName = context.getString(R.string.da_thanh_toan);
         } else if (DmStatusOrder.TYPE_RECEIVED.equals(status)) {
             statusName = context.getString(R.string.da_tiep_nhan);

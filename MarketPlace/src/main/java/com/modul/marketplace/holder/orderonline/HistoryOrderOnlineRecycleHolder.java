@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+
 import com.modul.marketplace.model.orderonline.DmStatusOrder;
 import com.modul.marketplace.util.DateTimeUtil;
 import com.modul.marketplace.R;
@@ -71,24 +73,24 @@ public class HistoryOrderOnlineRecycleHolder extends AbsRecyleHolder {
         mPrice.setText(FormatNumberUtil.formatCurrency(dmOrderOnline.getAmount()));
         mStatus.setText(dmOrderOnline.getStatusName(mContext));
 
-        if (DmStatusOrder.TYPE_WAITCONFIRM.equals(status)) {
-            statusName = context.getString(R.string.wait_confirm);
-        } else if (DmStatusOrder.TYPE_CONFIRMED.equals(status)) {
-            statusName = context.getString(R.string.confirmed);
-        } else if (DmStatusOrder.TYPE_PAYING.equals(status)) {
-            statusName = context.getString(R.string.paying);
-        } else if (DmStatusOrder.TYPE_PENDING.equals(status)) {
-            statusName = context.getString(R.string.pending);
-        } else if (DmStatusOrder.TYPE_RECEIVED.equals(status)) {
-            statusName = context.getString(R.string.received);
-        } else if (DmStatusOrder.TYPE_PROCESSED.equals(status)) {
-            statusName = context.getString(R.string.processed);
-        } else if (DmStatusOrder.TYPE_SHIPPING.equals(status)) {
-            statusName = context.getString(R.string.shipping).replace("%", "" + getDmDeliveryInfo().getEstimateShipped()).replace("%@", getDmDeliveryInfo().getAddress());
-        } else if (DmStatusOrder.TYPE_COMPLETED.equals(status)) {
-            statusName = context.getString(R.string.completed);
-        } else if (DmStatusOrder.TYPE_CANCELED.equals(status)) {
-            statusName = context.getString(R.string.canceled);
+        if (DmStatusOrder.TYPE_WAITCONFIRM.equals(dmOrderOnline.getStatus())) {
+            mStatus.setBackground(mContext.getDrawable(R.drawable.view_deposit_pending));
+            mStatus.setTextColor(ContextCompat.getColor(mContext, R.color.orangeF9));
+        } else if (DmStatusOrder.TYPE_CONFIRMED.equals(dmOrderOnline.getStatus())) {
+            mStatus.setBackground(mContext.getDrawable(R.drawable.view_deposit_pending));
+            mStatus.setTextColor(ContextCompat.getColor(mContext, R.color.orangeF9));
+        } else if (DmStatusOrder.TYPE_PAYING.equals(dmOrderOnline.getStatus())) {
+            mStatus.setBackground(mContext.getDrawable(R.drawable.view_deposit_pending));
+            mStatus.setTextColor(ContextCompat.getColor(mContext, R.color.orangeF9));
+        } else if (DmStatusOrder.TYPE_PENDING.equals(dmOrderOnline.getStatus())) {
+            mStatus.setBackground(mContext.getDrawable(R.drawable.view_deposit_pending));
+            mStatus.setTextColor(ContextCompat.getColor(mContext, R.color.orangeF9));
+        } else if (DmStatusOrder.TYPE_CANCELED.equals(dmOrderOnline.getStatus())) {
+            mStatus.setBackground(mContext.getDrawable(R.drawable.view_deposit_rejected));
+            mStatus.setTextColor(ContextCompat.getColor(mContext, R.color.redE7));
+        }else{
+            mStatus.setBackground(mContext.getDrawable(R.drawable.view_caring));
+            mStatus.setTextColor(ContextCompat.getColor(mContext, R.color.green2F));
         }
 
         mTime.setText(DateTimeUtil.convertTimeStampToDate(
