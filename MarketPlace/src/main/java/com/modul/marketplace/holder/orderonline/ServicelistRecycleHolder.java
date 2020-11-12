@@ -89,25 +89,35 @@ public class ServicelistRecycleHolder extends AbsRecyleHolder {
         this.mDmServiceListOrigin = item;
         Glide.with(mContext).load(item.getImage()).into(mImage);
 
+        price_origin.setPaintFlags(price_origin.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         price_origin.setVisibility(View.INVISIBLE);
          if (DmServiceListOrigin.TYPE_COMBO.equals(item.getType())) {
             String details = "";
-            double amount = 0.0;
+            double saleAmount = 0.0;
+            double unitAmount = 0.0;
             ArrayList<DmServiceListOrigin> mDetails = item.getDetails();
+            boolean showPriceSale = false;
             if (mDetails != null) {
                 for (DmServiceListOrigin dmServiceListOrigin : mDetails) {
                     details += "+ " + FormatNumberUtil.fmt(dmServiceListOrigin.getQuantity()) + " " + dmServiceListOrigin.getUnitName() + " " + dmServiceListOrigin.getName() + "\n";
-                    amount += dmServiceListOrigin.getPrice() * dmServiceListOrigin.getQuantity();
+                    saleAmount += dmServiceListOrigin.getPrice() * dmServiceListOrigin.getQuantity();
+                    unitAmount += dmServiceListOrigin.getUnitPrice() * dmServiceListOrigin.getQuantity();
+                    if(dmServiceListOrigin.getMarketPrice() != null && dmServiceListOrigin.getUnitPrice() !=  dmServiceListOrigin.getMarketPrice()){
+                        showPriceSale = true;
+                    }
                 }
             }
+             if(showPriceSale){
+                 price_origin.setVisibility(View.VISIBLE);
+             }
             mSubTitle.setText(details.substring(0, details.length() - 1));
-            mPrice.setText(FormatNumberUtil.formatCurrency(amount) + "/" + item.getUnitName());
+            mPrice.setText(FormatNumberUtil.formatCurrency(saleAmount) + "/" + item.getUnitName());
+             price_origin.setText(FormatNumberUtil.formatCurrency(unitAmount) + "/" + item.getUnitName());
         } else {
             if(item.getMarketPrice() != null && item.getUnitPrice() !=  item.getMarketPrice()){
                 price_origin.setVisibility(View.VISIBLE);
             }
             mPrice.setText(FormatNumberUtil.formatCurrency(item.getPrice()) + "/" + item.getUnitName());
-            price_origin.setPaintFlags(price_origin.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             price_origin.setText(FormatNumberUtil.formatCurrency(item.getUnitPrice()));
         }
         mName.setText(item.getName());

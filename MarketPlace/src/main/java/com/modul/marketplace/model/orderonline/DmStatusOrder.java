@@ -13,6 +13,8 @@ public class DmStatusOrder implements Serializable {
     public static final String TYPE_SHIPPING = "SHIPPING";
     public static final String TYPE_COMPLETED = "COMPLETED";
     public static final String TYPE_CANCELED = "CANCELED";
+    public static final String TYPE_WAITCONFIRM = "WAITCONFIRM";
+    public static final String TYPE_CONFIRMED = "CONFIRMED";
 
 
     @SerializedName("type")

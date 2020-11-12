@@ -365,13 +365,15 @@ public class OrderDetailFragment extends BaseFragment {
             mDmOrderOnline = dmOrderOnline;
             String status = dmOrderOnline.getStatus();
             Log.i(TAG, "Status: " + status + " " + mListStatus.size());
-            if (DmStatusOrder.TYPE_CANCELED.equals(status)) {
-                mStatusCancel.setVisibility(View.VISIBLE);
-                mRecycleStatus.setVisibility(View.GONE);
-            } else {
-                mStatusCancel.setVisibility(View.GONE);
-                mRecycleStatus.setVisibility(View.VISIBLE);
-            }
+            mStatusCancel.setVisibility(View.VISIBLE);
+//            if (DmStatusOrder.TYPE_CANCELED.equals(status)) {
+//                mRecycleStatus.setVisibility(View.GONE);
+//            mRecycleStatus.setVisibility(View.GONE);
+//            } else {
+//                mStatusCancel.setVisibility(View.GONE);
+//                mRecycleStatus.setVisibility(View.VISIBLE);
+//            }
+            mStatusCancel.setText(dmOrderOnline.OrderHistoryHermesStatusInfo(getContext()));
             if (DmStatusOrder.TYPE_PAYING.equals(status)) {
                 mPaymentmethod.setEnabled(true);
                 mPaymentmethod.setTextColor(ContextCompat.getColor(getContext(), R.color.mainColor));

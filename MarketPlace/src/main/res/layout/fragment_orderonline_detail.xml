@@ -35,11 +35,11 @@
                 android:layout_width="match_parent"
                 android:textAppearance="@style/TextView.Regular"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:padding="@dimen/standard_margin"
                 android:text="@string/order_cancel"
-                android:textColor="@color/text_36"
-                android:visibility="gone" />
+                android:visibility="gone"
+                android:textSize="@dimen/font_size_15"
+                android:textColor="@color/text_36" />
 
             <LinearLayout
                 android:id="@+id/linearlayout_invoice"

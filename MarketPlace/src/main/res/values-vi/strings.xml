@@ -311,5 +311,14 @@
     <string name="status">Trạng thái</string>
     <string name="conhang">Còn hàng</string>
     <string name="hethang">Hết hàng</string>
+    <string name="wait_confirm">Đơn hàng của bạn vừa thanh toán thành công và đang trong quá trình chờ xử lý</string>
     <string name="tao_don_thanh_cong_hermes">Đơn hàng của bạn đã được ghi nhận, chúng tôi sẽ chuẩn bị và giao cho bạn sớm nhất có thể. \n\n* Lưu ý: Các sản phẩm phần cứng sẽ được kích hoạt bảo hành, cũng như các sản phẩm phần mềm sẽ được gia hạn sử dụng ngay sau khi đơn hàng hoàn thành</string>
+    <string name="confirmed">Đã xử lý</string>
+    <string name="paying">Đơn hàng của bạn đang trong quá trình thanh toán, ngay sau khi thanh toán thành công, đơn hàng sẽ được chuyển đến bộ phận xử lý đơn để chuẩn bị đơn hàng cho bạn</string>
+    <string name="pending">Đơn hàng của bạn vừa thanh toán thành công và đang trong quá trình xử lý</string>
+    <string name="received">Đơn hàng của bạn đã được tiếp nhận và đong trong quá trình xử lý</string>
+    <string name="processed">Đơn hàng đã được xử lý xong và bàn giao cho bộ phận giao hàng</string>
+    <string name="shipping">Đơn hàng đang trong quá trình vận chuyển. Bạn sẽ nhận được đơn hàng dự kiến ngày % tại %@</string>
+    <string name="completed">Đơn hàng của bạn đã được hoàn thành, các sản phẩm phần mềm đã được gia hạn sử dụng, các sản phẩm phần mềm đã được kích hoạt bảo hành</string>
+    <string name="canceled">Rất xin lỗi bạn chúng tôi không thể hoàn thành đơn hàng này, toàn bộ số tiền bạn đã thanh toán online(MoMo, ZaloPay...) chúng tôi sẽ hoàn trả lại cho bạn sớm nhất</string>
 </resources>
