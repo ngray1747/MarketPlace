@@ -48,6 +48,7 @@ class PurchaseDetailActivity : BaseActivity() {
             }else{
                 mQuantity.text = "" + StringExt.convertNumberToString(quantity)
             }
+
             mResult.add(RowItemModel(title = name, isOnlyTitle = true))
             mResult.add(RowItemModel(title = getString(R.string.gia), content = StringExt.convertToMoney(unitPrice) + "/ " + unitName, contentColor = R.color.mainColor, contentStyle = R.style.TextView_SemiBold))
             marketPrice?.run{

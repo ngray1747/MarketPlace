@@ -339,7 +339,6 @@ public class OrderDetailFragment extends BaseFragment {
         if (!TextUtils.isEmpty(orderCode)) {
             getOrderDetail(orderCode);
         }
-        loadDataStatus();
     }
 
     private void getOrderDetail(String orderCode) {
@@ -363,6 +362,7 @@ public class OrderDetailFragment extends BaseFragment {
         dismissProgressHub();
         if (dmOrderOnline != null) {
             mDmOrderOnline = dmOrderOnline;
+            loadDataStatus();
             String status = dmOrderOnline.getStatus();
             Log.i(TAG, "Status: " + status + " " + mListStatus.size());
             mStatusCancel.setVisibility(View.VISIBLE);
@@ -490,10 +490,16 @@ public class OrderDetailFragment extends BaseFragment {
         mListStatus.clear();
         mListStatus.add(new DmStatusOrder(DmStatusOrder.TYPE_PAYING, getString(R.string.cho_thanh_toan), true, true, false, true));
         mListStatus.add(new DmStatusOrder(DmStatusOrder.TYPE_PENDING, getString(R.string.da_thanh_toan), false, false, false, false));
-        mListStatus.add(new DmStatusOrder(DmStatusOrder.TYPE_RECEIVED, getString(R.string.da_tiep_nhan), false, false, false, false));
-        mListStatus.add(new DmStatusOrder(DmStatusOrder.TYPE_PROCESSED, getString(R.string.da_xu_ly_Xong), false, false, false, false));
-        mListStatus.add(new DmStatusOrder(DmStatusOrder.TYPE_SHIPPING, getString(R.string.dnag_giao_hang), false, false, false, false));
-        mListStatus.add(new DmStatusOrder(DmStatusOrder.TYPE_COMPLETED, getString(R.string.hoan_thanh), false, false, true, false));
+        if(mDmOrderOnline.getStatus().equals(DmStatusOrder.TYPE_CANCELED)){
+            mListStatus.add(new DmStatusOrder(DmStatusOrder.TYPE_CANCELED, getString(R.string.canceled), false, false, true, false));
+        }else{
+            mListStatus.add(new DmStatusOrder(DmStatusOrder.TYPE_RECEIVED, getString(R.string.da_tiep_nhan), false, false, false, false));
+            mListStatus.add(new DmStatusOrder(DmStatusOrder.TYPE_PROCESSED, getString(R.string.da_xu_ly_Xong), false, false, false, false));
+            mListStatus.add(new DmStatusOrder(DmStatusOrder.TYPE_SHIPPING, getString(R.string.dnag_giao_hang), false, false, false, false));
+            mListStatus.add(new DmStatusOrder(DmStatusOrder.TYPE_COMPLETED, getString(R.string.hoan_thanh), false, false, true, false));
+        }
+        if(mAdapterStatus != null)
+        mAdapterStatus.notifyDataSetChanged();
     }
 
 
