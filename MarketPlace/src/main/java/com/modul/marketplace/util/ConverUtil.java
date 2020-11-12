@@ -18,7 +18,7 @@ public class ConverUtil {
         dmService.setQuantity(dmServiceListOrigin.getQuantity());
         dmService.setOrgPrice(dmServiceListOrigin.getUnitPrice());
         dmService.setSalePrice(dmServiceListOrigin.getUnitPrice());
-        if (DmServiceListOrigin.TYPE_COMBO == dmServiceListOrigin.getType()) {
+        if (DmServiceListOrigin.TYPE_COMBO.equals(dmServiceListOrigin.getType())) {
             dmService.setAmount(0);
         }else{
             dmService.setAmount(dmServiceListOrigin.getOriginAmount());
