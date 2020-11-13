@@ -212,9 +212,7 @@ public class DmOrderOnline implements Serializable {
     public String OrderHistoryHermesStatusInfo(Context context) {
         if (DmStatusOrder.TYPE_WAITCONFIRM.equals(status)) {
             statusName = context.getString(R.string.wait_confirm);
-        } else if (DmStatusOrder.TYPE_CONFIRMED.equals(status)) {
-            statusName = context.getString(R.string.confirmed);
-        } else if (DmStatusOrder.TYPE_PAYING.equals(status)) {
+        }  else if (DmStatusOrder.TYPE_PAYING.equals(status)) {
             statusName = context.getString(R.string.paying);
         } else if (DmStatusOrder.TYPE_PENDING.equals(status)) {
             statusName = context.getString(R.string.pending);
