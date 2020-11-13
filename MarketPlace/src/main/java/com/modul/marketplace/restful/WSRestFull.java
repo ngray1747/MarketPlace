@@ -383,7 +383,7 @@ public class WSRestFull extends AbsRestful {
                 params.AddParam("status", articlesModel.getStatus());
             }
             if(articlesModel.getBrand_id() != null){
-                params.AddParam("brand_id", articlesModel.getBrand_id());
+                params.AddParam("brand_ids", articlesModel.getBrand_id());
             }
             if(articlesModel.getCompany_id() != null){
                 params.AddParam("company_id", articlesModel.getCompany_id());
@@ -461,7 +461,7 @@ public class WSRestFull extends AbsRestful {
         CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_ARTICLES_COUNT);
         if (articlesModel != null) {
             if(articlesModel.getBrand_id() != null){
-                params.AddParam("brand_id", articlesModel.getBrand_id());
+                params.AddParam("brand_ids", articlesModel.getBrand_id());
             }
             if(articlesModel.getCompany_id() != null){
                 params.AddParam("company_id", articlesModel.getCompany_id());

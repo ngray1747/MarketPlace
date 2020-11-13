@@ -112,7 +112,7 @@ public class ServicelistRecycleHolder extends AbsRecyleHolder {
              }
             mSubTitle.setText(details.substring(0, details.length() - 1));
             mPrice.setText(FormatNumberUtil.formatCurrency(saleAmount) + "/" + item.getUnitName());
-             price_origin.setText(FormatNumberUtil.formatCurrency(unitAmount) + "/" + item.getUnitName());
+             price_origin.setText(FormatNumberUtil.formatCurrency(unitAmount));
         } else {
             if(item.getMarketPrice() != null && item.getUnitPrice() !=  item.getMarketPrice()){
                 price_origin.setVisibility(View.VISIBLE);
