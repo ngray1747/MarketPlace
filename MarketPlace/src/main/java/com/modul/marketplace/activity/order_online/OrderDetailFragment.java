@@ -397,7 +397,7 @@ public class OrderDetailFragment extends BaseFragment {
 //                    mTitlePayment.setText(getString(R.string.da_thanh_toan) + " (" + DmPaymentInfo.NAME_MOMO + ")");
                 }
                 mAmountPaymentMethod.setText(FormatNumberUtil.formatCurrency(dmPaymentInfo.getPayAmount()));
-            }
+            } 
             int position = 0;
             for (int i = 0; i < mListStatus.size(); i++) {
                 if (status.equals(mListStatus.get(i).getType())) {
