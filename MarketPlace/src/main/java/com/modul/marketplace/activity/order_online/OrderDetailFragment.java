@@ -397,7 +397,7 @@ public class OrderDetailFragment extends BaseFragment {
 //                    mTitlePayment.setText(getString(R.string.da_thanh_toan) + " (" + DmPaymentInfo.NAME_MOMO + ")");
                 }
                 mAmountPaymentMethod.setText(FormatNumberUtil.formatCurrency(dmPaymentInfo.getPayAmount()));
-            } 
+            }
             int position = 0;
             for (int i = 0; i < mListStatus.size(); i++) {
                 if (status.equals(mListStatus.get(i).getType())) {
@@ -491,7 +491,7 @@ public class OrderDetailFragment extends BaseFragment {
         mListStatus.add(new DmStatusOrder(DmStatusOrder.TYPE_PAYING, getString(R.string.cho_thanh_toan), true, true, false, true));
         mListStatus.add(new DmStatusOrder(DmStatusOrder.TYPE_PENDING, getString(R.string.da_thanh_toan), false, false, false, false));
         if(mDmOrderOnline.getStatus().equals(DmStatusOrder.TYPE_CANCELED)){
-            mListStatus.add(new DmStatusOrder(DmStatusOrder.TYPE_CANCELED, getString(R.string.canceled), false, false, true, false));
+            mListStatus.add(new DmStatusOrder(DmStatusOrder.TYPE_CANCELED, getString(R.string.da_huy), false, false, true, false));
         }else{
             mListStatus.add(new DmStatusOrder(DmStatusOrder.TYPE_RECEIVED, getString(R.string.da_tiep_nhan), false, false, false, false));
             mListStatus.add(new DmStatusOrder(DmStatusOrder.TYPE_PROCESSED, getString(R.string.da_xu_ly_Xong), false, false, false, false));
