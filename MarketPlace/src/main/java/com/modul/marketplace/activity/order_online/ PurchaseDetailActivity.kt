@@ -4,14 +4,14 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.modul.marketplace.model.orderonline.DmServiceListOrigin
-import com.modul.marketplace.extension.StringExt
-import com.modul.marketplace.extension.initAvatarCompany
 import com.modul.marketplace.R
 import com.modul.marketplace.activity.BaseActivity
 import com.modul.marketplace.adapter.orderonline.RowItemAdapter
 import com.modul.marketplace.app.Constants
+import com.modul.marketplace.extension.StringExt
+import com.modul.marketplace.extension.initAvatarCompany
 import com.modul.marketplace.extension.showStatusBar
+import com.modul.marketplace.model.orderonline.DmServiceListOrigin
 import com.modul.marketplace.model.orderonline.RowItemModel
 import com.modul.marketplace.util.Utilities
 import kotlinx.android.synthetic.main.activity_purchase_detail.*
@@ -41,7 +41,7 @@ class PurchaseDetailActivity : BaseActivity() {
         }?.copy()
 
         dmServiceListOrigin?.run {
-            initAvatarCompany(baseContext,mImg, image, baseContext.getDrawable(R.drawable.icon_default))
+            initAvatarCompany(baseContext, mImg, image, baseContext.getDrawable(R.drawable.icon_default))
             if(quantity == 0.0){
                 mQuantity.text = "1"
                 dmServiceListOrigin?.quantity = 1.0
@@ -51,7 +51,7 @@ class PurchaseDetailActivity : BaseActivity() {
 
             mResult.add(RowItemModel(title = name, isOnlyTitle = true))
             mResult.add(RowItemModel(title = getString(R.string.gia), content = StringExt.convertToMoney(unitPrice) + "/ " + unitName, contentColor = R.color.mainColor, contentStyle = R.style.TextView_SemiBold))
-            marketPrice?.run{
+            if (marketPrice != null && unitPrice != marketPrice) {
                 mResult.add(RowItemModel(title = getString(R.string.gia_ban), content = marketPrice?.let { StringExt.convertToMoney(it) } + "/ " + unitName, contentColor = R.color.mainColor, contentStyle = R.style.TextView_SemiBold))
             }
             mResult.add(RowItemModel(title = getString(R.string.description), content = desc))
@@ -77,7 +77,7 @@ class PurchaseDetailActivity : BaseActivity() {
     }
 
     private fun order() {
-        Utilities.sendBoardCounlyLib(baseContext,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.ADD_HERMES_PRODUCT_TO_CART)
+        Utilities.sendBoardCounlyLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.ADD_HERMES_PRODUCT_TO_CART)
         Intent().apply {
             putExtra(Constants.OBJECT, dmServiceListOrigin)
             setResult(Activity.RESULT_OK, this)
@@ -115,6 +115,6 @@ class PurchaseDetailActivity : BaseActivity() {
 
     private fun initData() {
         showStatusBar(color = R.color.white, statusColor = true)
-        Utilities.sendBoardCounlyLib(baseContext,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.VIEW_HERMES_PRODUCT_DETAIL)
+        Utilities.sendBoardCounlyLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.VIEW_HERMES_PRODUCT_DETAIL)
     }
 }

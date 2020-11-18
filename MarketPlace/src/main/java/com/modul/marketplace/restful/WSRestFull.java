@@ -246,7 +246,7 @@ public class WSRestFull extends AbsRestful {
         CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_LOCATIONS);
         params.AddParam("active", 1);
         params.AddParam("companyId", companyId);
-        params.AddParam("BrandId", BrandId);
+        params.AddParam("brand_ids", BrandId);
 
         GsonRequest<LocationModelData> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
@@ -394,8 +394,10 @@ public class WSRestFull extends AbsRestful {
             if(articlesModel.getData_type() != null){
                 params.AddParam("data_type", articlesModel.getData_type());
             }
-                params.AddParam("type", "myArticle");
         }
+        params.AddParam("type", "myArticle");
+        params.AddParam("results_per_page",1000);
+
         GsonRequest<ArticlesModelData> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
                 ArticlesModelData.class, null, response, error);

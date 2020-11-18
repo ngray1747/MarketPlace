@@ -45,11 +45,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/d_10"
-            android:layout_marginLeft="@dimen/d_15"
+            android:layout_marginLeft="@dimen/d_10"
             android:paddingRight="@dimen/d_10"
             android:paddingTop="@dimen/d_15"
+            android:checked="false"
             android:paddingBottom="@dimen/d_15"
-            android:clickable="false"
             android:drawablePadding="@dimen/d_10"
             android:button="@null"
             android:drawableLeft="@drawable/address_selector"
@@ -69,7 +69,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mTitle" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- Surface View End -->
 </com.daimajia.swipe.SwipeLayout>
