@@ -522,7 +522,7 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
         dismissProgressHub()
         data?.run {
             Log.e("data", "data: " + data.toJson())
-            mResultImageOrder.add(ImageOrderModel(img_url_thumb = img_url_thumb, img_url = img_url))
+            mResultImageOrder.add(ImageOrderModel(img_url_thumb = img_url_thumb, img_url = img_url,status = Constants.ArticlesStatus.PENDING))
 
             with(mResultImageOrder.iterator()) {
                 forEach {

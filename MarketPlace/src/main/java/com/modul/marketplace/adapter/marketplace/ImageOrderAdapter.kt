@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.modul.marketplace.R
+import com.modul.marketplace.app.Constants
 import com.modul.marketplace.extension.ctx
 import com.modul.marketplace.extension.gone
 import com.modul.marketplace.extension.visible
@@ -50,7 +51,14 @@ class ImageOrderAdapter(
 
                 if (img_url_thumb != null) {
 //                    mImage.setPadding(0,0,0,0)
-                    mDelete.visible()
+                    when (status) {
+                        Constants.ArticlesStatus.PENDING -> {
+                            mDelete.visible()
+                        }
+                        else -> {
+                            mDelete.gone()
+                        }
+                    }
                 } else {
 //                    mImage.setPadding(100,100,100,100)
                     mDelete.gone()
