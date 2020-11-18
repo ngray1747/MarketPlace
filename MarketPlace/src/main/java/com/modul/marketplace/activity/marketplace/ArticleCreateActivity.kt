@@ -46,8 +46,8 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_article_create)
-        initExtra()
         initAdapter()
+        initExtra()
         initData()
         initClick()
     }
