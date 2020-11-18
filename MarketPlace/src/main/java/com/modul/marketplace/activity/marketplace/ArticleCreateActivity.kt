@@ -122,6 +122,7 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
 
             when (status) {
                 Constants.ArticlesStatus.PENDING -> {
+                    mResultImageOrder.add(ImageOrderModel(img_url_thumb = null))
                     mHuyTin.visible()
                     mCapNhat.visible()
                     mCreate.gone()
@@ -176,9 +177,10 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
                     mTaoLaiTin.gone()
                 }
             }
+        }?:run{
+            mResultImageOrder.add(ImageOrderModel(img_url_thumb = null))
         }
 
-        mResultImageOrder.add(ImageOrderModel(img_url_thumb = null))
         mAdapterImageOrder.notifyDataSetChanged()
     }
 
