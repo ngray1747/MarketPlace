@@ -102,6 +102,7 @@ data class ArticlesCountModelData(
 data class ArticlesCountModel(
         @SerializedName("confirmed") var confirmed: Int? = null,
         @SerializedName("canceled") var canceled: Int? = null,
+        @SerializedName("sold") var sold: Int? = null,
         @SerializedName("pending") var pending: Int? = null,
         @SerializedName("expired") var expired: Int? = null
 ) : Serializable {

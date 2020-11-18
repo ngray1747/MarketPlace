@@ -103,7 +103,6 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback, Goo
         fields = Arrays.asList(Place.Field.LAT_LNG, Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS);
         mDmLocation = (DmLocation) getIntent().getSerializableExtra(Constants.KEY_DATA);
         initClick();
-
     }
 
     private void initClick() {

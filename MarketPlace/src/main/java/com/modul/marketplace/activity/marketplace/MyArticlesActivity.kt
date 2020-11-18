@@ -66,7 +66,7 @@ class MyArticlesActivity : BaseActivity() {
         tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.dang_ban).replace("#value", "" + StringExt.isTextEmpty(data?.confirmed))))
         tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.het_han).replace("#value", "" + StringExt.isTextEmpty(data?.expired))))
         tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.bi_huy2).replace("#value", "" + StringExt.isTextEmpty(data?.canceled))))
-        tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.da_ban2).replace("#value", "" + StringExt.isTextEmpty(data?.canceled))))
+        tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.da_ban2).replace("#value", "" + StringExt.isTextEmpty(data?.sold))))
         tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 when (tab.position) {
