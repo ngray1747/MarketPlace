@@ -65,6 +65,9 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
             apiDetail(this)
         } ?: run {
             mCreate.text = getString(R.string.dang_tin)
+
+            mResultImageOrder.add(ImageOrderModel(img_url_thumb = null))
+            mAdapterImageOrder.notifyDataSetChanged()
         }
     }
 
@@ -177,10 +180,8 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
                     mTaoLaiTin.gone()
                 }
             }
-        }?:run{
-            mResultImageOrder.add(ImageOrderModel(img_url_thumb = null))
         }
-
+        mResultImageOrder.add(ImageOrderModel(img_url_thumb = null))
         mAdapterImageOrder.notifyDataSetChanged()
     }
 
