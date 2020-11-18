@@ -220,6 +220,7 @@ class AddAddressOrderNvlActivity : BaseActivity() {
         locateModel.selected = null
         locateModel.location_name = adressdl
         locateModel.company_id = mCartBussiness.companyId
+        locateModel.user_id = mCartBussiness.userId
         locateModel.precinct_uid = pricintCode
         locateModel.district_uid = districtCode
         locateModel.city_uid = cityCode

@@ -6,6 +6,7 @@ import java.io.Serializable
 
 data class LocationModel(
         @SerializedName("id") var id: String? = null,
+        @SerializedName("user_id") var user_id: String? = null,
         @SerializedName("location_name") var location_name: String? = null,
         @SerializedName("company_id") var company_id: String? = null,
         @SerializedName("precinct_uid") var precinct_uid: String? = null,

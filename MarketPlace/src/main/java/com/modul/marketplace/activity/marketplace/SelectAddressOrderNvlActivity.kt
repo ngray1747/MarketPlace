@@ -35,7 +35,7 @@ class SelectAddressOrderNvlActivity : BaseActivity() {
 
     private fun api() {
         showProgressHub(this)
-        WSRestFull(this).apiSCMLocation(mCartBussiness.companyId,mCartBussiness.getListBrandId(),{ (data) -> locationDone(data) }) { error: VolleyError ->
+        WSRestFull(this).apiSCMLocation(mCartBussiness.companyId,mCartBussiness.getListBrandId(),mCartBussiness.userId,{ (data) -> locationDone(data) }) { error: VolleyError ->
             locationDone(null)
             error.printStackTrace()
             ToastUtil.makeText(this, getString(R.string.error_network2))

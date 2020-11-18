@@ -242,11 +242,12 @@ public class WSRestFull extends AbsRestful {
         addReq(req, TAG_CMS);
     }
 
-    public void apiSCMLocation(String companyId, String BrandId,Response.Listener<LocationModelData> response, Response.ErrorListener error) {
+    public void apiSCMLocation(String companyId, String BrandId, String userId,Response.Listener<LocationModelData> response, Response.ErrorListener error) {
         CreateResfulString params = new CreateResfulString(ApplicationMarketPlace.instance.getSCM_LINK() +SCM_LOCATIONS);
         params.AddParam("active", 1);
         params.AddParam("companyId", companyId);
         params.AddParam("brand_ids", BrandId);
+        params.AddParam("user_id", userId);
 
         GsonRequest<LocationModelData> req = new GsonRequest<>(
                 Request.Method.GET, params.toString(),
