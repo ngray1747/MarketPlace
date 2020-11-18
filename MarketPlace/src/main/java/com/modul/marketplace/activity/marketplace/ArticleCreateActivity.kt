@@ -181,7 +181,6 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
                 }
             }
         }
-        mResultImageOrder.add(ImageOrderModel(img_url_thumb = null))
         mAdapterImageOrder.notifyDataSetChanged()
     }
 
