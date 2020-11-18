@@ -23,6 +23,7 @@ data class ArticlesModel(
         @SerializedName("tags") var listTag: ArrayList<TagsModel>? = ArrayList(),
         @SerializedName("brand_id") var brand_id: String? =null,
         @SerializedName("company_id") var company_id: String? = null,
+        @SerializedName("dateName") var dateName: String? = null,
         @SerializedName("city") var city: ArticlesCityModel? = null,
         @SerializedName("price") var mPrice: Double = 0.0,
         @SerializedName("content") var mContent: String? = null

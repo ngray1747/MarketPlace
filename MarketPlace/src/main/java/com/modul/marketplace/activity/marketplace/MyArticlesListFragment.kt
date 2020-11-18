@@ -13,12 +13,14 @@ import com.modul.marketplace.activity.BaseFragment
 import com.modul.marketplace.app.Constants
 import com.modul.marketplace.app.Constants.ArticlesStatus.expired
 import com.modul.marketplace.app.Constants.ArticlesStatus.selling
+import com.modul.marketplace.extension.StringExt
 import com.modul.marketplace.extension.gone
 import com.modul.marketplace.extension.openActivity
 import com.modul.marketplace.extension.visible
 import com.modul.marketplace.model.marketplace.ArticlesModel
 import com.modul.marketplace.model.marketplace.ArticlesModelData
 import com.modul.marketplace.restful.WSRestFull
+import com.modul.marketplace.util.DateTimeUtil
 import kotlinx.android.synthetic.main.fragment_my_articles.*
 import java.util.*
 
@@ -45,12 +47,10 @@ class MyArticlesListFragment(var putStatus: String) : BaseFragment() {
         articlesMode.brand_id = mCartBussiness.getListBrandId()
         articlesMode.company_id = mCartBussiness.companyId
         articlesMode.author_id = mCartBussiness.userId
+        articlesMode.status = putStatus
         if (Constants.ArticlesStatus.EXPIRED == putStatus) {
+            articlesMode.status =Constants.ArticlesStatus.CONFIRMED
             articlesMode.data_type = expired
-        } else if (Constants.ArticlesStatus.SOLD == putStatus) {
-            articlesMode.data_type = selling
-        } else {
-            articlesMode.status = putStatus
         }
 
         WSRestFull(context).apiSCMArticlesByStatus(articlesMode,
@@ -67,8 +67,9 @@ class MyArticlesListFragment(var putStatus: String) : BaseFragment() {
         dismissProgressHub()
         mDatas.clear()
         response?.run {
-            response.data?.run {
-                mDatas.addAll(this)
+            response.data?.forEach {
+                it.dateName = StringExt.isTextEmpty(DateTimeUtil.convertTimeStampToDate(it.created_at, Constants.Date.Format.HH_MM_DD_MM_YYYY))
+                mDatas.add(it)
             }
         }
         if (mError != null) {

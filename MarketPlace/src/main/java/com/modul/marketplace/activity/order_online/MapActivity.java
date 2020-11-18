@@ -117,9 +117,16 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback, Goo
     }
 
     private void initMap() {
-        Intent intent = new Autocomplete.IntentBuilder(
-                AutocompleteActivityMode.OVERLAY, fields)
-                .setTypeFilter(TypeFilter.ADDRESS)
+//        Intent intent = new Autocomplete.IntentBuilder(
+//                AutocompleteActivityMode.OVERLAY, fields)
+//                .setTypeFilter(TypeFilter.ADDRESS)
+//                .build(this);
+//        startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
+
+        List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME);
+
+        // Start the autocomplete intent.
+        Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields)
                 .build(this);
         startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
     }

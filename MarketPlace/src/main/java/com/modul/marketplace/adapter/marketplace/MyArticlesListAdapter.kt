@@ -48,8 +48,8 @@ class MyArticlesListAdapter(
                 mLbTitle.text = StringExt.isTextEmpty(mTitle)
                 mLbContent.text = StringExt.isTextEmpty(mContent)
                 mLbPrice.text = StringExt.convertToMoney(mPrice)
-                created_at?.let{
-                    mTime.text = StringExt.isTextEmpty(convertTimeStampToDate(it, Constants.Date.Format.HH_MM_DD_MM_YYYY))
+                dateName?.let{
+                    mTime.text = it
                 }
                 initAvatarCompany(context,mImage,mImage_urls[0]?.url_thumb.toString(),mContext.getDrawable(R.drawable.icon_default))
 
