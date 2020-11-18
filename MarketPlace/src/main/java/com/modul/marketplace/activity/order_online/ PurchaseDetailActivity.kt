@@ -3,6 +3,7 @@ package com.modul.marketplace.activity.order_online
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.modul.marketplace.R
 import com.modul.marketplace.activity.BaseActivity
@@ -13,6 +14,7 @@ import com.modul.marketplace.extension.initAvatarCompany
 import com.modul.marketplace.extension.showStatusBar
 import com.modul.marketplace.model.orderonline.DmServiceListOrigin
 import com.modul.marketplace.model.orderonline.RowItemModel
+import com.modul.marketplace.util.FormatNumberUtil
 import com.modul.marketplace.util.Utilities
 import kotlinx.android.synthetic.main.activity_purchase_detail.*
 
@@ -42,17 +44,31 @@ class PurchaseDetailActivity : BaseActivity() {
 
         dmServiceListOrigin?.run {
             initAvatarCompany(baseContext, mImg, image, baseContext.getDrawable(R.drawable.icon_default))
-            if(quantity == 0.0){
+            if (quantity == 0.0) {
                 mQuantity.text = "1"
                 dmServiceListOrigin?.quantity = 1.0
-            }else{
+            } else {
                 mQuantity.text = "" + StringExt.convertNumberToString(quantity)
             }
 
             mResult.add(RowItemModel(title = name, isOnlyTitle = true))
             mResult.add(RowItemModel(title = getString(R.string.gia), content = StringExt.convertToMoney(unitPrice) + "/ " + unitName, contentColor = R.color.mainColor, contentStyle = R.style.TextView_SemiBold))
-            if (marketPrice != null && unitPrice != marketPrice) {
-                mResult.add(RowItemModel(title = getString(R.string.gia_ban), content = marketPrice?.let { StringExt.convertToMoney(it) } + "/ " + unitName, contentColor = R.color.mainColor, contentStyle = R.style.TextView_SemiBold))
+            if (type == DmServiceListOrigin.TYPE_COMBO) {
+                var saleAmount = 0.0
+                var unitAmount = 0.0
+                if (details != null) {
+                    for (dmServiceListOrigin in details!!) {
+                        saleAmount += dmServiceListOrigin.getPrice() * dmServiceListOrigin.quantity
+                        unitAmount += dmServiceListOrigin.unitPrice * dmServiceListOrigin.quantity
+                    }
+                }
+                if (saleAmount != unitAmount) {
+                    mResult.add(RowItemModel(title = getString(R.string.gia_ban), content = marketPrice?.let { StringExt.convertToMoney(it) } + "/ " + unitName, contentColor = R.color.mainColor, contentStyle = R.style.TextView_SemiBold))
+                }
+            } else {
+                if (marketPrice != null && unitPrice != marketPrice) {
+                    mResult.add(RowItemModel(title = getString(R.string.gia_ban), content = marketPrice?.let { StringExt.convertToMoney(it) } + "/ " + unitName, contentColor = R.color.mainColor, contentStyle = R.style.TextView_SemiBold))
+                }
             }
             mResult.add(RowItemModel(title = getString(R.string.description), content = desc))
         }
@@ -88,7 +104,7 @@ class PurchaseDetailActivity : BaseActivity() {
     private fun plus() {
         var quantity = mQuantity.text.toString().toInt()
         if (DmServiceListOrigin.TYPE_SUB == dmServiceListOrigin?.type) {
-            dmServiceListOrigin?.minChoice?.run{
+            dmServiceListOrigin?.minChoice?.run {
                 mQuantity.text = "" + this.toInt()
             }
         } else {
@@ -100,12 +116,12 @@ class PurchaseDetailActivity : BaseActivity() {
     private fun minus() {
         var quantity = mQuantity.text.toString().toInt()
         if (DmServiceListOrigin.TYPE_SUB == dmServiceListOrigin?.type) {
-            dmServiceListOrigin?.maxChoice?.run{
+            dmServiceListOrigin?.maxChoice?.run {
                 if (quantity <= this) {
                     mQuantity.text = "" + 0
                 }
             }
-        }else{
+        } else {
             if (quantity > 0) {
                 mQuantity.text = "" + quantity.minus(1)
             }

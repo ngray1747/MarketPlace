@@ -2,7 +2,7 @@
 <resources>
     <string name="default_notification_channel_id">default</string>
 
-    <string name="google_maps_key">AIzaSyCAf3mt40x4J43ReoaU2D4o5cRrHtuwnrI</string>
+    <string name="google_maps_key">AIzaSyA2cK4nTNpQexqZ4WfyFO-TVn1YRuVHQPc</string>
 <!--    <string name="app_name">iPOS Manager</string>-->
     <string name="web_pop_sharelink">Share link</string>
     <string name="web_pop_copylink">Copy link</string>
