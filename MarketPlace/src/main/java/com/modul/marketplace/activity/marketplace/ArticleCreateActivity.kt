@@ -96,9 +96,9 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
                 var imageOrderModel = ImageOrderModel()
                 imageOrderModel.img_url = it.url
                 imageOrderModel.img_url_thumb = it.url_thumb
+                imageOrderModel.status = status
                 mResultImageOrder.add(imageOrderModel)
             }
-            mAdapterImageOrder.notifyDataSetChanged()
 
             mTieuDe.setText(StringExt.isTextEmpty(mTitle))
             price.setText(StringExt.isTextEmpty(mPrice))
@@ -177,6 +177,9 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
                 }
             }
         }
+
+        mResultImageOrder.add(ImageOrderModel(img_url_thumb = null))
+        mAdapterImageOrder.notifyDataSetChanged()
     }
 
     private fun initAdapter() {
@@ -191,7 +194,6 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
             adapter = mAdapterImageOrder
         }
 
-        mResultImageOrder.add(ImageOrderModel(img_url_thumb = null))
         mAdapterImageOrder.notifyDataSetChanged()
     }
 
@@ -283,7 +285,7 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
         }
         var newImageChoice = ArrayList<ArticlesImageModel>()
         mResultImageOrder?.forEachIndexed { index, imageOrderModel ->
-            if (index.plus(1) < mResultImageOrder.size) {
+            imageOrderModel?.img_url_thumb?.run{
                 var newArticles = ArticlesImageModel(url = imageOrderModel.img_url, url_thumb = imageOrderModel.img_url_thumb)
                 newImageChoice.add(newArticles)
             }
@@ -389,7 +391,7 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
         }
         var newImageChoice = ArrayList<ArticlesImageModel>()
         mResultImageOrder?.forEachIndexed { index, imageOrderModel ->
-            if (index.plus(1) < mResultImageOrder.size) {
+            imageOrderModel?.img_url_thumb?.run{
                 var newArticles = ArticlesImageModel(url = imageOrderModel.img_url, url_thumb = imageOrderModel.img_url_thumb)
                 newImageChoice.add(newArticles)
             }
