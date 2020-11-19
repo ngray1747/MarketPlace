@@ -1,5 +1,7 @@
 package com.modul.marketplace.app
 
+//import ly.count.android.sdk.Countly
+//import ly.count.android.sdk.CountlyConfig
 import android.app.Application
 import android.content.ContentValues.TAG
 import android.content.Context
@@ -14,14 +16,8 @@ import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.firebase.FirebaseApp
 import com.modul.marketplace.bussiness.CartBussiness
 import com.modul.marketplace.bussiness.LocationBussiness
-import com.modul.marketplace.model.orderonline.DmBrand
-import com.modul.marketplace.model.orderonline.DmStore
-import com.modul.marketplace.restful.AbsRestful
-import com.modul.marketplace.restful.NukeSSLCerts
-import com.modul.marketplace.restful.OkHttpStack
+import com.modul.marketplace.restful.*
 import com.modul.marketplace.util.FormatNumberUtil
-//import ly.count.android.sdk.Countly
-//import ly.count.android.sdk.CountlyConfig
 import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
 import okhttp3.TlsVersion
@@ -46,6 +42,9 @@ class ApplicationMarketPlace : Application() {
     fun initContext(c: Context){
         context = c
     }
+    fun getAPiApiInterface(): APIInterface? {
+        return ApiClient.getClientSCM().create(APIInterface::class.java)
+    }
 
     override fun onCreate() {
         super.onCreate()
@@ -56,7 +55,7 @@ class ApplicationMarketPlace : Application() {
         Log.i("APP", "ON APP Width/height ")
     }
 
-    fun AddLink(scm_link: String? = null,scm_access_token: String? = null,scm_secret_key: String? = null,hermes_link: String? = null,hermes_access_token: String? = null){
+    fun AddLink(scm_link: String? = null, scm_access_token: String? = null, scm_secret_key: String? = null, hermes_link: String? = null, hermes_access_token: String? = null){
         scm_link?.run {
             SCM_LINK = this
         }

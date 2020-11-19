@@ -7,11 +7,14 @@ import android.widget.AdapterView
 import com.android.volley.VolleyError
 import com.modul.marketplace.R
 import com.modul.marketplace.activity.BaseActivity
+import com.modul.marketplace.app.ApplicationMarketPlace
 import com.modul.marketplace.extension.DialogUtil
 import com.modul.marketplace.extension.StringExt
 import com.modul.marketplace.extension.openActivity
 import com.modul.marketplace.extension.showStatusBar
 import com.modul.marketplace.model.marketplace.AddressModel
+import com.modul.marketplace.model.marketplace.AddressModelData
+import com.modul.marketplace.restful.ApiRequest
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.ToastUtil
 import kotlinx.android.synthetic.main.activity_select_order_address.*
@@ -21,6 +24,7 @@ import java.util.*
 class SelectStartAddressActivity : BaseActivity() {
 
     private val mCitys = ArrayList<AddressModel>()
+    private val mApi = ApplicationMarketPlace.instance.getAPiApiInterface()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +58,7 @@ class SelectStartAddressActivity : BaseActivity() {
                 var cityName = provinceList[position]
                 selectCodeCity(cityName)
             }
+
             override fun onNothingSelected(adapterView: AdapterView<*>?) {}
         }
     }
@@ -83,9 +88,11 @@ class SelectStartAddressActivity : BaseActivity() {
 
     private fun getLocate() {
         showProgressHub(this)
-        WSRestFull(this).apiSCMCity({ (data) -> areaDone(data) }) { error: VolleyError ->
+
+        val callback: ApiRequest<AddressModelData> = ApiRequest()
+        callback.setCallBack(mApi?.apiSCMCity(1000),
+                { response ->  areaDone(response.data) }) { error ->
             areaDone(null)
-            error.printStackTrace()
             ToastUtil.makeText(this, getString(R.string.error_network2))
         }
     }
@@ -102,7 +109,7 @@ class SelectStartAddressActivity : BaseActivity() {
                     getLocate()
                 })
             }
-        }catch (e:Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }
