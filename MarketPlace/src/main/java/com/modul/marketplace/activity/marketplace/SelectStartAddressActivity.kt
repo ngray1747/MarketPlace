@@ -102,13 +102,17 @@ class SelectStartAddressActivity : BaseActivity() {
     private fun areaDone(data: ArrayList<AddressModel>?) {
         dismissProgressHub()
         mCitys.clear()
-        if (data != null) {
-            mCitys.addAll(data)
-            showDialogCity()
-        }else{
-            DialogUtil.showAlert(this,textTitle = R.string.thongbao,textMessage = R.string.error_network,cancelable = false,okListener = {
-                getLocate()
-            })
+        try {
+            if (data != null) {
+                mCitys.addAll(data)
+                showDialogCity()
+            } else {
+                DialogUtil.showAlert(this, textTitle = R.string.thongbao, textMessage = R.string.error_network, cancelable = false, okListener = {
+                    getLocate()
+                })
+            }
+        }catch (e:Exception){
+            e.printStackTrace()
         }
     }
 
