@@ -69,6 +69,7 @@ class CartBussiness {
         orderOnline.companyFullAddress = mOrderModel.companyFullAddress
 
         orderOnline.requestInvoice = mOrderModel.requestInvoice
+        orderOnline.dmVoucher = mOrderModel.dmVoucher
 
         orderOnline.storeId = mOrderModel.storeId
         orderOnline.storeName = mOrderModel.storeName
