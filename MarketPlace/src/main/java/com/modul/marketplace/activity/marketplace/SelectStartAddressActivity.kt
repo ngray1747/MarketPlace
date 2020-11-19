@@ -105,11 +105,11 @@ class SelectStartAddressActivity : BaseActivity() {
         try {
             if (data != null) {
                 mCitys.addAll(data)
-                showDialogCity()
+//                showDialogCity()
             } else {
-                DialogUtil.showAlert(this, textTitle = R.string.thongbao, textMessage = R.string.error_network, cancelable = false, okListener = {
-                    getLocate()
-                })
+//                DialogUtil.showAlert(this, textTitle = R.string.thongbao, textMessage = R.string.error_network, cancelable = false, okListener = {
+//                    getLocate()
+//                })
             }
         }catch (e:Exception){
             e.printStackTrace()
