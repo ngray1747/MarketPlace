@@ -129,7 +129,7 @@ public interface APIInterface {
     Call<ArticlesModelDataObject> apiSCMArticlesEdit(@Body String json);
 
     @GET("articles/count-status")
-    Call<ArticlesCountModelData> apiSCMArticlesCount(@Query("brand_ids") String brand_ids,@Query("company_id") String company_id,@Query("author_id") String author_id);
+    Call<ArticlesCountModelData> apiSCMArticlesCount(@Query("company_id") String company_id,@Query("author_id") String author_id);
 
     @POST("invoices")
     Call<NvlOnlineModelData> apiSCMInvoices(@Body NvlOnlineModel json);

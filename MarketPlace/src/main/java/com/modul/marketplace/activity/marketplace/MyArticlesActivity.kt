@@ -40,7 +40,7 @@ class MyArticlesActivity : BaseActivity() {
         Log.e("data","aaaa: "+ articlesModel.toJson())
 
         val callback: ApiRequest<ArticlesCountModelData> = ApiRequest()
-        callback.setCallBack(mApiSCM?.apiSCMArticlesCount(articlesModel.brand_id,articlesModel.company_id,articlesModel.author_id),
+        callback.setCallBack(mApiSCM?.apiSCMArticlesCount(articlesModel.company_id,articlesModel.author_id),
                 { response ->  callback(response) }) { error ->
             callback(null)
             error.printStackTrace()
