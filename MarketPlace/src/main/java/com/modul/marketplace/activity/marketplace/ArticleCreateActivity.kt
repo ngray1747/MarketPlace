@@ -434,7 +434,7 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
     private fun apiCreate(articlesModel: ArticlesModel) {
         showProgressHub(this)
         val callback: ApiRequest<ArticlesModelDataObject> = ApiRequest()
-        callback.setCallBack(mApiSCM?.apiSCMArticlesCreate(articlesModel.toJson()),
+        callback.setCallBack(mApiSCM?.apiSCMArticlesCreate(articlesModel),
                 { response -> createDone(response.data) }) { error ->
             createDone(null)
             error.printStackTrace()

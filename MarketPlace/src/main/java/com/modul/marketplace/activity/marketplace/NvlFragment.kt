@@ -117,7 +117,7 @@ class NvlFragment : BaseFragment() {
     private fun callServiceList() {
         showProgressHub(mActivity)
         val callback: ApiRequest<NvlModelData> = ApiRequest()
-        callback.setCallBack(mApiSCM?.apiSCMProducts(mCartBussiness.getCartLocate().locateId),
+        callback.setCallBack(mApiSCM?.apiSCMProducts(1,mCartBussiness.getCartLocate().locateId),
                 { response ->  onResponseServiceList(response.data) }) { error ->
             onResponseServiceList(null)
             error.printStackTrace()

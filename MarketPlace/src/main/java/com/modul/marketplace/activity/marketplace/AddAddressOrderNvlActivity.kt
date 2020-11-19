@@ -252,7 +252,7 @@ class AddAddressOrderNvlActivity : BaseActivity() {
 
     private fun apiCreate(locateModel: LocationModel){
         val callback: ApiRequest<LocationModelDataObject> = ApiRequest()
-        callback.setCallBack(mApiSCM?.apiSCMLocationCreate(locateModel.toJson()),
+        callback.setCallBack(mApiSCM?.apiSCMLocationCreate(locateModel),
                 { response ->  createDone(response.data) }) { error ->
             createDone(null)
             error.printStackTrace()

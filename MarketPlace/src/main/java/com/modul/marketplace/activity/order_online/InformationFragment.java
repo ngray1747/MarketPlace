@@ -413,7 +413,7 @@ public class InformationFragment extends BaseFragment {
     private void createOrderNvl(NvlOnlineModel convertNvlToJson) {
         showProgressHub(mActivity);
         ApiRequest<NvlOnlineModelData> callback = new ApiRequest<>();
-        callback.setCallBack(mApiSCM.apiSCMInvoices(convertNvlToJson.toJson()),
+        callback.setCallBack(mApiSCM.apiSCMInvoices(convertNvlToJson),
                 response -> {
                     onReponseOrderNvl(response);
                 }, error -> {
@@ -435,7 +435,7 @@ public class InformationFragment extends BaseFragment {
     private void createOrderOnline(DmOrderOnline dmOrderOnline) {
         showProgressHub(mActivity);
         ApiRequest<RestDmOrderOnline> callback = new ApiRequest<>();
-        callback.setCallBack(mApiHermes.apiOrderOnline(dmOrderOnline.toJson()),
+        callback.setCallBack(mApiHermes.apiOrderOnline(dmOrderOnline),
                 response -> {
                     onReponseOrderOnline(response.getData());
                 }, error -> {
@@ -577,7 +577,7 @@ public class InformationFragment extends BaseFragment {
         showProgressHub(mActivity);
 
         ApiRequest<DmCallBackMoMo> callback = new ApiRequest<>();
-        callback.setCallBack(mApiHermes.apiPaymentMoMo(dmCallBackMoMo.toJson()),
+        callback.setCallBack(mApiHermes.apiPaymentMoMo(dmCallBackMoMo),
                 response -> {
                     onResponseCallBackMoMo();
                 }, error -> {

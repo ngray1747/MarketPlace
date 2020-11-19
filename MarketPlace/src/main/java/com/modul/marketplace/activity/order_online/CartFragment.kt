@@ -111,7 +111,7 @@ class CartFragment : BaseFragment() {
         restAllDmCheckVoucher.voucherCode = voucherCode
 
         val callback: ApiRequest<RestAllDmCheckVoucher> = ApiRequest()
-        callback.setCallBack(mApiHermes?.apiCheckVoucher(restAllDmCheckVoucher.toJson()),
+        callback.setCallBack(mApiHermes?.apiCheckVoucher(restAllDmCheckVoucher),
                 { response ->
                     dismissProgressHub()
                     onReponseCheckVoucher(response.data)
@@ -155,7 +155,7 @@ class CartFragment : BaseFragment() {
         Log.e("rest All", "auto Promotion: " + restAllDmCheckAutoPromotion.toJson())
 
         val callback: ApiRequest<RestAllDmCheckAutoPromotion> = ApiRequest()
-        callback.setCallBack(mApiHermes?.apiCheckAutoPromotion(restAllDmCheckAutoPromotion.toJson()),
+        callback.setCallBack(mApiHermes?.apiCheckAutoPromotion(restAllDmCheckAutoPromotion),
                 { response ->  dismissProgressHub()
                     onResponePromotion(response.datas)}) { error ->
             dismissProgressHub()

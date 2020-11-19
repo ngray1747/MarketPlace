@@ -593,7 +593,7 @@ public class OrderDetailFragment extends BaseFragment {
         showProgressHub(mActivity);
 
         ApiRequest<DmCallBackMoMo> callback = new ApiRequest<>();
-        callback.setCallBack(mApiHermes.apiPaymentMoMo(dmCallBackMoMo.toJson()),
+        callback.setCallBack(mApiHermes.apiPaymentMoMo(dmCallBackMoMo),
                 response -> {
                     onResponseCallBackMoMo();
                 }, error -> {

@@ -36,7 +36,7 @@ class FeedbackActivity : BaseActivity() {
     private fun feedback() {
         var feedbackModel = FeedbackModel(feedback_title = mLb.text.toString(), feedback_content = mNote.text.toString(), customer_name = mCartBussiness.userId,customer_phone = "")
         val callback: ApiRequest<FeedbackModelData> = ApiRequest()
-        callback.setCallBack(mApiSCM?.apiSCMFeedback(feedbackModel.toJson()),
+        callback.setCallBack(mApiSCM?.apiSCMFeedback(feedbackModel),
                 { response ->  response?.run{
                     data?.run{
                         layout_success.visible()
