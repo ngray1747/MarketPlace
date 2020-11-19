@@ -59,7 +59,6 @@ class AddAddressOrderOnlineActivity : BaseActivity() {
     private fun initClick() {
         mIconLeft.setOnClickListener { onBackPressed() }
         mCancel.setOnClickListener { onBackPressed() }
-        mAddress.setOnClickListener { address() }
         mCity.setOnClickListener { city() }
         mDistrict.setOnClickListener { district() }
         mPhuongXa.setOnClickListener { phuongxa() }
@@ -102,9 +101,6 @@ class AddAddressOrderOnlineActivity : BaseActivity() {
         onBackPressed()
     }
 
-    private fun address() {
-        GPS()
-    }
 
     private fun city() {
         if (mCitys.size > 0) {
