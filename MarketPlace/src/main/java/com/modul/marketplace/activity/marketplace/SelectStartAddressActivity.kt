@@ -91,12 +91,12 @@ class SelectStartAddressActivity : BaseActivity() {
     }
 
     private fun getLocate() {
-        showProgressHub(this)
-        WSRestFull(this).apiSCMCity({ (data) -> areaDone(data) }) { error: VolleyError ->
-            areaDone(null)
-            error.printStackTrace()
-            ToastUtil.makeText(this, getString(R.string.error_network2))
-        }
+//        showProgressHub(this)
+//        WSRestFull(this).apiSCMCity({ (data) -> areaDone(data) }) { error: VolleyError ->
+//            areaDone(null)
+//            error.printStackTrace()
+//            ToastUtil.makeText(this, getString(R.string.error_network2))
+//        }
     }
 
     private fun areaDone(data: ArrayList<AddressModel>?) {
