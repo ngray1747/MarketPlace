@@ -35,14 +35,6 @@ class SelectStartAddressActivity : BaseActivity() {
         mStart.setOnClickListener { start() }
     }
 
-    private fun address() {
-        if (mCitys.size > 0) {
-            showDialogCity()
-        } else {
-            getLocate()
-        }
-    }
-
     private fun showDialogCity() {
         var provinceList: MutableList<String> = ArrayList()
         Timber.e("mCitys: " + mCitys.size)
@@ -77,14 +69,12 @@ class SelectStartAddressActivity : BaseActivity() {
     }
 
     private fun start() {
-        getLocate()
-
-//        if (TextUtils.isEmpty(mCartBussiness.getCartLocate().locateId)) {
-//            ToastUtil.makeText(this, getString(R.string.khuvuc_valid))
-//            return
-//        }
-//        onBackPressed()
-//        openActivity(MarketPlaceActivity::class.java)
+        if (TextUtils.isEmpty(mCartBussiness.getCartLocate().locateId)) {
+            ToastUtil.makeText(this, getString(R.string.khuvuc_valid))
+            return
+        }
+        onBackPressed()
+        openActivity(MarketPlaceActivity::class.java)
     }
 
     private fun initExtra() {
@@ -119,6 +109,6 @@ class SelectStartAddressActivity : BaseActivity() {
 
     private fun initData() {
         showStatusBar(isTranparent = true)
-//        getLocate()
+        getLocate()
     }
 }
