@@ -18,8 +18,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
     private static final long TIME_OUT = 30;
-    private static Retrofit retrofit = null;
-    private static Retrofit retrofitForword = null;
+    private static Retrofit retrofitSCM = null;
+    private static Retrofit retrofitHermes = null;
 
     public static OkHttpClient getOkHttpSCM() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -92,32 +92,32 @@ public class ApiClient {
     public static Retrofit getClientSCM() {
 
 
-        if (retrofit == null) {
+        if (retrofitSCM == null) {
             OkHttpClient client = getOkHttpSCM();
-            retrofit = new Retrofit.Builder()
+            retrofitSCM = new Retrofit.Builder()
                     .baseUrl(ApplicationMarketPlace.instance.getSCM_LINK())
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();
 
         }
-        return retrofit;
+        return retrofitSCM;
     }
 
 
     public static Retrofit getClientHermes() {
 
 
-        if (retrofit == null) {
+        if (retrofitHermes == null) {
             OkHttpClient client = getOkHttpHerrmes();
-            retrofit = new Retrofit.Builder()
+            retrofitHermes = new Retrofit.Builder()
                     .baseUrl(ApplicationMarketPlace.instance.getHERMES_LINK())
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();
 
         }
-        return retrofit;
+        return retrofitHermes;
     }
 
 
