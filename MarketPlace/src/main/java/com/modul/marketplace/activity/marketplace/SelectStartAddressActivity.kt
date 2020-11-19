@@ -28,7 +28,6 @@ class SelectStartAddressActivity : BaseActivity() {
         initData()
         initExtra()
         initClick()
-        getLocate()
     }
 
     private fun initClick() {
@@ -78,12 +77,14 @@ class SelectStartAddressActivity : BaseActivity() {
     }
 
     private fun start() {
-        if (TextUtils.isEmpty(mCartBussiness.getCartLocate().locateId)) {
-            ToastUtil.makeText(this, getString(R.string.khuvuc_valid))
-            return
-        }
-        onBackPressed()
-        openActivity(MarketPlaceActivity::class.java)
+        getLocate()
+
+//        if (TextUtils.isEmpty(mCartBussiness.getCartLocate().locateId)) {
+//            ToastUtil.makeText(this, getString(R.string.khuvuc_valid))
+//            return
+//        }
+//        onBackPressed()
+//        openActivity(MarketPlaceActivity::class.java)
     }
 
     private fun initExtra() {
@@ -91,12 +92,12 @@ class SelectStartAddressActivity : BaseActivity() {
     }
 
     private fun getLocate() {
-//        showProgressHub(this)
-//        WSRestFull(this).apiSCMCity({ (data) -> areaDone(data) }) { error: VolleyError ->
-//            areaDone(null)
-//            error.printStackTrace()
-//            ToastUtil.makeText(this, getString(R.string.error_network2))
-//        }
+        showProgressHub(this)
+        WSRestFull(this).apiSCMCity({ (data) -> areaDone(data) }) { error: VolleyError ->
+            areaDone(null)
+            error.printStackTrace()
+            ToastUtil.makeText(this, getString(R.string.error_network2))
+        }
     }
 
     private fun areaDone(data: ArrayList<AddressModel>?) {
@@ -105,11 +106,11 @@ class SelectStartAddressActivity : BaseActivity() {
         try {
             if (data != null) {
                 mCitys.addAll(data)
-//                showDialogCity()
+                showDialogCity()
             } else {
-//                DialogUtil.showAlert(this, textTitle = R.string.thongbao, textMessage = R.string.error_network, cancelable = false, okListener = {
-//                    getLocate()
-//                })
+                DialogUtil.showAlert(this, textTitle = R.string.thongbao, textMessage = R.string.error_network, cancelable = false, okListener = {
+                    getLocate()
+                })
             }
         }catch (e:Exception){
             e.printStackTrace()
@@ -118,6 +119,6 @@ class SelectStartAddressActivity : BaseActivity() {
 
     private fun initData() {
         showStatusBar(isTranparent = true)
-        getLocate()
+//        getLocate()
     }
 }
