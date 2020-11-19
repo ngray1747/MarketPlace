@@ -34,7 +34,7 @@ class MyArticlesActivity : BaseActivity() {
 
     private fun api() {
         var articlesModel = ArticlesModel()
-        articlesModel.brand_id = mCartBussiness.getListBrandId()
+//        articlesModel.brand_id = mCartBussiness.getListBrandId()
         articlesModel.company_id = mCartBussiness.companyId
         articlesModel.author_id = mCartBussiness.userId
         Log.e("data","aaaa: "+ articlesModel.toJson())
