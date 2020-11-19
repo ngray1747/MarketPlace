@@ -18,7 +18,9 @@ import com.modul.marketplace.activity.BaseActivity
 import com.modul.marketplace.app.Constants
 import com.modul.marketplace.app.Constants.BROADCAST.*
 import com.modul.marketplace.extension.*
+import com.modul.marketplace.model.marketplace.AddressModelData
 import com.modul.marketplace.model.orderonline.DmOrderOnline
+import com.modul.marketplace.restful.ApiRequest
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.ToastUtil
 import com.modul.marketplace.util.Utilities
@@ -162,7 +164,9 @@ class MarketPlaceActivity : BaseActivity() {
 
     private fun getLocate() {
         showProgressHub(this)
-        WSRestFull(this).apiSCMCity({ (data) -> areaDone(data) }) { error: VolleyError ->
+        val callback: ApiRequest<AddressModelData> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiSCMCity(1000),
+                { response ->  areaDone(response.data) }) { error ->
             areaDone(null)
             error.printStackTrace()
             ToastUtil.makeText(this, getString(R.string.error_network2))

@@ -46,5 +46,3 @@ task clean(type: Delete) {
 ext.versions = [:]
 versions.gson = "2.8.0"
 versions.retrofit = "2.5.0"
-versions.okhttp = "3.12.2"
-versions.loggingok = "3.12.2"

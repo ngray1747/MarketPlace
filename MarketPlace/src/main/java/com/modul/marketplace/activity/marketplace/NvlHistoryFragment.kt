@@ -16,8 +16,11 @@ import com.modul.marketplace.activity.marketplace.NvlHistoryDetailActivity
 import com.modul.marketplace.activity.order_online.OrderDetailFragment
 import com.modul.marketplace.extension.gone
 import com.modul.marketplace.extension.visible
+import com.modul.marketplace.model.marketplace.ArticlesModelData
 import com.modul.marketplace.model.marketplace.NvlOnlineModel
+import com.modul.marketplace.model.marketplace.NvlOnlineModelDataList
 import com.modul.marketplace.model.orderonline.DmHistoryOrderDetail
+import com.modul.marketplace.restful.ApiRequest
 import  com.modul.marketplace.restful.WSRestFull
 import  com.modul.marketplace.util.ToastUtil
 import kotlinx.android.synthetic.main.fragment_history_order_detail.*
@@ -105,7 +108,9 @@ class NvlHistoryFragment : BaseFragment() {
             isRefreshing = true
         }
 
-        WSRestFull(context).apiSCMInvoicesHistory(mCartBussiness.companyId,page, { (data) -> onResponseOrderOnline(data) }) { error ->
+        val callback: ApiRequest<NvlOnlineModelDataList> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiSCMInvoicesHistory(mCartBussiness.companyId,page,10),
+                { response ->  onResponseOrderOnline(response.data) }) { error ->
             onResponseOrderOnline(null)
             error.printStackTrace()
             ToastUtil.makeText(mActivity, getString(R.string.error_network2))

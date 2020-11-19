@@ -19,9 +19,12 @@ import com.modul.marketplace.extension.openActivity
 import com.modul.marketplace.extension.visible
 import com.modul.marketplace.model.marketplace.ArticlesModel
 import com.modul.marketplace.model.marketplace.ArticlesModelData
+import com.modul.marketplace.restful.ApiRequest
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.DateTimeUtil
+import com.modul.marketplace.util.ToastUtil
 import kotlinx.android.synthetic.main.fragment_my_articles.*
+import retrofit2.http.Query
 import java.util.*
 
 class MyArticlesListFragment(var putStatus: String) : BaseFragment() {
@@ -51,14 +54,16 @@ class MyArticlesListFragment(var putStatus: String) : BaseFragment() {
         if (Constants.ArticlesStatus.EXPIRED == putStatus) {
             articlesMode.status =Constants.ArticlesStatus.CONFIRMED
             articlesMode.data_type = expired
+        }else{
+            articlesMode.data_type = ""
         }
 
-        WSRestFull(context).apiSCMArticlesByStatus(articlesMode,
-                { response -> callback(response) },
-                { error ->
-                    callback(null)
-                    error.printStackTrace()
-                })
+        val callback: ApiRequest<ArticlesModelData> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiSCMArticlesByStatus(articlesMode.status,articlesMode.brand_id,articlesMode.company_id,articlesMode.author_id,articlesMode.data_type,"myArticle",1000),
+                { response ->  callback(response) }) { error ->
+            callback(null)
+            error.printStackTrace()
+        }
     }
 
     private fun callback(response: ArticlesModelData?) {

@@ -42,8 +42,13 @@ class ApplicationMarketPlace : Application() {
     fun initContext(c: Context){
         context = c
     }
-    fun getAPiApiInterface(): APIInterface? {
+
+    fun getAPiSCMInterface(): APIInterface? {
         return ApiClient.getClientSCM().create(APIInterface::class.java)
+    }
+
+    fun getAPiHermesInterface(): APIInterface? {
+        return ApiClient.getClientHermes().create(APIInterface::class.java)
     }
 
     override fun onCreate() {

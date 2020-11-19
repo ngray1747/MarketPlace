@@ -19,7 +19,10 @@ import com.modul.marketplace.app.Constants
 import com.modul.marketplace.extension.gone
 import com.modul.marketplace.extension.openActivity
 import com.modul.marketplace.extension.visible
+import com.modul.marketplace.model.marketplace.AddressModelData
 import com.modul.marketplace.model.marketplace.ArticlesModel
+import com.modul.marketplace.model.marketplace.ArticlesModelData
+import com.modul.marketplace.restful.ApiRequest
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.ToastUtil
 import com.modul.marketplace.util.Utilities
@@ -75,7 +78,9 @@ class ArticleFragment : BaseFragment() {
 
     private fun callServiceList() {
         showProgressHub(mActivity)
-        WSRestFull(context).apiSCMArticles(mCartBussiness.getCartLocate().locateId,mCartBussiness.companyId,mCartBussiness.getListBrandId(), { (data) -> onResponseServiceList(data) }) { error: VolleyError ->
+        val callback: ApiRequest<ArticlesModelData> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiSCMArticles(mCartBussiness.getCartLocate().locateId,mCartBussiness.companyId,mCartBussiness.getListBrandId()),
+                { response ->  onResponseServiceList(response.data) }) { error ->
             onResponseServiceList(null)
             error.printStackTrace()
             ToastUtil.makeText(mActivity, getString(R.string.error_network2))

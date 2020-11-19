@@ -11,18 +11,19 @@ import android.widget.ImageView
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.volley.Response
-import com.android.volley.VolleyError
 import com.asksira.bsimagepicker.BSImagePicker
 import com.bumptech.glide.Glide
-import com.modul.marketplace.adapter.marketplace.ImageOrderAdapter
 import com.modul.marketplace.R
 import com.modul.marketplace.activity.BaseActivity
+import com.modul.marketplace.adapter.marketplace.ImageOrderAdapter
 import com.modul.marketplace.app.Constants
 import com.modul.marketplace.app.Constants.ArticlesStatus.CANCELED
 import com.modul.marketplace.app.Constants.ArticlesStatus.SOLD
 import com.modul.marketplace.extension.*
 import com.modul.marketplace.model.marketplace.*
 import com.modul.marketplace.model.orderonline.ImageOrderModel
+import com.modul.marketplace.restful.ApiError
+import com.modul.marketplace.restful.ApiRequest
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.DateTimeUtil
 import com.modul.marketplace.util.Log
@@ -30,6 +31,10 @@ import com.modul.marketplace.util.ToastUtil
 import com.modul.marketplace.util.Utilities
 import kotlinx.android.synthetic.main.activity_article_create.*
 import kotlinx.android.synthetic.main.include_header2.*
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import java.io.*
 
 
@@ -73,11 +78,14 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
 
     private fun apiDetail(id: String?) {
         showProgressHub(this)
-        WSRestFull(this).apiSCMArticlesDetail(id.toString(), Response.Listener { response -> apiDetailDone(response.data) }, Response.ErrorListener { error ->
+
+        val callback: ApiRequest<ArticlesModelDataObject> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiSCMArticlesDetail(id.toString()),
+                { response -> apiDetailDone(response.data) }) { error ->
             apiDetailDone(null)
             error.printStackTrace()
             ToastUtil.makeText(this, getString(R.string.error_network2))
-        })
+        }
     }
 
     private fun apiDetailDone(data: ArticlesModel?) {
@@ -95,7 +103,7 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
                 }
             }
 
-            mImage_urls?.forEach {
+            mImage_urls.forEach {
                 var imageOrderModel = ImageOrderModel()
                 imageOrderModel.img_url = it.url
                 imageOrderModel.img_url_thumb = it.url_thumb
@@ -155,7 +163,7 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
                     }
                     if (expire_time != null) {
                         DateTimeUtil.compareTimeGet(DateTimeUtil.convertTimeStampToDate(expire_time, Constants.Date.Format.YYYY_MM_DD_HH_MM_SS_2)) { month, day, hour, minus, second ->
-                            if(second > 0){
+                            if (second > 0) {
                                 mAnTin.gone()
                                 mDaBan.gone()
                                 mTaoLaiTin.visible()
@@ -225,29 +233,29 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
     private fun apiTaoLaiTin() {
         var newArticlesModel = ArticlesModel(id = articlesModel?.id, type = "renew")
         apiEdit(newArticlesModel)
-        Utilities.sendBoardCounlyLib(baseContext,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.RENEW_ARTICLE)
+        Utilities.sendBoardCounlyLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.RENEW_ARTICLE)
     }
 
     private fun apiHuyTin() {
         var newArticlesModel = ArticlesModel(id = articlesModel?.id, status = CANCELED)
         apiEdit(newArticlesModel)
-        Utilities.sendBoardCounlyLib(baseContext,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.CANCLE_ARTICLE)
+        Utilities.sendBoardCounlyLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.CANCLE_ARTICLE)
     }
 
     private fun apiAnTin() {
         if (articlesModel?.active == 0) {
             var newArticlesModel = ArticlesModel(id = articlesModel?.id, active = 1)
             apiEdit(newArticlesModel)
-            Utilities.sendBoardCounlyLib(baseContext,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.ACTIVE_ARTICLE)
+            Utilities.sendBoardCounlyLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.ACTIVE_ARTICLE)
         } else {
             var newArticlesModel = ArticlesModel(id = articlesModel?.id, active = 0)
             apiEdit(newArticlesModel)
-            Utilities.sendBoardCounlyLib(baseContext,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.DEACTIVE_ARTICLE)
+            Utilities.sendBoardCounlyLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.DEACTIVE_ARTICLE)
         }
     }
 
     private fun apiDaBan() {
-        Utilities.sendBoardCounlyLib(baseContext,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.MARK_SOLD_ARTICLE)
+        Utilities.sendBoardCounlyLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.MARK_SOLD_ARTICLE)
         var newArticlesModel = ArticlesModel(id = articlesModel?.id, status = SOLD)
         apiEdit(newArticlesModel)
     }
@@ -257,7 +265,7 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
     }
 
     private fun capnhat() {
-        Utilities.sendBoardCounlyLib(baseContext,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.EDIT_ARTICLE)
+        Utilities.sendBoardCounlyLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.EDIT_ARTICLE)
 
         if (TextUtils.isEmpty(mTieuDe.text.toString())) {
             ToastUtil.makeText(this, getString(R.string.articles_title_valid))
@@ -286,8 +294,8 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
                     price.text.toString().replace(".", "").replace(",", "").toDouble()
         }
         var newImageChoice = ArrayList<ArticlesImageModel>()
-        mResultImageOrder?.forEachIndexed { index, imageOrderModel ->
-            imageOrderModel?.img_url_thumb?.run{
+        mResultImageOrder.forEachIndexed { index, imageOrderModel ->
+            imageOrderModel.img_url_thumb?.run{
                 var newArticles = ArticlesImageModel(url = imageOrderModel.img_url, url_thumb = imageOrderModel.img_url_thumb)
                 newImageChoice.add(newArticles)
             }
@@ -309,7 +317,10 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
 
     private fun tags() {
         showProgressHub(this)
-        WSRestFull(this).apiSCMTags({ (data) -> tagsDone(data) }) { error: VolleyError ->
+
+        val callback: ApiRequest<TagsModelData> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiSCMTags(),
+                { response -> tagsDone(response.data) }) { error ->
             tagsDone(null)
             error.printStackTrace()
             ToastUtil.makeText(this, getString(R.string.error_network2))
@@ -338,7 +349,9 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
 
     private fun choiceKhuVuc() {
         showProgressHub(this)
-        WSRestFull(this).apiSCMCity({ (data) -> areaDone(data) }) { error: VolleyError ->
+        val callback: ApiRequest<AddressModelData> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiSCMCity(1000),
+                { response -> areaDone(response.data) }) { error ->
             areaDone(null)
             error.printStackTrace()
             ToastUtil.makeText(this, getString(R.string.error_network2))
@@ -392,8 +405,8 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
                     price.text.toString().replace(".", "").replace(",", "").toDouble()
         }
         var newImageChoice = ArrayList<ArticlesImageModel>()
-        mResultImageOrder?.forEachIndexed { index, imageOrderModel ->
-            imageOrderModel?.img_url_thumb?.run{
+        mResultImageOrder.forEachIndexed { index, imageOrderModel ->
+            imageOrderModel.img_url_thumb?.run{
                 var newArticles = ArticlesImageModel(url = imageOrderModel.img_url, url_thumb = imageOrderModel.img_url_thumb)
                 newImageChoice.add(newArticles)
             }
@@ -415,12 +428,14 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
                 company_id = mCartBussiness.companyId,
                 mContent = mDesc.text.toString())
         apiCreate(newArticlesModel)
-        Utilities.sendBoardCounlyLib(baseContext,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.CREATE_ARTICLE)
+        Utilities.sendBoardCounlyLib(baseContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.CREATE_ARTICLE)
     }
 
     private fun apiCreate(articlesModel: ArticlesModel) {
         showProgressHub(this)
-        WSRestFull(this).apiSCMArticlesCreate(articlesModel.toJson(), { (data) -> createDone(data) }) { error: VolleyError ->
+        val callback: ApiRequest<ArticlesModelDataObject> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiSCMArticlesCreate(articlesModel.toJson()),
+                { response -> createDone(response.data) }) { error ->
             createDone(null)
             error.printStackTrace()
             ToastUtil.makeText(this, getString(R.string.error_network2))
@@ -429,7 +444,9 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
 
     private fun apiEdit(articlesModel: ArticlesModel) {
         showProgressHub(this)
-        WSRestFull(this).apiSCMArticlesEdit(articlesModel.toJson(), { (data) -> editDone(data) }) { error: VolleyError ->
+        val callback: ApiRequest<ArticlesModelDataObject> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiSCMArticlesEdit(articlesModel.toJson()),
+                { response -> editDone(response.data) }) { error ->
             editDone(null)
             error.printStackTrace()
             ToastUtil.makeText(this, getString(R.string.error_network2))
@@ -489,9 +506,34 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
         uri?.run {
             var bitmap = MediaStore.Images.Media.getBitmap(contentResolver, this)
             showProgressHub(this@ArticleCreateActivity)
-            WSRestFull(this@ArticleCreateActivity).apiSCMUpload(getFile(bitmap), Response.Listener {
-                uploadDone(it.data)
-            })
+
+            val f = File(cacheDir, "image.jpg")
+            try {
+                f.createNewFile()
+                val bm = bitmap
+                val bos = ByteArrayOutputStream()
+                bm.compress(Bitmap.CompressFormat.JPEG, 100, bos)
+                val bitmapdata = bos.toByteArray()
+                var fos: FileOutputStream? = null
+                fos = FileOutputStream(f)
+                fos.write(bitmapdata)
+                fos.flush()
+                fos.close()
+            } catch (e: FileNotFoundException) {
+                e.printStackTrace()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+
+            val reqFile: RequestBody = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), f)
+            val body: MultipartBody.Part = MultipartBody.Part.createFormData("file", f.name, reqFile)
+
+            val callback: ApiRequest<ArticlesImageModelData> = ApiRequest()
+            callback.setCallBack(mApiSCM?.apiSCMUpload(body),
+                    { response -> uploadDone(response.data) }) { error ->
+                error.printStackTrace()
+                dismissProgressHub()
+            }
         }
     }
 
@@ -524,7 +566,7 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
         dismissProgressHub()
         data?.run {
             Log.e("data", "data: " + data.toJson())
-            mResultImageOrder.add(ImageOrderModel(img_url_thumb = img_url_thumb, img_url = img_url,status = Constants.ArticlesStatus.PENDING))
+            mResultImageOrder.add(ImageOrderModel(img_url_thumb = img_url_thumb, img_url = img_url, status = Constants.ArticlesStatus.PENDING))
 
             with(mResultImageOrder.iterator()) {
                 forEach {

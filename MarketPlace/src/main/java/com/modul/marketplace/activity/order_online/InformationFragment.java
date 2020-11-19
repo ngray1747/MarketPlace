@@ -40,6 +40,9 @@ import com.modul.marketplace.model.orderonline.DmOrderOnline;
 import com.modul.marketplace.model.orderonline.DmQRCode;
 import com.modul.marketplace.model.orderonline.DmService;
 import com.modul.marketplace.model.orderonline.DmStore;
+import com.modul.marketplace.paser.orderonline.RestDmOrderOnline;
+import com.modul.marketplace.paser.orderonline.RestDmQRCode;
+import com.modul.marketplace.restful.ApiRequest;
 import com.modul.marketplace.restful.WSRestFull;
 import com.modul.marketplace.util.FormatNumberUtil;
 import com.modul.marketplace.util.Log;
@@ -409,11 +412,15 @@ public class InformationFragment extends BaseFragment {
 
     private void createOrderNvl(NvlOnlineModel convertNvlToJson) {
         showProgressHub(mActivity);
-        new WSRestFull(getContext()).apiSCMInvoices(convertNvlToJson.toJson(), response -> onReponseOrderNvl(response), error -> {
-            onReponseOrderNvl(null);
-            error.printStackTrace();
-            ToastUtil.makeText(mActivity, getString(R.string.error_network2));
-        });
+        ApiRequest<NvlOnlineModelData> callback = new ApiRequest<>();
+        callback.setCallBack(mApiSCM.apiSCMInvoices(convertNvlToJson.toJson()),
+                response -> {
+                    onReponseOrderNvl(response);
+                }, error -> {
+                    onReponseOrderNvl(null);
+                    error.printStackTrace();
+                    ToastUtil.makeText(mActivity, getString(R.string.error_network2));
+                });
     }
 
     private void onReponseOrderNvl(NvlOnlineModelData response) {
@@ -427,11 +434,15 @@ public class InformationFragment extends BaseFragment {
 
     private void createOrderOnline(DmOrderOnline dmOrderOnline) {
         showProgressHub(mActivity);
-        new WSRestFull(getContext()).apiOrderOnline(dmOrderOnline.toJson(), response -> onReponseOrderOnline(response.getData()), error -> {
-            onReponseOrderOnline(null);
-            error.printStackTrace();
-            ToastUtil.makeText(mActivity, getString(R.string.error_network2));
-        });
+        ApiRequest<RestDmOrderOnline> callback = new ApiRequest<>();
+        callback.setCallBack(mApiHermes.apiOrderOnline(dmOrderOnline.toJson()),
+                response -> {
+                    onReponseOrderOnline(response.getData());
+                }, error -> {
+                    onReponseOrderOnline(null);
+                    error.printStackTrace();
+                    ToastUtil.makeText(mActivity, getString(R.string.error_network2));
+                });
     }
 
     private void onReponseOrderOnline(DmOrderOnline dmOrderOnline) {
@@ -450,11 +461,16 @@ public class InformationFragment extends BaseFragment {
     private void apiZaloPaymentCreate(DmOrderOnline dmOrderOnline) {
         showProgressHub(mActivity);
         Log.e("dmOrderOnline", "json: " + new Gson().toJson(dmOrderOnline));
-        new WSRestFull(getContext()).apiZaloPaymentCreate(dmOrderOnline.getCompanyId(), dmOrderOnline.getStoreId(), dmOrderOnline.getBrandId(), typePayment, dmOrderOnline.getAmount(), dmOrderOnline.getOrderCode(), "", response -> onResponseZaloPaymentCreate(response.getData()), error -> {
-            onResponseZaloPaymentCreate(null);
-            error.printStackTrace();
-            ToastUtil.makeText(mActivity, getString(R.string.error_network2));
-        });
+
+        ApiRequest<RestDmQRCode> callback = new ApiRequest<>();
+        callback.setCallBack(mApiHermes.apiZaloPaymentCreate(dmOrderOnline.getCompanyId(), dmOrderOnline.getStoreId(), dmOrderOnline.getBrandId(), typePayment, dmOrderOnline.getAmount(), dmOrderOnline.getOrderCode(), ""),
+                response -> {
+                    onResponseZaloPaymentCreate(response.getData());
+                }, error -> {
+                    onResponseZaloPaymentCreate(null);
+                    error.printStackTrace();
+                    ToastUtil.makeText(mActivity, getString(R.string.error_network2));
+                });
     }
 
     private void onResponseZaloPaymentCreate(DmQRCode dmQRCode) {
@@ -559,11 +575,16 @@ public class InformationFragment extends BaseFragment {
 
     private void checkOrderPaymentMomo(DmCallBackMoMo dmCallBackMoMo) {
         showProgressHub(mActivity);
-        new WSRestFull(getContext()).apiPaymentMoMo(dmCallBackMoMo.toJson(), response -> onResponseCallBackMoMo(), error -> {
-            dismissProgressHub();
-            error.printStackTrace();
-            ToastUtil.makeText(mActivity, getString(R.string.error_network2));
-        });
+
+        ApiRequest<DmCallBackMoMo> callback = new ApiRequest<>();
+        callback.setCallBack(mApiHermes.apiPaymentMoMo(dmCallBackMoMo.toJson()),
+                response -> {
+                    onResponseCallBackMoMo();
+                }, error -> {
+                    dismissProgressHub();
+                    error.printStackTrace();
+                    ToastUtil.makeText(mActivity, getString(R.string.error_network2));
+                });
     }
 
     private void onResponseCallBackMoMo() {
@@ -588,11 +609,15 @@ public class InformationFragment extends BaseFragment {
 
     private void checkOrderPayment(DmOrderOnline dmOrderOnline) {
         showProgressHub(mActivity);
-        new WSRestFull(getContext()).apiOrderCheckPayment(dmOrderOnline.getCompanyId(), dmOrderOnline.getStoreId(), dmOrderOnline.getBrandId(), typePayment, dmOrderOnline.getOrderCode(), response -> onResponseOrderPayment(response.getData()), error -> {
-            onResponseOrderPayment(null);
-            error.printStackTrace();
-            ToastUtil.makeText(mActivity, getString(R.string.error_network2));
-        });
+        ApiRequest<RestDmOrderOnline> callback = new ApiRequest<>();
+        callback.setCallBack(mApiHermes.apiOrderCheckPayment(dmOrderOnline.getCompanyId(), dmOrderOnline.getStoreId(), dmOrderOnline.getBrandId(), typePayment, dmOrderOnline.getOrderCode()),
+                response -> {
+                    onResponseOrderPayment(response.getData());
+                }, error -> {
+                    onResponseOrderPayment(null);
+                    error.printStackTrace();
+                    ToastUtil.makeText(mActivity, getString(R.string.error_network2));
+                });
     }
 
     private void onResponseOrderPayment(DmOrderOnline dmOrderOnline) {

@@ -24,8 +24,11 @@ import com.modul.marketplace.extension.gone
 import com.modul.marketplace.extension.openActivityForResult
 import com.modul.marketplace.extension.visible
 import com.modul.marketplace.holder.orderonline.ServicelistRecycleHolder
+import com.modul.marketplace.model.marketplace.AddressModelData
 import com.modul.marketplace.model.marketplace.NvlModel
+import com.modul.marketplace.model.marketplace.NvlModelData
 import com.modul.marketplace.model.orderonline.DmServiceListOrigin
+import com.modul.marketplace.restful.ApiRequest
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.Log
 import com.modul.marketplace.util.ToastUtil
@@ -113,7 +116,9 @@ class NvlFragment : BaseFragment() {
 
     private fun callServiceList() {
         showProgressHub(mActivity)
-        WSRestFull(context).apiSCMProducts(mCartBussiness.getCartLocate().locateId, { (data) -> onResponseServiceList(data) }) { error: VolleyError ->
+        val callback: ApiRequest<NvlModelData> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiSCMProducts(mCartBussiness.getCartLocate().locateId),
+                { response ->  onResponseServiceList(response.data) }) { error ->
             onResponseServiceList(null)
             error.printStackTrace()
             ToastUtil.makeText(mActivity, getString(R.string.error_network2))

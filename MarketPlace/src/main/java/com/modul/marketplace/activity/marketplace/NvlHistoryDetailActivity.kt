@@ -14,9 +14,12 @@ import com.modul.marketplace.adapter.orderonline.StatusOrderRecyleAdapter
 import com.modul.marketplace.app.Constants
 import com.modul.marketplace.app.Constants.BROADCAST
 import com.modul.marketplace.extension.showStatusBar
+import com.modul.marketplace.model.marketplace.ArticlesModelData
 import com.modul.marketplace.model.marketplace.NvlOnlineModel
+import com.modul.marketplace.model.marketplace.NvlOnlineModelData
 import com.modul.marketplace.model.orderonline.DmService
 import com.modul.marketplace.model.orderonline.DmStatusOrder
+import com.modul.marketplace.restful.ApiRequest
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.FormatNumberUtil
 import com.modul.marketplace.util.ToastUtil
@@ -70,7 +73,9 @@ class NvlHistoryDetailActivity : BaseActivity() {
 
     private fun api(uId: String) {
         showProgressHub(this)
-        WSRestFull(this).apiSCMInvoicesHistoryDetail(mCartBussiness.companyId, uId, { (data) -> apiDone(data) }) { error: VolleyError ->
+        val callback: ApiRequest<NvlOnlineModelData> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiSCMInvoicesHistoryDetail(mCartBussiness.companyId, uId),
+                { response ->  apiDone(response.data) }) { error ->
             apiDone(null)
             error.printStackTrace()
             ToastUtil.makeText(this, getString(R.string.error_network2))

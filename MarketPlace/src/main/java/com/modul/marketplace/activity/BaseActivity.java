@@ -21,6 +21,7 @@ import com.modul.marketplace.R;
 import com.modul.marketplace.app.ApplicationMarketPlace;
 import com.modul.marketplace.app.Constants;
 import com.modul.marketplace.bussiness.CartBussiness;
+import com.modul.marketplace.restful.APIInterface;
 import com.modul.marketplace.util.Log;
 import com.modul.marketplace.util.SharedPref;
 
@@ -46,6 +47,8 @@ public class BaseActivity extends AppCompatActivity {
     protected boolean isKeyBoardVisible;
     protected CartBussiness mCartBussiness;
     protected KProgressHUD hud;
+    protected APIInterface mApiHermes;
+    protected APIInterface mApiSCM;
 
 
     @Override
@@ -58,6 +61,8 @@ public class BaseActivity extends AppCompatActivity {
         mHandler = new Handler();
 
         mCartBussiness = ApplicationMarketPlace.instance.getCartBussiness();
+        mApiHermes = ApplicationMarketPlace.instance.getAPiHermesInterface();
+        mApiSCM = ApplicationMarketPlace.instance.getAPiSCMInterface();
     }
 
     protected void finviewHomeBar() {

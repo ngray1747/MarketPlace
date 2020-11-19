@@ -9,7 +9,10 @@ import com.modul.marketplace.activity.BaseActivity
 import com.modul.marketplace.app.ApplicationMarketPlace
 import com.modul.marketplace.extension.initIcon
 import com.modul.marketplace.extension.showStatusBar
+import com.modul.marketplace.model.marketplace.AddressModelData
 import com.modul.marketplace.model.marketplace.FeedbackModel
+import com.modul.marketplace.model.marketplace.FeedbackModelData
+import com.modul.marketplace.restful.ApiRequest
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.ToastUtil
 import kotlinx.android.synthetic.main.activity_feedback.*
@@ -32,16 +35,16 @@ class FeedbackActivity : BaseActivity() {
 
     private fun feedback() {
         var feedbackModel = FeedbackModel(feedback_title = mLb.text.toString(), feedback_content = mNote.text.toString(), customer_name = mCartBussiness.userId,customer_phone = "")
-        WSRestFull(this).apiSCMFeedback(feedbackModel.toJson(), Response.Listener {
-            it?.run{
-                data?.run{
-                    layout_success.visible()
-                }
-            }
-        }, Response.ErrorListener {
-            it.printStackTrace()
+        val callback: ApiRequest<FeedbackModelData> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiSCMFeedback(feedbackModel.toJson()),
+                { response ->  response?.run{
+                    data?.run{
+                        layout_success.visible()
+                    }
+                }}) { error ->
+            error.printStackTrace()
             ToastUtil.makeText(this, getString(R.string.error_network2))
-        })
+        }
     }
 
     private fun initData() {

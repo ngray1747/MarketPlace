@@ -24,7 +24,6 @@ import java.util.*
 class SelectStartAddressActivity : BaseActivity() {
 
     private val mCitys = ArrayList<AddressModel>()
-    private val mApi = ApplicationMarketPlace.instance.getAPiApiInterface()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,7 +89,7 @@ class SelectStartAddressActivity : BaseActivity() {
         showProgressHub(this)
 
         val callback: ApiRequest<AddressModelData> = ApiRequest()
-        callback.setCallBack(mApi?.apiSCMCity(1000),
+        callback.setCallBack(mApiSCM?.apiSCMCity(1000),
                 { response ->  areaDone(response.data) }) { error ->
             areaDone(null)
             ToastUtil.makeText(this, getString(R.string.error_network2))

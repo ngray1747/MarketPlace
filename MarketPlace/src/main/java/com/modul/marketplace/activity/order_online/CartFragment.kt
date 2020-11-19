@@ -22,11 +22,13 @@ import com.modul.marketplace.activity.CateActivity
 import com.modul.marketplace.adapter.orderonline.CartRecyleAdapter
 import com.modul.marketplace.app.Constants
 import com.modul.marketplace.extension.DialogUtil
+import com.modul.marketplace.model.marketplace.AddressModelData
 import com.modul.marketplace.model.orderonline.DmService
 import com.modul.marketplace.model.orderonline.DmVoucher
 import com.modul.marketplace.paser.orderonline.RestAllDmCheckAutoPromotion
 import com.modul.marketplace.paser.orderonline.RestAllDmCheckVoucher
 import com.modul.marketplace.paser.orderonline.RestAllDmCheckVoucherToServer
+import com.modul.marketplace.restful.ApiRequest
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.*
 import kotlinx.android.synthetic.main.fragment_cart.*
@@ -107,16 +109,18 @@ class CartFragment : BaseFragment() {
         val restAllDmCheckVoucher = RestAllDmCheckVoucherToServer()
         restAllDmCheckVoucher.objects = mCartBussiness.getOrder().details
         restAllDmCheckVoucher.voucherCode = voucherCode
-        WSRestFull(context).apiCheckVoucher(restAllDmCheckVoucher.toJson(), { response: RestAllDmCheckVoucher ->
-            dismissProgressHub()
-            onReponseCheckVoucher(response.data)
-            response?.error?.run{
-                ToastShow.showMessage(context,message.toString())
-            }
-        }) { error: VolleyError ->
+
+        val callback: ApiRequest<RestAllDmCheckVoucher> = ApiRequest()
+        callback.setCallBack(mApiHermes?.apiCheckVoucher(restAllDmCheckVoucher.toJson()),
+                { response ->
+                    dismissProgressHub()
+                    onReponseCheckVoucher(response.data)
+                    response?.error?.run {
+                        ToastShow.showMessage(context, message.toString())
+                    }
+                }) { error ->
             dismissProgressHub()
             onReponseCheckVoucher(null)
-            error.printStackTrace()
             ToastUtil.makeText(mActivity, getString(R.string.error_network2))
         }
     }
@@ -149,13 +153,13 @@ class CartFragment : BaseFragment() {
         val restAllDmCheckAutoPromotion = RestAllDmCheckAutoPromotion()
         restAllDmCheckAutoPromotion.datas = mCartBussiness.getOrder().details
         Log.e("rest All", "auto Promotion: " + restAllDmCheckAutoPromotion.toJson())
-        WSRestFull(context).apiCheckAutoPromotion(restAllDmCheckAutoPromotion.toJson(), { response: RestAllDmCheckAutoPromotion ->
-            dismissProgressHub()
-            onResponePromotion(response.datas)
-        }) { error: VolleyError ->
+
+        val callback: ApiRequest<RestAllDmCheckAutoPromotion> = ApiRequest()
+        callback.setCallBack(mApiHermes?.apiCheckAutoPromotion(restAllDmCheckAutoPromotion.toJson()),
+                { response ->  dismissProgressHub()
+                    onResponePromotion(response.datas)}) { error ->
             dismissProgressHub()
             onResponePromotion(null)
-            error.printStackTrace()
             ToastUtil.makeText(mActivity, getString(R.string.error_network2))
         }
     }
@@ -185,13 +189,13 @@ class CartFragment : BaseFragment() {
                     } else {
                         addVoucher()
                     }
-                    if(mCartBussiness.getOrder().orderType == Constants.OrderType.OrderOnline){
-                        Utilities.sendBoardItem(context,Constants.BROADCAST.BROAD_PURCHASE,Constants.BROADCAST.CHANGE_ITEM,it.serviceCode,it.quantity)
-                    }else{
-                        Utilities.sendBoardItem(context,Constants.BROADCAST.BROAD_NVL, Constants.BROADCAST.CHANGE_ITEM,it.serviceCode,it.quantity)
+                    if (mCartBussiness.getOrder().orderType == Constants.OrderType.OrderOnline) {
+                        Utilities.sendBoardItem(context, Constants.BROADCAST.BROAD_PURCHASE, Constants.BROADCAST.CHANGE_ITEM, it.serviceCode, it.quantity)
+                    } else {
+                        Utilities.sendBoardItem(context, Constants.BROADCAST.BROAD_NVL, Constants.BROADCAST.CHANGE_ITEM, it.serviceCode, it.quantity)
                     }
 
-                    if(mCartBussiness.getOrder().cart.size ==0){
+                    if (mCartBussiness.getOrder().cart.size == 0) {
                         mCartBussiness.OrderOnlineClearData()
                         mActivity.finish()
                     }
@@ -222,7 +226,7 @@ class CartFragment : BaseFragment() {
 
     var onNotice: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            if(intent.getStringExtra("value") == Constants.BROADCAST.BACK){
+            if (intent.getStringExtra("value") == Constants.BROADCAST.BACK) {
                 mActivity.finish()
             }
         }

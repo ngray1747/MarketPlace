@@ -18,14 +18,17 @@ import com.modul.marketplace.R
 import com.modul.marketplace.activity.BaseFragment
 import com.modul.marketplace.activity.CateActivity
 import com.modul.marketplace.adapter.orderonline.ServiceListRecyleAdapter
+import com.modul.marketplace.app.ApplicationMarketPlace
 import com.modul.marketplace.app.Constants
 import com.modul.marketplace.extension.DialogUtil
 import com.modul.marketplace.extension.gone
 import com.modul.marketplace.extension.openActivityForResult
 import com.modul.marketplace.extension.visible
 import com.modul.marketplace.holder.orderonline.ServicelistRecycleHolder
+import com.modul.marketplace.model.marketplace.AddressModelData
 import com.modul.marketplace.model.orderonline.DmServiceListOrigin
 import com.modul.marketplace.paser.orderonline.RestAllDmServiceListOrigin
+import com.modul.marketplace.restful.ApiRequest
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.Log
 import com.modul.marketplace.util.ToastUtil
@@ -156,9 +159,11 @@ class PurchaseFragment : BaseFragment() {
         } else {
             productType = Constants.POSPC
         }
-        WSRestFull(context).apiOrderOnline_ServiceList(productType, { response: RestAllDmServiceListOrigin -> onResponseServiceList(response.data) }) { error: VolleyError ->
+
+        val callback: ApiRequest<RestAllDmServiceListOrigin> = ApiRequest()
+        callback.setCallBack(mApiHermes?.apiOrderOnline_ServiceList(productType),
+                { response ->  onResponseServiceList(response.data) }) { error ->
             onResponseServiceList(null)
-            error.printStackTrace()
             ToastUtil.makeText(mActivity, getString(R.string.error_network2))
         }
     }

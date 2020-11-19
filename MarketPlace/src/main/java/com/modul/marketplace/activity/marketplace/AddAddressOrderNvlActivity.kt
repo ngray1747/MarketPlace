@@ -31,11 +31,10 @@ import com.modul.marketplace.extension.StringExt
 import com.modul.marketplace.extension.gone
 import com.modul.marketplace.extension.showStatusBar
 import com.modul.marketplace.extension.showToast
-import com.modul.marketplace.model.marketplace.AddressModel
-import com.modul.marketplace.model.marketplace.AhamoveSearchData
-import com.modul.marketplace.model.marketplace.LocationModel
+import com.modul.marketplace.model.marketplace.*
 import com.modul.marketplace.model.orderonline.DmDeliveryInfo
 import com.modul.marketplace.model.orderonline.DmLocation
+import com.modul.marketplace.restful.ApiRequest
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.ToastUtil
 import com.modul.marketplace.util.Utilities
@@ -102,7 +101,9 @@ class AddAddressOrderNvlActivity : BaseActivity() {
 
     private fun choiceCity() {
         showProgressHub(this)
-        WSRestFull(this).apiSCMCity({ (data) -> areaDone(data) }) { error: VolleyError ->
+        val callback: ApiRequest<AddressModelData> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiSCMCity(1000),
+                { response ->  areaDone(response.data) }) { error ->
             areaDone(null)
             error.printStackTrace()
             ToastUtil.makeText(this, getString(R.string.error_network2))
@@ -137,7 +138,9 @@ class AddAddressOrderNvlActivity : BaseActivity() {
         var addressModel = AddressModel()
         addressModel.city_id = cityCode
         addressModel.district_id = districtCode
-        WSRestFull(this).apiSCMPrecincts(addressModel, { (data) -> precinctDone(data) }) { error: VolleyError ->
+        val callback: ApiRequest<AddressModelData> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiSCMPrecincts(addressModel.city_id,addressModel.district_id),
+                { response ->  precinctDone(response.data) }) { error ->
             precinctDone(null)
             error.printStackTrace()
             ToastUtil.makeText(this, getString(R.string.error_network2))
@@ -171,7 +174,9 @@ class AddAddressOrderNvlActivity : BaseActivity() {
         showProgressHub(this)
         var addressModel = AddressModel()
         addressModel.city_id = cityCode
-        WSRestFull(this).apiSCMDistricts(addressModel, { (data) -> districDone(data) }) { error: VolleyError ->
+        val callback: ApiRequest<AddressModelData> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiSCMDistricts(addressModel.city_id),
+                { response ->  districDone(response.data) }) { error ->
             districDone(null)
             error.printStackTrace()
             ToastUtil.makeText(this, getString(R.string.error_network2))
@@ -246,7 +251,9 @@ class AddAddressOrderNvlActivity : BaseActivity() {
     }
 
     private fun apiCreate(locateModel: LocationModel){
-        WSRestFull(this).apiSCMLocationCreate(locateModel.toJson(), { (data) -> createDone(data) }) { error: VolleyError ->
+        val callback: ApiRequest<LocationModelDataObject> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiSCMLocationCreate(locateModel.toJson()),
+                { response ->  createDone(response.data) }) { error ->
             createDone(null)
             error.printStackTrace()
             ToastUtil.makeText(this, getString(R.string.error_network2))
@@ -254,7 +261,9 @@ class AddAddressOrderNvlActivity : BaseActivity() {
     }
 
     private fun apiEdit(locateModel: LocationModel){
-        WSRestFull(this).apiSCMLocationEdit(locateModel.toJson(), { (data) -> createDone(data) }) { error: VolleyError ->
+        val callback: ApiRequest<LocationModelDataObject> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiSCMLocationEdit(locateModel.toJson()),
+                { response ->  createDone(response.data) }) { error ->
             createDone(null)
             error.printStackTrace()
             ToastUtil.makeText(this, getString(R.string.error_network2))
@@ -332,15 +341,14 @@ class AddAddressOrderNvlActivity : BaseActivity() {
 
 
     private fun apiSearch(value: String) {
-        WSRestFull(this).apiAhamoveSearchLocation(value, { response ->
-            response?.run {
-                searchCallbacK(this)
-            }
-        }, { error ->
+        val callback: ApiRequest<AhamoveSearchData> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiAhamoveSearchLocation(value),
+                { response ->  response?.run {
+                    searchCallbacK(this)
+                } }) { error ->
             error.printStackTrace()
             searchCallbacK(null)
-        })
-
+        }
     }
 
     private fun searchCallbacK(data: AhamoveSearchData?) {

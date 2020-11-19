@@ -14,8 +14,11 @@ import com.modul.marketplace.activity.CateActivity
 import com.modul.marketplace.adapter.orderonline.HistoryOrderOnlineRecyleAdapter
 import com.modul.marketplace.extension.gone
 import com.modul.marketplace.extension.visible
+import com.modul.marketplace.model.marketplace.AddressModelData
 import com.modul.marketplace.model.orderonline.DmHistoryOrderDetail
 import com.modul.marketplace.model.orderonline.DmOrderOnline
+import com.modul.marketplace.paser.orderonline.RestDmHistoryOrderOnline
+import com.modul.marketplace.restful.ApiRequest
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.ToastUtil
 import kotlinx.android.synthetic.main.fragment_history_order_detail.*
@@ -92,7 +95,10 @@ class HistoryOrderDetailFragment : BaseFragment() {
         mSwipRefreshLayout?.apply {
             isRefreshing = true
         }
-        WSRestFull(context).apiOrderHistoryHermes(mCartBussiness.companyId,page, { response -> onResponseOrderOnline(response.data) }) { error ->
+
+        val callback: ApiRequest<RestDmHistoryOrderOnline> = ApiRequest()
+        callback.setCallBack(mApiHermes?.apiOrderHistoryHermes(mCartBussiness.companyId,page,1000),
+                { response ->  onResponseOrderOnline(response.data) }) { error ->
             onResponseOrderOnline(null)
             error.printStackTrace()
             ToastUtil.makeText(mActivity, getString(R.string.error_network2))

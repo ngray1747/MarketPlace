@@ -11,8 +11,12 @@ import com.modul.marketplace.activity.BaseActivity
 import com.modul.marketplace.app.Constants
 import com.modul.marketplace.extension.openActivityForResult
 import com.modul.marketplace.extension.showStatusBar
+import com.modul.marketplace.model.marketplace.AddressModelData
 import com.modul.marketplace.model.marketplace.LocationModel
+import com.modul.marketplace.model.marketplace.LocationModelData
+import com.modul.marketplace.model.marketplace.LocationModelDataObject
 import com.modul.marketplace.model.orderonline.DmDeliveryInfo
+import com.modul.marketplace.restful.ApiRequest
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.ToastUtil
 import kotlinx.android.synthetic.main.activity_select_address.*
@@ -35,7 +39,9 @@ class SelectAddressOrderNvlActivity : BaseActivity() {
 
     private fun api() {
         showProgressHub(this)
-        WSRestFull(this).apiSCMLocation(mCartBussiness.companyId,mCartBussiness.getListBrandId(),mCartBussiness.userId,{ (data) -> locationDone(data) }) { error: VolleyError ->
+        val callback: ApiRequest<LocationModelData> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiSCMLocation(1,mCartBussiness.companyId,mCartBussiness.getListBrandId(),mCartBussiness.userId),
+                { response ->  locationDone(response.data) }) { error ->
             locationDone(null)
             error.printStackTrace()
             ToastUtil.makeText(this, getString(R.string.error_network2))
@@ -44,7 +50,9 @@ class SelectAddressOrderNvlActivity : BaseActivity() {
 
     private fun apiXoaLocation(locationModel: LocationModel) {
         showProgressHub(this)
-        WSRestFull(this).apiSCMLocationDelete(locationModel.id,{ (data) -> deleteDone(data) }) { error: VolleyError ->
+        val callback: ApiRequest<LocationModelDataObject> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiSCMLocationDelete(locationModel.id),
+                { response ->  deleteDone(response.data) }) { error ->
             deleteDone(null)
             error.printStackTrace()
             ToastUtil.makeText(this, getString(R.string.error_network2))

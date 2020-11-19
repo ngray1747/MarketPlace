@@ -11,8 +11,11 @@ import com.modul.marketplace.extension.showStatusBar
 import com.modul.marketplace.model.marketplace.ArticlesCountModel
 import com.modul.marketplace.model.marketplace.ArticlesCountModelData
 import com.modul.marketplace.model.marketplace.ArticlesModel
+import com.modul.marketplace.model.marketplace.ArticlesModelData
+import com.modul.marketplace.restful.ApiRequest
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.Log
+import com.modul.marketplace.util.ToastUtil
 import kotlinx.android.synthetic.main.activity_my_articles.*
 import kotlinx.android.synthetic.main.include_header2.*
 
@@ -35,14 +38,13 @@ class MyArticlesActivity : BaseActivity() {
         articlesModel.company_id = mCartBussiness.companyId
         articlesModel.author_id = mCartBussiness.userId
         Log.e("data","aaaa: "+ articlesModel.toJson())
-        WSRestFull(applicationContext).apiSCMArticlesCount(articlesModel,
-                { response ->
-                    callback(response)
-                },
-                { error ->
-                    callback(null)
-                    error.printStackTrace()
-                })
+
+        val callback: ApiRequest<ArticlesCountModelData> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiSCMArticlesCount(articlesModel.brand_id,articlesModel.company_id,articlesModel.author_id),
+                { response ->  callback(response) }) { error ->
+            callback(null)
+            error.printStackTrace()
+        }
     }
 
     private fun callback(response: ArticlesCountModelData?) {

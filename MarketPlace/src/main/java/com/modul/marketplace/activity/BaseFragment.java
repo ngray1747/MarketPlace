@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.modul.marketplace.app.ApplicationMarketPlace;
 import com.modul.marketplace.bussiness.CartBussiness;
+import com.modul.marketplace.restful.APIInterface;
 import com.modul.marketplace.util.SharedPref;
 import com.modul.marketplace.R;
 
@@ -25,6 +26,8 @@ public class BaseFragment extends Fragment {
     protected SharedPref pref;
     protected KProgressHUD hud;
     protected CartBussiness mCartBussiness;
+    protected APIInterface mApiHermes;
+    protected APIInterface mApiSCM;
 
     @Override
     public void onAttach(Activity activity) {
@@ -33,7 +36,8 @@ public class BaseFragment extends Fragment {
         mActivity = (AppCompatActivity) activity;
         pref = new SharedPref(mActivity);
         mCartBussiness = ApplicationMarketPlace.instance.getCartBussiness();
-
+        mApiHermes = ApplicationMarketPlace.instance.getAPiHermesInterface();
+        mApiSCM = ApplicationMarketPlace.instance.getAPiSCMInterface();
     }
 
     @Override

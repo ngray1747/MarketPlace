@@ -41,6 +41,7 @@ import com.modul.marketplace.model.orderonline.DmServiceListOrigin;
 import com.modul.marketplace.model.orderonline.DmStatusOrder;
 import com.modul.marketplace.paser.orderonline.RestDmOrderOnline;
 import com.modul.marketplace.paser.orderonline.RestDmQRCode;
+import com.modul.marketplace.restful.ApiRequest;
 import com.modul.marketplace.restful.WSRestFull;
 import com.modul.marketplace.util.FormatNumberUtil;
 import com.modul.marketplace.util.Log;
@@ -239,19 +240,16 @@ public class OrderDetailFragment extends BaseFragment {
 
     private void apiZaloPaymentCreate(DmOrderOnline dmOrderOnline, String orderCode) {
         showProgressHub(mActivity);
-        new WSRestFull(getContext()).apiZaloPaymentCreate(dmOrderOnline.getCompanyId(), dmOrderOnline.getStoreId(), dmOrderOnline.getBrandId(), typePayment, dmOrderOnline.getAmount(), orderCode, "", new Response.Listener<RestDmQRCode>() {
-            @Override
-            public void onResponse(RestDmQRCode response) {
-                onResponseZaloPayment(response.getData());
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                onResponseZaloPayment(null);
-                error.printStackTrace();
-                ToastUtil.makeText(mActivity, getString(R.string.error_network2));
-            }
-        });
+
+        ApiRequest<RestDmQRCode> callback = new ApiRequest<>();
+        callback.setCallBack(mApiHermes.apiZaloPaymentCreate(dmOrderOnline.getCompanyId(), dmOrderOnline.getStoreId(), dmOrderOnline.getBrandId(), typePayment, dmOrderOnline.getAmount(), dmOrderOnline.getOrderCode(), ""),
+                response -> {
+                    onResponseZaloPayment(response.getData());
+                }, error -> {
+                    onResponseZaloPayment(null);
+                    error.printStackTrace();
+                    ToastUtil.makeText(mActivity, getString(R.string.error_network2));
+                });
     }
 
     private void onResponseZaloPayment(DmQRCode dmQRCode) {
@@ -303,11 +301,15 @@ public class OrderDetailFragment extends BaseFragment {
 
     private void checkOrderPayment(DmOrderOnline dmOrderOnline) {
         showProgressHub(mActivity);
-        new WSRestFull(getContext()).apiOrderCheckPayment(dmOrderOnline.getCompanyId(), dmOrderOnline.getStoreId(), dmOrderOnline.getBrandId(), typePayment, dmOrderOnline.getOrderCode(), response -> onResponseOrderPayment(response.getData()), error -> {
-            onResponseOrderPayment(null);
-            error.printStackTrace();
-            ToastUtil.makeText(mActivity, getString(R.string.error_network2));
-        });
+        ApiRequest<RestDmOrderOnline> callback = new ApiRequest<>();
+        callback.setCallBack(mApiHermes.apiOrderCheckPayment(dmOrderOnline.getCompanyId(), dmOrderOnline.getStoreId(), dmOrderOnline.getBrandId(), typePayment, dmOrderOnline.getOrderCode()),
+                response -> {
+                    onResponseOrderPayment(response.getData());
+                }, error -> {
+                    onResponseOrderPayment(null);
+                    error.printStackTrace();
+                    ToastUtil.makeText(mActivity, getString(R.string.error_network2));
+                });
     }
 
     private void onResponseOrderPayment(DmOrderOnline dmOrderOnline) {
@@ -343,19 +345,16 @@ public class OrderDetailFragment extends BaseFragment {
 
     private void getOrderDetail(String orderCode) {
         showProgressHub(mActivity);
-        new WSRestFull(getContext()).apiOrderHistory(orderCode, new Response.Listener<RestDmOrderOnline>() {
-            @Override
-            public void onResponse(RestDmOrderOnline response) {
-                onResponseOrderDetail(response.getData());
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                onResponseOrderDetail(null);
-                error.printStackTrace();
-                ToastUtil.makeText(mActivity, getString(R.string.error_network2));
-            }
-        });
+
+        ApiRequest<RestDmOrderOnline> callback = new ApiRequest<>();
+        callback.setCallBack(mApiHermes.apiOrderHistory(orderCode),
+                response -> {
+                    onResponseOrderDetail(response.getData());
+                }, error -> {
+                    onResponseOrderDetail(null);
+                    error.printStackTrace();
+                    ToastUtil.makeText(mActivity, getString(R.string.error_network2));
+                });
     }
 
     private void onResponseOrderDetail(DmOrderOnline dmOrderOnline) {
@@ -592,11 +591,16 @@ public class OrderDetailFragment extends BaseFragment {
 
     private void checkOrderPaymentMomo(DmCallBackMoMo dmCallBackMoMo) {
         showProgressHub(mActivity);
-        new WSRestFull(getContext()).apiPaymentMoMo(dmCallBackMoMo.toJson(), response -> onResponseCallBackMoMo(), error -> {
-            dismissProgressHub();
-            error.printStackTrace();
-            ToastUtil.makeText(mActivity, getString(R.string.error_network2));
-        });
+
+        ApiRequest<DmCallBackMoMo> callback = new ApiRequest<>();
+        callback.setCallBack(mApiHermes.apiPaymentMoMo(dmCallBackMoMo.toJson()),
+                response -> {
+                    onResponseCallBackMoMo();
+                }, error -> {
+                    dismissProgressHub();
+                    error.printStackTrace();
+                    ToastUtil.makeText(mActivity, getString(R.string.error_network2));
+                });
     }
 
     private void onResponseCallBackMoMo() {

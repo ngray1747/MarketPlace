@@ -29,8 +29,11 @@ import com.modul.marketplace.app.Constants
 import com.modul.marketplace.extension.StringExt
 import com.modul.marketplace.extension.gone
 import com.modul.marketplace.extension.showStatusBar
+import com.modul.marketplace.model.marketplace.AddressModelData
 import com.modul.marketplace.model.marketplace.AhamoveSearchData
 import com.modul.marketplace.model.orderonline.*
+import com.modul.marketplace.paser.orderonline.RestAllDmLocate
+import com.modul.marketplace.restful.ApiRequest
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.ToastUtil
 import com.modul.marketplace.util.Utilities
@@ -199,10 +202,11 @@ class AddAddressOrderOnlineActivity : BaseActivity() {
 
     private fun getLocate() {
         showProgressHub(this)
-        WSRestFull(this).apiLocate({ response ->
-            dismissProgressHub()
-            onresponseLocate(response.datas)
-        }) { error ->
+
+        val callback: ApiRequest<RestAllDmLocate> = ApiRequest()
+        callback.setCallBack(mApiHermes?.apiLocate(),
+                { response ->  dismissProgressHub()
+                    onresponseLocate(response.datas) }) { error ->
             dismissProgressHub()
             onresponseLocate(null)
             error.printStackTrace()
@@ -266,14 +270,14 @@ class AddAddressOrderOnlineActivity : BaseActivity() {
     }
 
     private fun apiSearch(value: String) {
-        WSRestFull(this).apiAhamoveSearchLocation(value, { response ->
-            response?.run {
-                searchCallbacK(this)
-            }
-        }, { error ->
+        val callback: ApiRequest<AhamoveSearchData> = ApiRequest()
+        callback.setCallBack(mApiSCM?.apiAhamoveSearchLocation(value),
+                { response ->  response?.run {
+                    searchCallbacK(this)
+                } }) { error ->
             error.printStackTrace()
             searchCallbacK(null)
-        })
+        }
     }
 
     private fun searchCallbacK(data: AhamoveSearchData?) {
