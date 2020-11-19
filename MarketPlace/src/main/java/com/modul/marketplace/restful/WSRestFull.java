@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.modul.marketplace.app.ApplicationMarketPlace;
 import com.modul.marketplace.model.marketplace.AddressModel;
 import com.modul.marketplace.model.marketplace.AddressModelData;
+import com.modul.marketplace.model.marketplace.AhamoveSearchData;
 import com.modul.marketplace.model.marketplace.ArticlesCountModelData;
 import com.modul.marketplace.model.marketplace.ArticlesImageModelData;
 import com.modul.marketplace.model.marketplace.ArticlesModel;
@@ -517,6 +518,18 @@ public class WSRestFull extends AbsRestful {
                 NvlOnlineModelData.class, null, response, error);
         req.setHeader("access-token", ApplicationMarketPlace.instance.getSCM_ACCESS_TOKEN());
         req.setHeader("secret-key",ApplicationMarketPlace.instance.getSCM_SECRET_KEY());
+        addReq(req, TAG_CMS);
+    }
+
+    public void apiAhamoveSearchLocation(String value, Response.Listener<AhamoveSearchData> response, Response.ErrorListener error) {
+        CreateResfulString params = new CreateResfulString(API_AHAMOVE_SEARCH_LOCATION);
+        params.AddParam("text", value);
+
+        GsonRequest<AhamoveSearchData> req = new GsonRequest<>(
+                Request.Method.GET, params.toString(),
+                AhamoveSearchData.class, null, response, error);
+        req.setShouldCache(true);
+
         addReq(req, TAG_CMS);
     }
 }

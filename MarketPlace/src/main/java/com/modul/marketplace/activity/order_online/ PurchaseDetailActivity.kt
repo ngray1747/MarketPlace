@@ -63,7 +63,7 @@ class PurchaseDetailActivity : BaseActivity() {
                     }
                 }
                 if (saleAmount != unitAmount) {
-                    mResult.add(RowItemModel(title = getString(R.string.gia_ban), content = marketPrice?.let { StringExt.convertToMoney(it) } + "/ " + unitName, contentColor = R.color.mainColor, contentStyle = R.style.TextView_SemiBold))
+                    mResult.add(RowItemModel(title = getString(R.string.gia_ban), content = saleAmount?.let { StringExt.convertToMoney(it) } + "/ " + unitName, contentColor = R.color.mainColor, contentStyle = R.style.TextView_SemiBold))
                 }
             } else {
                 if (marketPrice != null && unitPrice != marketPrice) {

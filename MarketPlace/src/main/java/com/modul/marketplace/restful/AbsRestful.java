@@ -45,6 +45,7 @@ public class AbsRestful {
     protected String SCM_DISTRICTS = BASE_URL_SCM + "districts";
     protected String SCM_PRECINCTS = BASE_URL_SCM + "precincts";
     protected String SCM_FEEDBACK = BASE_URL_SCM + "feedback";
+    protected String API_AHAMOVE_SEARCH_LOCATION = "https://ep.ahamove.com/places/ipos/v1/autocomplete";
 
     public static String TAG_REPORT = "TAG_RP";
     public static String TAG_LOGIN = "TAG_LOGIN";

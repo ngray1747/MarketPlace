@@ -48,14 +48,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/include3">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textview.MaterialAutoCompleteTextView
                     android:id="@+id/mAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusableInTouchMode="false"
                     android:hint="@string/find_address"
                     android:paddingLeft="@dimen/d_12"
+                    android:drawableRight="@drawable/icon_search"
                     android:paddingTop="@dimen/d_15"
+                    android:drawablePadding="@dimen/d_10"
                     android:paddingRight="@dimen/d_12"
                     android:paddingBottom="@dimen/d_15"
                     android:singleLine="true"
@@ -221,4 +223,15 @@
             android:textAppearance="@style/TextView.SemiBold"
             android:textSize="@dimen/font_size_16"/>
     </LinearLayout>
+
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/mLoading"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

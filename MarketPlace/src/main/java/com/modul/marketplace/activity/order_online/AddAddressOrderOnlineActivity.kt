@@ -7,20 +7,29 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.Settings
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.view.Gravity
 import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.modul.marketplace.model.orderonline.*
-import com.modul.marketplace.extension.StringExt
-import com.modul.marketplace.extension.gone
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.model.LatLng
 import com.modul.marketplace.R
 import com.modul.marketplace.activity.BaseActivity
 import com.modul.marketplace.app.Constants
+import com.modul.marketplace.extension.StringExt
+import com.modul.marketplace.extension.gone
 import com.modul.marketplace.extension.showStatusBar
+import com.modul.marketplace.model.marketplace.AhamoveSearchData
 import com.modul.marketplace.model.orderonline.*
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.ToastUtil
@@ -38,6 +47,7 @@ class AddAddressOrderOnlineActivity : BaseActivity() {
     private var phuongxa = ""
     private var lat = 0.0
     private var lng = 0.0
+    private var suggest: MutableList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -219,12 +229,95 @@ class AddAddressOrderOnlineActivity : BaseActivity() {
         include2.background.setTint(ContextCompat.getColor(this, R.color.white))
         mlbTitle.text = getString(R.string.edit_address)
         getLocate()
-        mCartBussiness.getOrder().dmDeliveryInfo?.run{
+        mCartBussiness.getOrder().dmDeliveryInfo?.run {
             mAddress.setText(StringExt.isTextEmpty(address))
             mCity.setText(StringExt.isTextEmpty(cityName))
             mDistrict.setText(StringExt.isTextEmpty(districtName))
         }
         mTIPPhuong.gone()
+
+
+        mAddress.addTextChangedListener(object : TextWatcher {
+
+            val handler = Handler(Looper.getMainLooper())
+            var workRunnable: Runnable = Runnable { }
+
+            override fun onTextChanged(
+                    s: CharSequence,
+                    start: Int,
+                    before: Int,
+                    count: Int
+            ) {
+
+            }
+
+            override fun beforeTextChanged(
+                    s: CharSequence,
+                    start: Int,
+                    count: Int,
+                    after: Int
+            ) {
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                handler.removeCallbacks(workRunnable)
+                workRunnable = Runnable {
+                    apiSearch(s.toString())
+                }
+                handler.postDelayed(workRunnable, 1000)
+            }
+        })
+    }
+
+    private fun apiSearch(value: String) {
+        WSRestFull(this).apiAhamoveSearchLocation(value, { response ->
+            response?.run {
+                searchCallbacK(this)
+            }
+        }, { error ->
+            error.printStackTrace()
+            searchCallbacK(null)
+        })
+    }
+
+    private fun searchCallbacK(data: AhamoveSearchData?) {
+        mLoading.gone()
+        suggest.clear()
+        data?.run {
+            suggest = features?.map {
+                it.properties?.name.toString()
+            } as MutableList<String>
+
+            var adapter =
+                    ArrayAdapter(this@AddAddressOrderOnlineActivity, android.R.layout.simple_list_item_1, suggest)
+            mAddress.threshold = 1
+            mAddress.setAdapter(adapter)
+            mAddress.showDropDown()
+            mAddress.onItemClickListener = object : AdapterView.OnItemClickListener {
+                override fun onItemClick(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                ) {
+                    var name = adapter.getItem(position)
+                    name?.run {
+                        var featurers = getFeaturesByName(toString())
+                        //Timber.e("geometry: " + featurers?.geometry?.toJson())
+                        //Timber.e("properties: " + featurers?.properties?.toJson())
+                        var getlng = featurers?.geometry?.coordinates?.get(0).toString().toDouble()
+                        var getlat = featurers?.geometry?.coordinates?.get(1).toString().toDouble()
+
+                        lat = getlat
+                        lng = getlng
+                        mAddress.setText(toString())
+                        var latLng = LatLng(lat, lng)
+                        //Timber.e("latLng:"+latLng)
+//                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
+                    }
+                }
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
