@@ -5,7 +5,6 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import com.ipos.fabimanager.model.employee.DmEmployee;
 
 public class ApiError extends Exception {
     private String codeContent = "";
@@ -47,7 +46,7 @@ public class ApiError extends Exception {
 
     public void check401(Context context) {
         if (httpCode == 401) {
-            DmEmployee.logout(context);
+//            DmEmployee.logout(context);
         }
     }
 
