@@ -6,23 +6,33 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.Settings
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.view.Gravity
 import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.android.volley.VolleyError
+import com.google.android.gms.maps.model.LatLng
 import com.modul.marketplace.R
 import com.modul.marketplace.activity.BaseActivity
 import com.modul.marketplace.activity.order_online.InformationFragment
 import com.modul.marketplace.activity.order_online.MapActivity
 import com.modul.marketplace.app.Constants
 import com.modul.marketplace.extension.StringExt
+import com.modul.marketplace.extension.gone
 import com.modul.marketplace.extension.showStatusBar
 import com.modul.marketplace.extension.showToast
 import com.modul.marketplace.model.marketplace.AddressModel
+import com.modul.marketplace.model.marketplace.AhamoveSearchData
 import com.modul.marketplace.model.marketplace.LocationModel
 import com.modul.marketplace.model.orderonline.DmDeliveryInfo
 import com.modul.marketplace.model.orderonline.DmLocation
@@ -41,6 +51,7 @@ class AddAddressOrderNvlActivity : BaseActivity() {
     private var lat = 0.0
     private var lng = 0.0
     private var localModel : LocationModel? = null
+    private var suggest: MutableList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,7 +94,6 @@ class AddAddressOrderNvlActivity : BaseActivity() {
     private fun initClick() {
         mIconLeft.setOnClickListener { onBackPressed() }
         mCancel.setOnClickListener { onBackPressed() }
-        mAddress.setOnClickListener { address() }
         mCity.setOnClickListener { choiceCity() }
         mDistrict.setOnClickListener { choiceDistric() }
         mPhuongXa.setOnClickListener { choicePrecinct() }
@@ -260,9 +270,6 @@ class AddAddressOrderNvlActivity : BaseActivity() {
         }
     }
 
-    private fun address() {
-        GPS()
-    }
 
     private fun GPS() {
         if (ContextCompat.checkSelfPermission(this,
@@ -290,6 +297,90 @@ class AddAddressOrderNvlActivity : BaseActivity() {
     private fun initData() {
         showStatusBar(color = R.color.white, statusColor = true)
         include2.background.setTint(ContextCompat.getColor(this, R.color.white))
+
+        mAddress.addTextChangedListener(object : TextWatcher {
+
+            val handler = Handler(Looper.getMainLooper())
+            var workRunnable: Runnable = Runnable { }
+
+            override fun onTextChanged(
+                    s: CharSequence,
+                    start: Int,
+                    before: Int,
+                    count: Int
+            ) {
+
+            }
+
+            override fun beforeTextChanged(
+                    s: CharSequence,
+                    start: Int,
+                    count: Int,
+                    after: Int
+            ) {
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                handler.removeCallbacks(workRunnable)
+                workRunnable = Runnable {
+                    apiSearch(s.toString())
+                }
+                handler.postDelayed(workRunnable, 1000)
+            }
+        })
+    }
+
+
+    private fun apiSearch(value: String) {
+        WSRestFull(this).apiAhamoveSearchLocation(value, { response ->
+            response?.run {
+                searchCallbacK(this)
+            }
+        }, { error ->
+            error.printStackTrace()
+            searchCallbacK(null)
+        })
+
+    }
+
+    private fun searchCallbacK(data: AhamoveSearchData?) {
+        mLoading.gone()
+        suggest.clear()
+        data?.run {
+            suggest = features?.map {
+                it.properties?.name.toString()
+            } as MutableList<String>
+
+            var adapter =
+                    ArrayAdapter(this@AddAddressOrderNvlActivity, android.R.layout.simple_list_item_1, suggest)
+            mAddress.threshold = 1
+            mAddress.setAdapter(adapter)
+            mAddress.showDropDown()
+            mAddress.onItemClickListener = object : AdapterView.OnItemClickListener {
+                override fun onItemClick(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                ) {
+                    var name = adapter.getItem(position)
+                    name?.run {
+                        var featurers = getFeaturesByName(toString())
+                        //Timber.e("geometry: " + featurers?.geometry?.toJson())
+                        //Timber.e("properties: " + featurers?.properties?.toJson())
+                        var getlng = featurers?.geometry?.coordinates?.get(0).toString().toDouble()
+                        var getlat = featurers?.geometry?.coordinates?.get(1).toString().toDouble()
+
+                        lat = getlat
+                        lng = getlng
+                        mAddress.setText(toString())
+                        var latLng = LatLng(lat, lng)
+                        //Timber.e("latLng:"+latLng)
+//                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
+                    }
+                }
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
