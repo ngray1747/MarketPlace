@@ -383,6 +383,8 @@ class AddAddressOrderNvlActivity : BaseActivity() {
                         lat = getlat
                         lng = getlng
                         mAddress.setText(toString())
+                        mAddress.clearFocus()
+                        hidenKeyboard()
                         var latLng = LatLng(lat, lng)
                         //Timber.e("latLng:"+latLng)
 //                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
