@@ -54,6 +54,8 @@ class MyArticlesListFragment(var putStatus: String) : BaseFragment() {
         if (Constants.ArticlesStatus.EXPIRED == putStatus) {
             articlesMode.status =Constants.ArticlesStatus.CONFIRMED
             articlesMode.data_type = expired
+        }else if(Constants.ArticlesStatus.CONFIRMED == putStatus){
+            articlesMode.data_type = selling
         }else{
             articlesMode.data_type = ""
         }
