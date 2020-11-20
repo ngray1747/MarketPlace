@@ -173,7 +173,7 @@ public class InformationFragment extends BaseFragment {
         });
         mPayment.setOnClickListener(v1 -> {
 //            mCartBussiness.getOrder();
-            if (!TextUtils.isEmpty(mCartBussiness.getOrder().getOrderCode()) || !mCartBussiness.getOrder().getOrderCode().equals("null")) {
+            if (!TextUtils.isEmpty(mCartBussiness.getOrder().getOrderCode())) {
                 if (DmOrderOnline.ZALOPAY.equals(typePayment)) {
                     apiZaloPaymentCreate(mCartBussiness.getOrder());
                 } else {
