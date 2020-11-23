@@ -52,7 +52,6 @@ class PurchaseDetailActivity : BaseActivity() {
             }
 
             mResult.add(RowItemModel(title = name, isOnlyTitle = true))
-            mResult.add(RowItemModel(title = getString(R.string.gia), content = StringExt.convertToMoney(unitPrice) + "/ " + unitName, contentColor = R.color.mainColor, contentStyle = R.style.TextView_SemiBold))
             if (type == DmServiceListOrigin.TYPE_COMBO) {
                 var saleAmount = 0.0
                 var unitAmount = 0.0
