@@ -57,7 +57,7 @@ public interface APIInterface {
     Call<RestAllDmCheckAutoPromotion> apiCheckAutoPromotion(@Body RestAllDmCheckAutoPromotion json);
 
     @GET("partner/online_order/list")
-    Call<RestDmHistoryOrderOnline> apiOrderHistoryHermes(@Query("company_id") String company_id, @Query("page") int page, @Query("numPerPage") int numPerPage);
+    Call<RestDmHistoryOrderOnline> apiOrderHistoryHermes(@Query("companyId") String company_id, @Query("page") int page, @Query("numPerPage") int numPerPage);
 
     @GET("partner/online_order/detail")
     Call<RestDmOrderOnline> apiOrderHistory(@Query("orderCode") String orderCode);
@@ -87,7 +87,7 @@ public interface APIInterface {
     Call<TagsModelData> apiSCMTags();
 
     @GET("locations")
-    Call<LocationModelData> apiSCMLocation(@Query("active") int active,@Query("companyId") String companyId,@Query("brand_ids") String brand_ids,@Query("user_id") String user_id);
+    Call<LocationModelData> apiSCMLocation(@Query("active") int active,@Query("company_id") String companyId,@Query("brand_ids") String brand_ids,@Query("user_id") String user_id);
 
     @POST("locations")
     Call<LocationModelDataObject> apiSCMLocationCreate(@Body LocationModel json);
@@ -108,7 +108,7 @@ public interface APIInterface {
     Call<FeedbackModelData> apiSCMFeedback(@Body FeedbackModel json);
 
     @GET("articles")
-    Call<ArticlesModelData> apiSCMArticles(@Query("city_uid") String city_uid,@Query("companyId") String companyId,@Query("brand_ids") String BrandId);
+    Call<ArticlesModelData> apiSCMArticles(@Query("city_uid") String city_uid,@Query("company_id") String companyId,@Query("brand_ids") String BrandId);
 
     @GET("articles")
     Call<ArticlesModelDataObject> apiSCMArticlesDetail(@Query("uid") String uId);
