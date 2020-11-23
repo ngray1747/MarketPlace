@@ -81,7 +81,8 @@ class ApplicationMarketPlace : Application() {
     fun loadData(
             companyId: String? = null,
             userId: String? = null,
-            appType: String? = null
+            appType: String? = null,
+            countryUid: String? = null
     ) {
         companyId?.run {
             cartBussiness?.companyId = this
@@ -91,6 +92,9 @@ class ApplicationMarketPlace : Application() {
         }
         appType?.run {
             cartBussiness?.appType = this
+        }
+        countryUid?.run {
+            cartBussiness?.country_uid = this
         }
     }
 

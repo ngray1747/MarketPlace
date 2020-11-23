@@ -21,6 +21,7 @@ class CartBussiness {
     var appType = ""
     var companyId = ""
     var userId = ""
+    var country_uid = ""
 
     fun getListBrandId(): String {
         var content = ""
