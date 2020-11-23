@@ -241,7 +241,7 @@ class AddAddressOrderNvlActivity : BaseActivity() {
         locateModel.city_uid = cityCode
         locateModel.country_uid = mCartBussiness.country_uid
 //        locateModel.country_uid = "88a736a3-747c-4ed8-8426-cfe995691938" //Tést
-        locateModel.country_uid = "1136b905-35b7-4bb0-bdfc-7ab6ce8b1db3" //that
+//        locateModel.country_uid = "1136b905-35b7-4bb0-bdfc-7ab6ce8b1db3" //that
 
         showProgressHub(this)
         localModel?.run{
