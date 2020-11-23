@@ -135,7 +135,7 @@ public interface APIInterface {
     Call<NvlOnlineModelData> apiSCMInvoices(@Body NvlOnlineModel json);
 
     @GET("invoices")
-    Call<NvlOnlineModelDataList> apiSCMInvoicesHistory(@Query("company_id") String company_id,@Query("page") int page,@Query("results_per_page") int results_per_page);
+    Call<NvlOnlineModelDataList> apiSCMInvoicesHistory(@Query("company_id") String company_id,@Query("customer_id") String customer_id,@Query("page") int page,@Query("results_per_page") int results_per_page);
 
     @GET("invoices")
     Call<NvlOnlineModelData> apiSCMInvoicesHistoryDetail(@Query("company_id") String company_id,@Query("uid") String uid);

@@ -109,7 +109,7 @@ class NvlHistoryFragment : BaseFragment() {
         }
 
         val callback: ApiRequest<NvlOnlineModelDataList> = ApiRequest()
-        callback.setCallBack(mApiSCM?.apiSCMInvoicesHistory(mCartBussiness.companyId,page,10),
+        callback.setCallBack(mApiSCM?.apiSCMInvoicesHistory(mCartBussiness.companyId,mCartBussiness.userId,page,10),
                 { response ->  onResponseOrderOnline(response.data) }) { error ->
             onResponseOrderOnline(null)
             error.printStackTrace()

@@ -62,10 +62,12 @@ class PurchaseDetailActivity : BaseActivity() {
                         unitAmount += dmServiceListOrigin.unitPrice * dmServiceListOrigin.quantity
                     }
                 }
+                mResult.add(RowItemModel(title = getString(R.string.gia), content = StringExt.convertToMoney(unitAmount) + "/ " + unitName, contentColor = R.color.mainColor, contentStyle = R.style.TextView_SemiBold))
                 if (saleAmount != unitAmount) {
                     mResult.add(RowItemModel(title = getString(R.string.gia_ban), content = saleAmount?.let { StringExt.convertToMoney(it) } + "/ " + unitName, contentColor = R.color.mainColor, contentStyle = R.style.TextView_SemiBold))
                 }
             } else {
+                mResult.add(RowItemModel(title = getString(R.string.gia), content = StringExt.convertToMoney(unitPrice) + "/ " + unitName, contentColor = R.color.mainColor, contentStyle = R.style.TextView_SemiBold))
                 if (marketPrice != null && unitPrice != marketPrice) {
                     mResult.add(RowItemModel(title = getString(R.string.gia_ban), content = marketPrice?.let { StringExt.convertToMoney(it) } + "/ " + unitName, contentColor = R.color.mainColor, contentStyle = R.style.TextView_SemiBold))
                 }
