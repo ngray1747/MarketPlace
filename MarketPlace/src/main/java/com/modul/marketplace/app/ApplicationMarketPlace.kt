@@ -60,7 +60,9 @@ class ApplicationMarketPlace : Application() {
         Log.i("APP", "ON APP Width/height ")
     }
 
-    fun AddLink(scm_link: String? = null, scm_access_token: String? = null, scm_secret_key: String? = null, hermes_link: String? = null, hermes_access_token: String? = null){
+    fun AddLink(scm_link: String? = null, scm_access_token: String? = null, scm_secret_key: String? = null, hermes_link: String? = null, hermes_access_token: String? = null,
+                appType: String? = null,
+                countryUid: String? = null){
         scm_link?.run {
             SCM_LINK = this
         }
@@ -76,25 +78,23 @@ class ApplicationMarketPlace : Application() {
         hermes_access_token?.run {
             HERMES_ACCESS_TOKEN = this
         }
+        appType?.run {
+            cartBussiness?.appType = this
+        }
+        countryUid?.run {
+            cartBussiness?.country_uid = this
+        }
     }
 
     fun loadData(
             companyId: String? = null,
-            userId: String? = null,
-            appType: String? = null,
-            countryUid: String? = null
+            userId: String? = null
     ) {
         companyId?.run {
             cartBussiness?.companyId = this
         }
         userId?.run {
             cartBussiness?.userId = this
-        }
-        appType?.run {
-            cartBussiness?.appType = this
-        }
-        countryUid?.run {
-            cartBussiness?.country_uid = this
         }
     }
 
