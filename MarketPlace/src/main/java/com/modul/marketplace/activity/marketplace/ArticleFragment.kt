@@ -5,30 +5,27 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.volley.VolleyError
 import com.modul.marketplace.R
 import com.modul.marketplace.activity.BaseFragment
 import com.modul.marketplace.adapter.marketplace.ArtilesAdapter
 import com.modul.marketplace.app.Constants
+import com.modul.marketplace.extension.DialogUtil
 import com.modul.marketplace.extension.gone
 import com.modul.marketplace.extension.openActivity
 import com.modul.marketplace.extension.visible
-import com.modul.marketplace.model.marketplace.AddressModelData
 import com.modul.marketplace.model.marketplace.ArticlesModel
 import com.modul.marketplace.model.marketplace.ArticlesModelData
 import com.modul.marketplace.restful.ApiRequest
-import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.ToastUtil
 import com.modul.marketplace.util.Utilities
 import kotlinx.android.synthetic.main.fragment_article.*
-import kotlinx.android.synthetic.main.fragment_article.mError
-import kotlinx.android.synthetic.main.fragment_nvl.*
 import java.util.*
 
 class ArticleFragment : BaseFragment() {
@@ -52,12 +49,20 @@ class ArticleFragment : BaseFragment() {
 
     private fun initClick() {
         mCreate.setOnClickListener { view: View? ->
-            openActivity(ArticleCreateActivity::class.java)
+            if (TextUtils.isEmpty(mCartBussiness.companyId)) {
+                context?.let {
+                    DialogUtil.showAlert(it, textTitle = R.string.thongbao, textMessage = R.string.article_companyId_valid, textCancel = R.string.desau, textOk = R.string.lien_he, okListener = {
+                       Utilities.callPhone(activity,"19004766")
+                    })
+                }
+            } else {
+                openActivity(ArticleCreateActivity::class.java)
+            }
         }
     }
 
     private fun initData() {
-        Utilities.sendBoardCounlyLib(context,Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.BROWSER_ARTICLE)
+        Utilities.sendBoardCounlyLib(context, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.MARKETPLACE_HERMES_COUNTLY, Constants.Countly.EVENT.FEATURE, Constants.Countly.CounlyComponent.MARKET_PLACE, Constants.Countly.CounlyFeature.BROWSER_ARTICLE)
         callServiceList()
     }
 
@@ -79,8 +84,8 @@ class ArticleFragment : BaseFragment() {
     private fun callServiceList() {
         showProgressHub(mActivity)
         val callback: ApiRequest<ArticlesModelData> = ApiRequest()
-        callback.setCallBack(mApiSCM?.apiSCMArticles(mCartBussiness.getCartLocate().locateId,mCartBussiness.companyId,mCartBussiness.getListBrandId()),
-                { response ->  onResponseServiceList(response.data) }) { error ->
+        callback.setCallBack(mApiSCM?.apiSCMArticles(mCartBussiness.getCartLocate().locateId, mCartBussiness.companyId, mCartBussiness.getListBrandId()),
+                { response -> onResponseServiceList(response.data) }) { error ->
             onResponseServiceList(null)
             error.printStackTrace()
             ToastUtil.makeText(mActivity, getString(R.string.error_network2))
@@ -94,11 +99,11 @@ class ArticleFragment : BaseFragment() {
             mDatas.addAll(data)
         }
 
-        if (mError != null) {
+        if (mLoi != null) {
             if (mDatas.size == 0) {
-                mError.visible()
+                mLoi.visible()
             } else {
-                mError.gone()
+                mLoi.gone()
             }
         }
         mAdapter?.notifyDataSetChanged()

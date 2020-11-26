@@ -321,4 +321,8 @@
     <string name="shipping">Đơn hàng đang trong quá trình vận chuyển. Bạn sẽ nhận được đơn hàng dự kiến ngày % tại %@</string>
     <string name="completed">Đơn hàng của bạn đã được hoàn thành, các sản phẩm phần mềm đã được gia hạn sử dụng, các sản phẩm phần mềm đã được kích hoạt bảo hành</string>
     <string name="canceled">Rất xin lỗi bạn chúng tôi không thể hoàn thành đơn hàng này, toàn bộ số tiền bạn đã thanh toán online(MoMo, ZaloPay...) chúng tôi sẽ hoàn trả lại cho bạn sớm nhất</string>
+    <string name="toan_quoc">Toàn quốc</string>
+    <string name="article_companyId_valid">Tài khoản của bạn chưa chưa được active chức năng tạo tin rao vặt, xin vui lòng liên hệ tổng đài 19004766 để được hỗ trợ</string>
+    <string name="card_companyId_valid">Tài khoản của bạn chưa chưa được active chức năng mua hàng, xin vui lòng liên hệ tổng đài 19004766 để được hỗ trợ</string>
+    <string name="desau">Để sau</string>
 </resources>

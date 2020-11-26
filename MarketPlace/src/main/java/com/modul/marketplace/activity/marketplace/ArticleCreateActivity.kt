@@ -43,7 +43,7 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
 
     private lateinit var mAdapterImageOrder: ImageOrderAdapter
     private val mResultImageOrder: ArrayList<ImageOrderModel> = ArrayList()
-    private var areaId = ""
+    private var areaId :String? = null
     private var tagsList = ArrayList<String>()
     private var idArticles: String? = null
     private var articlesModel: ArticlesModel? = null
@@ -363,14 +363,18 @@ class ArticleCreateActivity : BaseActivity(), BSImagePicker.OnSingleImageSelecte
         data?.run {
             val popupMenu = PopupMenu(this@ArticleCreateActivity, mKhuVuc, Gravity.RIGHT)
 
+            popupMenu.menu.add(0, 0, 0, getString(R.string.toan_quoc))
             forEachIndexed { index, team ->
                 popupMenu.menu.add(0, index.plus(1), index.plus(1), team.city_name)
             }
 
             popupMenu.setOnMenuItemClickListener { item: MenuItem ->
-                val cityName = item.title.toString()
-                mKhuVuc.setText(cityName)
-                areaId = data[item.itemId.minus(1)].id.toString()
+                if(item.itemId == 0){
+                    areaId = null
+                }else{
+                    areaId = data[item.itemId.minus(1)].id.toString()
+                }
+                mKhuVuc.setText(item.title.toString())
                 false
             }
             popupMenu.show()

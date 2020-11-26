@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,13 +18,11 @@ import com.google.gson.Gson
 import com.modul.marketplace.R
 import com.modul.marketplace.activity.BaseFragment
 import com.modul.marketplace.activity.CateActivity
+import com.modul.marketplace.activity.marketplace.ArticleCreateActivity
 import com.modul.marketplace.adapter.orderonline.ServiceListRecyleAdapter
 import com.modul.marketplace.app.ApplicationMarketPlace
 import com.modul.marketplace.app.Constants
-import com.modul.marketplace.extension.DialogUtil
-import com.modul.marketplace.extension.gone
-import com.modul.marketplace.extension.openActivityForResult
-import com.modul.marketplace.extension.visible
+import com.modul.marketplace.extension.*
 import com.modul.marketplace.holder.orderonline.ServicelistRecycleHolder
 import com.modul.marketplace.model.marketplace.AddressModelData
 import com.modul.marketplace.model.orderonline.DmServiceListOrigin
@@ -61,7 +60,15 @@ class PurchaseFragment : BaseFragment() {
 
     private fun initClick() {
         relativeLayout_cart.setOnClickListener { view: View? ->
-            CateActivity.gotoCartFragment(mActivity)
+            if (TextUtils.isEmpty(mCartBussiness.companyId)) {
+                context?.let {
+                    DialogUtil.showAlert(it, textTitle = R.string.thongbao, textMessage = R.string.card_companyId_valid, textCancel = R.string.desau, textOk = R.string.lien_he, okListener = {
+                        Utilities.callPhone(activity,"19004766")
+                    })
+                }
+            } else {
+                CateActivity.gotoCartFragment(mActivity)
+            }
         }
     }
 

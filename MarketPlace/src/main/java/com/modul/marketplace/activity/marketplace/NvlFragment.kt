@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,7 +59,15 @@ class NvlFragment : BaseFragment() {
 
     private fun initClick() {
         relativeLayout_cart.setOnClickListener { view: View? ->
-            CateActivity.gotoCartFragment(mActivity)
+            if (TextUtils.isEmpty(mCartBussiness.companyId)) {
+                context?.let {
+                    DialogUtil.showAlert(it, textTitle = R.string.thongbao, textMessage = R.string.card_companyId_valid, textCancel = R.string.desau, textOk = R.string.lien_he, okListener = {
+                        Utilities.callPhone(activity,"19004766")
+                    })
+                }
+            } else {
+                CateActivity.gotoCartFragment(mActivity)
+            }
         }
     }
 

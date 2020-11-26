@@ -95,21 +95,6 @@
         app:layout_constraintTop_toBottomOf="@+id/adress" />
 
     <TextView
-        android:id="@+id/total_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextView.Regular"
-        android:layout_marginTop="@dimen/standard_margin_half"
-        android:layout_marginRight="@dimen/font_size_12_5"
-        android:gravity="start"
-        android:layout_marginLeft="@dimen/standard_margin_15"
-        android:text="0 đ"
-        android:textColor="@color/text_36"
-        android:textSize="@dimen/font_size_13"
-        app:layout_constraintStart_toEndOf="@+id/image"
-        app:layout_constraintTop_toBottomOf="@+id/adress" />
-
-    <TextView
         android:id="@+id/price_origin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -117,11 +102,25 @@
         android:layout_marginTop="@dimen/standard_margin_half"
         android:visibility="gone"
         android:gravity="start"
-        android:layout_marginLeft="@dimen/d_5"
+        android:layout_marginLeft="@dimen/standard_margin_15"
         android:textColor="@color/red"
         android:textSize="@dimen/font_size_13"
-        app:layout_constraintStart_toEndOf="@+id/total_price"
+        app:layout_constraintStart_toEndOf="@+id/image"
         app:layout_constraintTop_toBottomOf="@+id/adress" />
+
+    <TextView
+        android:id="@+id/total_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/standard_margin_15"
+        android:gravity="start"
+        android:layout_marginTop="@dimen/d_5"
+        android:text="0 đ"
+        android:textAppearance="@style/TextView.Regular"
+        android:textColor="@color/text_36"
+        android:textSize="@dimen/font_size_13"
+        app:layout_constraintStart_toEndOf="@+id/image"
+        app:layout_constraintTop_toBottomOf="@+id/price_origin" />
 
     <View
         android:id="@+id/view4"

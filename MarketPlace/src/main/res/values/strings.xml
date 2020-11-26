@@ -308,4 +308,8 @@
     <string name="shipping">Your order is in the shipping process. You will receive your order expected to date % at %@</string>
     <string name="completed">Your order has been completed, software products have been extended, software products have been warranted.</string>
     <string name="canceled">Sorry we cannot complete this order, the full amount you have paid online (MoMo, ZaloPay ...) we will refund you soon.</string>
+    <string name="toan_quoc">Nationwide</string>
+    <string name="article_companyId_valid">Your account is not active in the function to create ads, please contact the operator 19004766 for support.</string>
+    <string name="card_companyId_valid">Your account is not active in purchasing function yet, please contact the operator 19004766 for support</string>
+    <string name="desau">After</string>
 </resources>
