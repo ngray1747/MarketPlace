@@ -90,7 +90,7 @@ public class ServicelistRecycleHolder extends AbsRecyleHolder {
         Glide.with(mContext).load(item.getImage()).into(mImage);
 
         price_origin.setPaintFlags(price_origin.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        price_origin.setVisibility(View.INVISIBLE);
+        price_origin.setVisibility(View.GONE);
          if (DmServiceListOrigin.TYPE_COMBO.equals(item.getType())) {
             String details = "";
             double saleAmount = 0.0;
