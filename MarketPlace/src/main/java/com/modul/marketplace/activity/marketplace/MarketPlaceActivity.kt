@@ -15,6 +15,7 @@ import com.modul.marketplace.adapter.marketplace.MarketPlaceAdapter
 import com.modul.marketplace.model.marketplace.AddressModel
 import com.modul.marketplace.R
 import com.modul.marketplace.activity.BaseActivity
+import com.modul.marketplace.app.ApplicationMarketPlace
 import com.modul.marketplace.app.Constants
 import com.modul.marketplace.app.Constants.BROADCAST.*
 import com.modul.marketplace.extension.*
@@ -158,6 +159,8 @@ class MarketPlaceActivity : BaseActivity() {
             if (title == dmCityOd.city_name) {
                 mCartBussiness.getCartLocate().locateId = dmCityOd.id
                 mCartBussiness.getCartLocate().locateName = dmCityOd.city_name
+                ApplicationMarketPlace.instance.saveLocateId(dmCityOd.id)
+                ApplicationMarketPlace.instance.saveLocateName(dmCityOd.city_name)
             }
         }
     }
