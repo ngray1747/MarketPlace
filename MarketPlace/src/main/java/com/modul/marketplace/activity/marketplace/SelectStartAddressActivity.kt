@@ -67,6 +67,8 @@ class SelectStartAddressActivity : BaseActivity() {
             if (title == dmCityOd.city_name) {
                 mCartBussiness.getCartLocate().locateId = dmCityOd.id
                 mCartBussiness.getCartLocate().locateName = dmCityOd.city_name
+                ApplicationMarketPlace.instance.saveLocateId(dmCityOd.id)
+                ApplicationMarketPlace.instance.saveLocateName(dmCityOd.city_name)
                 break
             }
         }

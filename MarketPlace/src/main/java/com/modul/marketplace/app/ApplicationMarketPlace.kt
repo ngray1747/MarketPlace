@@ -18,6 +18,7 @@ import com.modul.marketplace.bussiness.CartBussiness
 import com.modul.marketplace.bussiness.LocationBussiness
 import com.modul.marketplace.restful.*
 import com.modul.marketplace.util.FormatNumberUtil
+import com.modul.marketplace.util.SharedPref
 import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
 import okhttp3.TlsVersion
@@ -26,9 +27,14 @@ import vn.momo.momo_partner.AppMoMoLib
 //import vn.zalopay.sdk.ZaloPaySDK
 
 class ApplicationMarketPlace : Application() {
+    private val KEY_LOCATE_ID = "KEY_LOCATE_ID"
+    private val KEY_LOCATE_NAME = "KEY_LOCATE_NAME"
+
     private var mRequestQueue: RequestQueue? = null
     var locationBussiness: LocationBussiness? = null
     var cartBussiness: CartBussiness? = null
+    private val GLOBALAPP = "GLOBALMARKET"
+    var pref: SharedPref? = null
 
     var SCM_LINK = ""
     var SCM_ACCESS_TOKEN = ""
@@ -36,6 +42,9 @@ class ApplicationMarketPlace : Application() {
 
     var HERMES_LINK = ""
     var HERMES_ACCESS_TOKEN = ""
+
+    var locateId = ""
+    var locateName = ""
 
     private val applicationMarketPlace: ApplicationMarketPlace? = null
 
@@ -53,11 +62,34 @@ class ApplicationMarketPlace : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        pref = SharedPref(this, GLOBALAPP)
+        pref?.let{
+            locateId = it.getString(KEY_LOCATE_ID, "")
+            locateName = it.getString(KEY_LOCATE_NAME, "")
+        }
         FirebaseApp.initializeApp(this)
         FirebaseApp.getApps(this)
         Log.d("APP", "ON APP")
         initBussiness()
         Log.i("APP", "ON APP Width/height ")
+    }
+
+    fun saveLocateId(data: String?) {
+        data?.run{
+            locateId = this
+            pref?.let{
+                it.putString(KEY_LOCATE_ID, this)
+            }
+        }
+    }
+
+    fun saveLocateName(data: String?) {
+        data?.run{
+            locateName = this
+            pref?.let{
+                it.putString(KEY_LOCATE_NAME, this)
+            }
+        }
     }
 
     fun AddLink(scm_link: String? = null, scm_access_token: String? = null, scm_secret_key: String? = null, hermes_link: String? = null, hermes_access_token: String? = null,

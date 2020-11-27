@@ -30,9 +30,7 @@ class IntroImageFragment : BaseFragment() {
     private fun initData() {
         imageRes?.let {
             context?.let { c->
-                Glide.with(c).load(it).apply(
-                        RequestOptions().placeholder(R.drawable.icon_default).override(100, 100)
-                ).into(imgIntro)
+                Glide.with(c).load(it).apply(RequestOptions().placeholder(R.drawable.icon_default)).into(imgIntro)
             }
 
         }
