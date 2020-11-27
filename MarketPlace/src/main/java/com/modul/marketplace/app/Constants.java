@@ -206,6 +206,7 @@ public class Constants {
         public static final String BROAD_MAKETPLACE = "BROAD_MAKETPLACE";
         public static final String BACK = "BACK";
         public static final String REFRESH = "REFRESH";
+        public static final String ADDLOCATE = "ADDLOCATE";
         public static final String HERMES_ORDER_CALLBACK = "HERMES_ORDER_CALLBACK";
         public static final String HERMES_ORDER_ZALO_CALLBACK = "HERMES_ORDER_ZALO_CALLBACK";
         public static final String NVL_ORDER_CALLBACK = "NVL_ORDER_CALLBACK";

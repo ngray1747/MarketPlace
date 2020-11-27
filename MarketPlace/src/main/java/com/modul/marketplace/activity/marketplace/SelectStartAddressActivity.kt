@@ -8,6 +8,7 @@ import com.android.volley.VolleyError
 import com.modul.marketplace.R
 import com.modul.marketplace.activity.BaseActivity
 import com.modul.marketplace.app.ApplicationMarketPlace
+import com.modul.marketplace.app.Constants
 import com.modul.marketplace.extension.DialogUtil
 import com.modul.marketplace.extension.StringExt
 import com.modul.marketplace.extension.openActivity
@@ -17,6 +18,7 @@ import com.modul.marketplace.model.marketplace.AddressModelData
 import com.modul.marketplace.restful.ApiRequest
 import com.modul.marketplace.restful.WSRestFull
 import com.modul.marketplace.util.ToastUtil
+import com.modul.marketplace.util.Utilities
 import kotlinx.android.synthetic.main.activity_select_order_address.*
 import timber.log.Timber
 import java.util.*
@@ -67,8 +69,7 @@ class SelectStartAddressActivity : BaseActivity() {
             if (title == dmCityOd.city_name) {
                 mCartBussiness.getCartLocate().locateId = dmCityOd.id
                 mCartBussiness.getCartLocate().locateName = dmCityOd.city_name
-                ApplicationMarketPlace.instance.saveLocateId(dmCityOd.id)
-                ApplicationMarketPlace.instance.saveLocateName(dmCityOd.city_name)
+                Utilities.sendBoardLocateLib(applicationContext, Constants.BROADCAST.BROAD_MANAGER_HOME_CALLBACK, Constants.BROADCAST.ADDLOCATE,dmCityOd.id,dmCityOd.city_name)
                 break
             }
         }
