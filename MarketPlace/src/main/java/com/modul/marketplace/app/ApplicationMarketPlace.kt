@@ -23,6 +23,7 @@ import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
 import okhttp3.TlsVersion
 import vn.momo.momo_partner.AppMoMoLib
+import vn.zalopay.sdk.Environment
 import vn.zalopay.sdk.ZaloPaySDK
 
 //import vn.zalopay.sdk.ZaloPaySDK
@@ -115,7 +116,8 @@ class ApplicationMarketPlace : Application() {
 //        config.enableCrashReporting()
 //        config.setApplication(this)
 //        Countly.sharedInstance().init(config)
-        ZaloPaySDK.getInstance().initWithAppId(684)
+//        ZaloPaySDK.getInstance().initWithAppId(684)
+        ZaloPaySDK.init(684, Environment.SANDBOX)
         AppMoMoLib.getInstance().setEnvironment(AppMoMoLib.ENVIRONMENT.PRODUCTION)
 
 //        if (BuildConfig.DEBUG) {
@@ -171,10 +173,10 @@ class ApplicationMarketPlace : Application() {
         // set the default tag if tag is empty
         req.tag = if (TextUtils.isEmpty(tag)) TAG else tag
         req.retryPolicy = AbsRestful.reTryPolicy()
-        Log.i(
-                "App.addToRequestQueue() tag $tag",
-                "url restful " + req.url
-        )
+//        Log.i(
+//                "App.addToRequestQueue() tag $tag",
+//                "url restful " + req.url
+//        )
         getRequestQueue()?.add(req)
     }
 

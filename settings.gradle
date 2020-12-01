@@ -1,5 +1,5 @@
+include ':zpdk-release'
 include ':MarketPlace'
 //include ':app'
-include ':zalopay'
 //include ':zpdk-sandboxMerchant-release'
 rootProject.name = "MinhHaiLib"
